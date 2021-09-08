@@ -24,6 +24,8 @@ python run
 
 # Data Set 구축 프로세스
 
+![image](https://user-images.githubusercontent.com/77369036/132465808-fa069824-85ab-4dff-8cdd-d3146dd203ee.png)
+
 ### 1. 크롤링 할 쇼핑몰 선택
 ### 2. 웹 크롤링으로 상품 데이터 / 리뷰 데이터 뽑아 옴
 ### 3. Insert DataBase
@@ -46,6 +48,8 @@ python run
 - 추가적으로 상품 구매에 대한 의사결정까지 필요한 데이터가 무엇이 더 필요한지 어떤 속성이 구매결정에 유의미한 영향을 미치는지 조사는 더 필요해 보임
 
 # Web 프로세스
+
+![image](https://user-images.githubusercontent.com/77369036/132465857-721fe870-7bc4-4471-911e-35c93500492b.png)
 
 ### 1. 회원가입
 	-> 회원가입시 고객 정보 입력 (나이, 성별, 키, 몸무게(체형), 선호 스타일)
