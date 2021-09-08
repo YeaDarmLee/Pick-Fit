@@ -47,6 +47,7 @@ python run
 - 기존 정의했던 나이, 성별, 체형 등등의 정보를 활용할 수 있을지 고민
 - 추가적으로 상품 구매에 대한 의사결정까지 필요한 데이터가 무엇이 더 필요한지 어떤 속성이 구매결정에 유의미한 영향을 미치는지 조사는 더 필요해 보임
 
+
 # Web 프로세스
 
 ![image](https://user-images.githubusercontent.com/77369036/132465857-721fe870-7bc4-4471-911e-35c93500492b.png)
@@ -72,35 +73,32 @@ python run
     어디에서 입으실 예정인가요?
     	[놀이동산, 카페, 회사 ...]
 
-# Question
-### Q. 3-2, 3-3이 겹칠 수 있나? -> 같은 코드로 처리가 가능?
-
 
 # [Table schema]
 
 ### **Web 관련 Table**
-### User_info
-    [회원정보 저장] [idx, ID, PW, Name, ...] primary key = idx
-
-### User_Body_Profile
-    [회원 신체정보 저장] [idx, height, weight, sex, Preference] primary key = idx
-
-### code_info
-    [Code List] [idx, code, description] primary key = code
+| Table Name | Description |
+| -------------- | ---------------- |
+| User_info | 회원정보 저장 |
+| User_Body_Profile | 회원 신체정보 저장 |
+| code_info | Code List |
 
 ### **크롤링 관련 Table**
-### Clothing_info
-    [의류정보 저장 테이블]
-
-### Clothing_img
-    [의류 이미지 저장 테이블]
+| Table Name | Description |
+| -------------- | ---------------- |
+| Clothing_info | 의류정보 저장 테이블 |
+| Clothing_img | 의류 이미지 저장 테이블 |
 
 # 참조 문헌
 ### 옷 추천 시스템 데이터 셋 구축을 위한 텍스트 데이터 마이닝
     - 숭실대학교 대학원 정보통신공학과
     - 숭실대학교 스마트시스템소프트웨어학과
-    - https://manuscriptlink-society-file.s3-ap-northeast-1.amazonaws.com/kips/conference/kips2020spring/KIPS_C2020A0074.pdf
+- https://manuscriptlink-society-file.s3-ap-northeast-1.amazonaws.com/kips/conference/kips2020spring/KIPS_C2020A0074.pdf
 
 ### 인공지능에 의한 개인 맞춤 패션 스타일 추천 서비스 사례 연구
     - 이화여자대학교 의류산업학과
-    - https://www.koreascience.or.kr/article/JAKO201920461984493.pdf
+- https://www.koreascience.or.kr/article/JAKO201920461984493.pdf
+
+
+# Question
+### Q. 3-2, 3-3이 겹칠 수 있나? -> 같은 코드로 처리가 가능?
