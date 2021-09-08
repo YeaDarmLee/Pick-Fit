@@ -2,14 +2,11 @@
 
 ## 개발환경
 - Windows 10 64-bit
-
-### 백엔드
 - Python 3.9.7
+- Flask 2.0.1
+- Werkzeug 2.0.1
 
-### 프론트엔드
-- Flask
-
-## 빌드 및 실행  방법
+## 빌드 및 실행 방법
 ```
 로컬
 python app.py
