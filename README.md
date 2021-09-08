@@ -9,15 +9,15 @@
 ## 빌드 및 실행 방법
 ```
 로컬
-pip install BeautifulSoup4
-pip install requests
-pip install lxml
+python app.py
+python run
 ```
 
 ## 모듈
 ```
-python app.py
-python run
+pip install BeautifulSoup4
+pip install requests
+pip install lxml
 ```
 
 # 프로젝트 설명
