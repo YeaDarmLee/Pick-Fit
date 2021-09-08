@@ -18,10 +18,10 @@ python run
 
 # 프로젝트 설명
 
-## 제목
+### 제목
 여기에 들어갈 내용 적어야함
 
-## 제목
+### 제목
 여기에 들어갈 내용 적어야함
 
 
@@ -72,26 +72,26 @@ python run
     	[놀이동산, 카페, 회사 ...]
 
 # Question
-## Q. 3-2, 3-3이 겹칠 수 있나? -> 같은 코드로 처리가 가능?
+### Q. 3-2, 3-3이 겹칠 수 있나? -> 같은 코드로 처리가 가능?
 
 
 # [Table schema]
 
-## **Web 관련 Table**
-## User_info
+### **Web 관련 Table**
+### User_info
     [회원정보 저장] [idx, ID, PW, Name, ...] primary key = idx
 
-## User_Body_Profile
+### User_Body_Profile
     [회원 신체정보 저장] [idx, height, weight, sex, Preference] primary key = idx
 
-## code_info
+### code_info
     [Code List] [idx, code, description] primary key = code
 
-## **크롤링 관련 Table**
-## Clothing_info
+### **크롤링 관련 Table**
+### Clothing_info
     [의류정보 저장 테이블]
 
-## Clothing_img
+### Clothing_img
     [의류 이미지 저장 테이블]
 
 # 참조 문헌
