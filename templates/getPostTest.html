@@ -1,0 +1,51 @@
+{% include './layout/header.html' %}
+<section class="page-section" id="contact" style="padding: 0px;margin: 100px;">
+    <a class="btn btn-primary" href="/">처음으로</a>
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6 text-center">
+                <h2 class="mt-0">Post 전송해보기</h2>
+                <hr class="divider" />
+                <p class="text-muted" style="margin: 0px;">이 페이지에서는 Post 형식으로 데이터를 전송 후 받는 TEST 가능함</p>
+                <div style="margin: 10px;">
+                    <div class="text-muted">name: {{data.name}}</div>
+                    <div class="text-muted">email: {{data.email}}</div>
+                    <div class="text-muted">phone: {{data.phone}}</div>
+                    <div class="text-muted">message: {{data.message}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-6">
+                <form id="contactForm" action="/getPostTest" method="POST">
+                    <!-- Name input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="name" name="name" type="text"/>
+                        <label for="name">Full name</label>
+                    </div>
+                    <!-- Email address input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="email" name="email" type="email"/>
+                        <label for="email">Email address</label>
+                    </div>
+                    <!-- Phone number input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="phone" name="phone" type="tel"/>
+                        <label for="phone">Phone number</label>
+                    </div>
+                    <!-- Message input-->
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="message" name="message" type="text" style="height: 10rem"></textarea>
+                        <label for="message">Message</label>
+                    </div>
+                    <!-- Submit Button-->
+                    <div class="d-grid">
+                        <input class="btn btn-primary btn-xl" id="submitButton" type="submit"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% include './layout/footer.html' %}
