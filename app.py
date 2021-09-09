@@ -67,6 +67,7 @@ def crawler():
     result_img = []
     # 크롤링
     # soup.find("tag",class_="name").get_text()
+    # soup.select_one('#s_content > div.section > ul > li:nth-child(1) > dl > dt > a')
     for k in range(0, len(tag)):
       # 태그 Null 값 제외
       if (tag[k] != ''):
@@ -96,7 +97,7 @@ def crawler():
   except:
     result = {
       "code": 40000,
-      "url": url,
+      "url": '',
       "tag": '',
       "classNm": '',
       'result_img': '',
@@ -104,6 +105,15 @@ def crawler():
     }
   
   return render_template("crawler.html", result = result)
+
+@app.route('/addTample',methods=('GET', 'POST'))
+def addTample():
+  # front에서 넘겨받은 form값
+  rq_form = request.form
+  print(rq_form)
+
+  return 'test'
+
 
 if __name__=="__main__":
     app.run(host="127.0.0.1", port="8888", debug=True)
