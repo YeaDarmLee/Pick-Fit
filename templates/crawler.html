@@ -19,7 +19,6 @@
   }
 </script>
 <section class="page-section" id="contact" style="padding: 0px;margin: 100px;">
-    <a class="btn btn-primary" href="/">처음으로</a>
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-lg-8 col-xl-6 text-center">
@@ -37,6 +36,14 @@
               <div class="col-12 mb-3">
                 <input class="btn btn-primary col-auto" id="submitButton" value="크롤링 시작" type="submit"/>
                 <input class="btn btn-primary col-auto" type="button" value="태그 추가" onclick="add_textbox()"/>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addTample">
+                  양식 추가
+                </button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#searchTample">
+                  양식 조회
+                </button>
+                <a class="btn btn-secondary float-end" href="/">처음으로</a>
               </div>
               <!-- url input-->
               <div class="form-floating mb-3">
@@ -55,7 +62,7 @@
         <div class="col-lg-8 col-xl-6 text-center">
           {% if result.code == 20000 %}
             <div class="text-center card">
-              <table class="table table-hover">
+              <table class="table table-hover text-black-50">
                 <thead>
                   <tr>
                     <th scope="col">Name</th>
@@ -103,6 +110,46 @@
             <p class="text-muted" style="margin-bottom: 10px;">크롤링에 실패하였습니다.</p>
             <p class="text-muted" style="margin-bottom: 10px;">검색한 Url이나 HTML 태그가 존재 하는지 확인해주세요.</p>
           {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="addTample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-muted" id="exampleModalLabel">크롤링 양식 추가</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-muted">
+            여기에 설정한 값 대로 DB에 저장 후 양식을 불러올 수 있습니다.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="searchTample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-muted" id="exampleModalLabel">크롤링 양식 조회</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-muted">
+            저장한 값을 불러옵니다
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
