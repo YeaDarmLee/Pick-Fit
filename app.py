@@ -59,7 +59,8 @@ def crawler():
       j=j+1
 
     # 크롤링 url 기본값
-    response = requests.get(url)
+    headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
+    response = requests.get(url, headers=headers)
     html_text = response.text
     soup = BeautifulSoup(html_text, "lxml")
 
@@ -111,10 +112,22 @@ def crawler():
 def addTample():
   # front에서 넘겨받은 form값
   rq_form = request.form
-  print(rq_form)
 
   return rq_form
 
+# test code
+@app.route('/test',methods=('GET', 'POST'))
+def test():
+  url = 'https://wjdqnwnd.cafe24.com/product/detail.html?product_no=7132&cate_no=99&display_group=1'
+  headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
+  response = requests.get(url, headers=headers).text
+  html_text = response
+  soup = BeautifulSoup(html_text, "html.parser")
+  print(soup)
+  test = soup.find('h2')
+  print(test)
+
+  return 'test'
 
 if __name__=="__main__":
     app.run(host="127.0.0.1", port="8888", debug=True)
