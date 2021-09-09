@@ -5,6 +5,7 @@
 - Python 3.9.7
 - Flask 2.0.1
 - Werkzeug 2.0.1
+- mysql 8.0
 
 ## 빌드 및 실행 방법
 ```
