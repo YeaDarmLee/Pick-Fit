@@ -1,10 +1,29 @@
 {% include './layout/header.html' %}
+<script>
+  var input_num = 0;
+  const add_textbox = () => {
+    const box = document.getElementById("tag_input");
+    const newP = document.createElement('spen');
+    newP.innerHTML =  '<div class="card mb-3 col-4 disply_ini">' +
+                      '<div class="form-floating">' +
+                      '<input class="form-control" id="tag' + input_num +'" name="tag' + input_num +'" type="text"/>' +
+                      '<label for="tag' + input_num +'">Search tag</label>' +
+                      '</div>' +
+                      '<div class="form-floating">' +
+                      '<input class="form-control" id="name' + input_num +'" name="name' + input_num +'" type="text"/>' +
+                      '<label for="name' + input_num +'">Class Name</label>' +
+                      '</div>' +
+                      '</div>'
+    box.appendChild(newP);
+    input_num ++
+  }
+</script>
 <section class="page-section" id="contact" style="padding: 0px;margin: 100px;">
     <a class="btn btn-primary" href="/">처음으로</a>
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-lg-8 col-xl-6 text-center">
-                <h2 class="mt-0">크롤링 Test Page</h2>
+                <h2 class="mt-0">크롤링 Page</h2>
                 <hr class="divider" />
                 <p class="text-muted" style="margin: 1.5rem auto;">이 페이지에서는 크롤링한 Text 확인가능함</p>
             </div>
@@ -14,20 +33,19 @@
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-lg-6">
             <form id="contactForm" action="/crawler" method="POST">
-                <!-- url input-->
-                <div class="form-floating mb-3">
-                    <input class="form-control" id="url" name="url" type="text" required/>
-                    <label for="url">Search url</label>
-                </div>
-                <!-- tag input-->
-                <div class="form-floating mb-3">
-                    <input class="form-control" id="tag" name="tag" type="text"/>
-                    <label for="tag">Search tag</label>
-                </div>
-                <!-- Submit Button-->
-                <div class="d-grid">
-                    <input class="btn btn-primary" id="submitButton" type="submit"/>
-                </div>
+              <!-- Submit Button-->
+              <div class="col-12 mb-3">
+                <input class="btn btn-primary col-auto" id="submitButton" value="크롤링 시작" type="submit"/>
+                <input class="btn btn-primary col-auto" type="button" value="태그 추가" onclick="add_textbox()"/>
+              </div>
+              <!-- url input-->
+              <div class="form-floating mb-3">
+                <input class="form-control" id="url" name="url" type="text" required/>
+                <label for="url">Search url</label>
+              </div>
+              <!-- tag input-->
+              <div id="tag_input">
+              </div>
             </form>
         </div>
     </div>
@@ -37,9 +55,11 @@
             <div class="col-lg-8 col-xl-6 text-center">
                 <h3 class="mt-0">{{list}}</h3>
                 <hr class="divider" />
-                <a href={{url}}><p class="text-muted" style="margin: 10px;">url : {{url}}</p></a>
-                <p class="text-muted" style="margin-bottom: 10px;">Search tag : {{tag}}</p>
-                <p class="text-muted" style="margin-bottom: 100px;">{{content}}</p>
+                <a href={{url}}><p class="text-muted" style="margin: 10px;">url : {{result.url}}</p></a>
+                <p class="text-muted" style="margin-bottom: 10px;">Search tag : {{result.tag}}</p>
+                <p class="text-muted" style="margin-bottom: 10px;">Search class Name : {{result.classNm}}</p>
+                <p class="text-muted" style="margin-bottom: 10px;">Search Image : <img src="{{result.result_img[0]}}" style="width: 50%;"></p>
+                <p class="text-muted" style="margin-bottom: 100px;">{{result.result_txt}}</p>
             </div>
         </div>
     </div>

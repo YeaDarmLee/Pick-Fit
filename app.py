@@ -4,12 +4,12 @@ app = Flask(__name__)
 
 # 크롤링 라이브러리 import
 import requests 
-from bs4 import BeautifulSoup 
-import unicodedata
+from bs4 import BeautifulSoup
 
 @app.route('/')
 def hello():
   return render_template('index.html')
+
 
 @app.route('/getPostTest',methods=('GET', 'POST'))
 def index():
@@ -22,41 +22,67 @@ def index():
 
   return render_template('getPostTest.html', data = data)
 
+
+# 크롤링 route
 @app.route('/crawler',methods=('GET', 'POST'))
 def crawler():
-  response = ''
-  html_text = ''
-  soup = ''
-  title = ''
 
-  url = request.form.get('url')
-  tag = request.form.get('tag')
+  # front에서 넘겨받은 form값
+  rq_form = request.form
 
-  if tag is None:
-    tag = 'div'
+  # 초기 로딩 시 url이 없어 에러뜨는 거 방지용 바로 return
+  if (len(rq_form) == 0):
+    return render_template("crawler.html")
+
+  j = 0
+  tag = []
+  classNm = []
+  # 크롤링에 필요한 tag와 class 값 분할
+  for i in rq_form:
+    if (j == 0):
+      url = request.form.get(i)
+    elif (j != 0 and j%2 == 0):
+      classNm.append(request.form.get(i))
+    else:
+      tag.append(request.form.get(i))
+    j=j+1
+
+  # 크롤링 url 기본값
+  response = requests.get(url)
+  html_text = response.text
+  soup = BeautifulSoup(html_text, "lxml")
+
+  result_txt = []
+  result_img = []
+  # 크롤링
+  # soup.find("tag",class_="name").get_text()
+  for k in range(0, len(tag)):
+    # 태그 Null 값 제외
+    if (tag[k] != ''):
+      # 이미지 태그 Search
+      if (tag[k] == 'img'):
+        if (classNm[k] == ''):
+          img = soup.find(tag[k])
+        else:
+          img = soup.find(tag[k],class_=classNm[k])
+        result_img.append(img.get("src"))
+      # 일반 태그 Search
+      else:
+        if (classNm[k] == ''):
+          result_txt.append(soup.find(tag[k]).get_text())
+        else:
+          result_txt.append(soup.find(tag[k],class_=classNm[k]).get_text())
   
-  print(tag)
-
-  if url is not None:
-    try :
-      response = requests.get(url)
-      html_text = response.text
-      
-      soup = BeautifulSoup(html_text, "lxml") 
-      title = soup.find("h1").get_text()
-      
-      content = soup.find(tag).get_text()
-      content = unicodedata.normalize("NFKD", content)
-    except :
-      title = '검색하는 페이지에 설정한 태그가 없습니다.'
-      content = 'Error : 이 에러가 보이면 해당 URL, 혹은 html 구조를 확인해 보세요.'
-      url = url
-  else:
-    title = ''
-    content = ''
-    url = ''
+  # return 형식 저장
+  result = {
+    "url": url,
+    "tag": tag,
+    "classNm": classNm,
+    'result_img': result_img,
+    'result_txt': result_txt
+  }
   
-  return render_template("crawler.html", list = title, content = content, tag = tag, url = url)
+  return render_template("crawler.html", result = result)
 
 if __name__=="__main__":
     app.run(host="127.0.0.1", port="8888", debug=True)
