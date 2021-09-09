@@ -20,20 +20,24 @@
 
   var add_m_input_num = 0;
   const add_m_input = () => {
-    const box = document.getElementById("addTample_input");
-    const newP = document.createElement('spen');
-    newP.innerHTML =  '<div class="card mb-3 col-6 disply_ini">' +
-                      '<div class="form-floating">' +
-                      '<input class="form-control" id="tampleTag' + add_m_input_num +'" name="tampleTag' + add_m_input_num +'" type="text"/>' +
-                      '<label for="tampleTag' + add_m_input_num +'">Search tag</label>' +
-                      '</div>' +
-                      '<div class="form-floating">' +
-                      '<input class="form-control" id="tampleClass' + add_m_input_num +'" name="tampleClass' + add_m_input_num +'" type="text"/>' +
-                      '<label for="tampleClass' + add_m_input_num +'">Class Name</label>' +
-                      '</div>' +
-                      '</div>'
-    box.appendChild(newP);
-    add_m_input_num ++
+    if (add_m_input_num < 6) {
+      const box = document.getElementById("addTample_input");
+      const newP = document.createElement('spen');
+      newP.innerHTML =  '<div class="card mb-3 col-6 disply_ini">' +
+                        '<div class="form-floating">' +
+                        '<input class="form-control" id="tampleTag' + add_m_input_num +'" name="tampleTag' + add_m_input_num +'" type="text"/>' +
+                        '<label for="tampleTag' + add_m_input_num +'">Search tag</label>' +
+                        '</div>' +
+                        '<div class="form-floating">' +
+                        '<input class="form-control" id="tampleClass' + add_m_input_num +'" name="tampleClass' + add_m_input_num +'" type="text"/>' +
+                        '<label for="tampleClass' + add_m_input_num +'">Class Name</label>' +
+                        '</div>' +
+                        '</div>'
+      box.appendChild(newP);
+      add_m_input_num ++
+    } else {
+      alert ('input은 최대 6개까지 생성할 수 있습니다.')
+    }
   }
 </script>
 <header class="page-section" id="contact">
@@ -208,10 +212,13 @@
 			cache: false,
 			timeout: 600000,
         success: function(data){
-            alert('성공!',data)
+          alert('ajax 전송 성공')
+          console.log(data)
+          // location reload 하던지 form 값 초기화 시켜주는 로직 필요
+          location.reload()
         },
         error: function(request, status, error){
-          alert('실패!')
+          alert('ajax 전송 실패')
         }
       })
   })

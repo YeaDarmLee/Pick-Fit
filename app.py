@@ -106,13 +106,14 @@ def crawler():
   
   return render_template("crawler.html", result = result)
 
+# DB에 양식 추가하는 부분
 @app.route('/addTample',methods=('GET', 'POST'))
 def addTample():
   # front에서 넘겨받은 form값
   rq_form = request.form
   print(rq_form)
 
-  return 'test'
+  return rq_form
 
 
 if __name__=="__main__":
