@@ -11289,12 +11289,37 @@ body {
   height: 100%;
 }
 
-.body_backgrount {
+header.page-section {
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 4.5rem);
   background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/bg-masthead.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
 }
 
-.page-section {
-  padding: 1rem;
+header.page-section h1, header.page-section .h1 {
+  font-size: 2.25rem;
+}
+@media (min-width: 992px) {
+  header.page-section {
+    height: 100vh;
+    min-height: 40rem;
+    padding-top: 4.5rem;
+    padding-bottom: 0;
+  }
+  header.page-section p {
+    font-size: 1.15rem;
+  }
+  header.page-section h1, header.page-section .h1 {
+    font-size: 3rem;
+  }
+}
+@media (min-width: 1200px) {
+  header.page-section h1, header.page-section .h1 {
+    font-size: 3.5rem;
+  }
 }
 
 .text-white-75 {
@@ -11387,7 +11412,7 @@ hr.divider-light {
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 4.5rem);
-  /* background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/bg-masthead.jpg"); */
+  background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/bg-masthead.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;

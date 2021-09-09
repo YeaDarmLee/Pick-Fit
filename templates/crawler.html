@@ -18,13 +18,14 @@
     input_num ++
   }
 </script>
-<section class="page-section card" id="contact" style="margin: 100px;">
+<header class="page-section" id="contact">
+<!-- <section class="page-section card" id="contact" style="margin: 100px;"> -->
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-xl-6 text-center">
-                <h2 class="mt-0">크롤링 Page</h2>
+                <h1 class="mt-0 text-white font-weight-bold">크롤링 Page</h1>
                 <hr class="divider" />
-                <p class="text-muted" style="margin: 1.5rem auto;">이 페이지에서는 크롤링한 Text 확인가능함</p>
+                <p class="text-white-75" style="margin: 1.5rem auto;">이 페이지에서는 크롤링한 Text 확인가능함</p>
             </div>
         </div>
     </div>
@@ -37,10 +38,10 @@
                 <input class="btn btn-primary col-auto" id="submitButton" value="크롤링 시작" type="submit"/>
                 <input class="btn btn-primary col-auto" type="button" value="태그 추가" onclick="add_textbox()"/>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addTample">
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addTample">
                   양식 추가
                 </button>
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#searchTample">
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#searchTample">
                   양식 조회
                 </button>
                 <a class="btn btn-secondary float-end" href="/">처음으로</a>
@@ -129,7 +130,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-success">Save changes</button>
+          <button type="button" class="btn btn-warning">Save changes</button>
         </div>
       </div>
     </div>
@@ -153,5 +154,5 @@
       </div>
     </div>
   </div>
-</section>
+</header>
 {% include './layout/footer.html' %}
