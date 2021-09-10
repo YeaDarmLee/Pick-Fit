@@ -91,32 +91,74 @@
 
   <!-- 크롤링 양식 등록 modal -->
   <div class="modal fade" id="addTample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title text-muted" id="exampleModalLabel">크롤링 양식 추가</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
 
-          <form id="tampleForm">
+        <div class="modal-body">
+          <p class="text-muted">각 데이터 들의 xpath를 입력해 주세요</p>
+          
+          <form class="text-align-center" id="insert_form">
             <!-- name input -->
-            <div class="form-floating mb-3">
-              <input class="form-control" id="tampleName" name="tampleName" type="text" required/>
-              <label for="tampleName">Name</label>
+            <div class="form-floating mb-3 col-10 disply_ini">
+              <input class="form-control input-sm" id="hostName" name="hostName" type="text" required/>
+              <label for="hostName">쇼핑몰 이름</label>
             </div>
-            <!-- url input -->
-            <div class="form-floating mb-3">
-              <input class="form-control" id="tampleUrl" name="tampleUrl" type="text" required/>
-              <label for="tampleUrl">Search url</label>
+            <div class="form-floating mb-3 col-5 disply_ini">
+              <input class="form-control input-sm" id="url" name="url" type="text" required/>
+              <label for="url">URL</label>
             </div>
-            <!-- tag input -->
-            <div id="addTample_input">
+            <div class="form-floating mb-3 col-5 disply_ini">
+              <input class="form-control input-sm" id="detail_url" name="detail_url" type="text" required/>
+              <label for="detail_url">detail_url</label>
+            </div>
+
+            <div class="form-floating mb-3 col-5 disply_ini">
+              <input class="form-control input-sm" id="price" name="price" type="text" required/>
+              <label for="price">가격</label>
+            </div>
+            <div class="form-floating mb-3 col-5 disply_ini">
+              <input class="form-control input-sm" id="p_name" name="p_name" type="text" required/>
+              <label for="p_name">상품명</label>
+            </div>
+            <div class="form-floating mb-3 col-5 disply_ini">
+              <input class="form-control input-sm" id="width" name="width" type="text"/>
+              <label for="width">두께</label>
+            </div>
+            <div class="form-floating mb-3 col-5 disply_ini">
+              <input class="form-control input-sm" id="flexibility" name="flexibility" type="text"/>
+              <label for="flexibility">신축성</label>
+            </div>
+            <div class="form-floating mb-3 col-5 disply_ini">
+              <input class="form-control input-sm" id="lining" name="lining" type="text"/>
+              <label for="lining">안감</label>
+            </div>
+            <div class="form-floating mb-3 col-5 disply_ini">
+              <input class="form-control input-sm" id="material" name="material" type="text"/>
+              <label for="material">소재</label>
+            </div>
+            <div class="form-floating mb-3 col-5 disply_ini">
+              <input class="form-control input-sm" id="size" name="size" type="text"/>
+              <label for="size">사이즈</label>
+            </div>
+            <div class="form-floating mb-3 col-5 disply_ini">
+              <input class="form-control input-sm" id="color" name="color" type="text"/>
+              <label for="color">색상</label>
+            </div>
+            <div class="form-floating mb-3 col-5 disply_ini">
+              <input class="form-control input-sm" id="seethrough" name="seethrough" type="text"/>
+              <label for="seethrough">비침</label>
+            </div>
+            <div class="form-floating mb-3 col-5 disply_ini">
+              <input class="form-control input-sm" id="p_img" name="p_img" type="text"/>
+              <label for="p_img">이미지</label>
             </div>
           </form>
           
           <div class="modal-footer">
-            <input class="btn btn-primary col-auto" type="button" value="태그 추가" onclick="add_m_input()"/>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="button" id="tampleBtn" class="btn btn-warning">Save changes</button>
           </div>
@@ -140,10 +182,10 @@
               <tr>
                 <th scope="col" width="5%">#</th>
                 <th scope="col" width="13%">쇼핑몰</th>
-                <th scope="col" width="40%">URL</th>
-                <th scope="col" width="15%">설정Tag</th>
-                <th scope="col" width="15%">설정Class</th>
+                <th scope="col" width="35%">URL</th>
+                <th scope="col" width="30%">Search URL</th>
                 <th scope="col" width="12%">작성일</th>
+                <th scope="col" width="5%">#</th>
               </tr>
             </thead>
             <!-- 데이터 Jquery로 생성 -->
@@ -161,7 +203,7 @@
 </header>
 
 <script>
-  // 페이지 로딩시 사용되는 변수
+  // 크롤링 test시 사용되는 변수
   var input_num = 0;
   var add_m_input_num = 0;
 
@@ -205,8 +247,8 @@
 
   // 크롤링 양식 등록
   $('#tampleBtn').click(function(){
-    // ID가 tampleForm인 form의 value 가져옴
-    var form = $('#tampleForm')[0];
+    // ID가 insert_form인 form의 value 가져옴
+    var form = $('#insert_form')[0];
 		var data = new FormData(form);
 
     $.ajax({
@@ -247,12 +289,12 @@
         for (var i=0;i<data.result.length;i++){
           const newP = document.createElement('tr');
           newP.setAttribute("id", "searchTample_tr");
-          newP.innerHTML =  '<th scope="row">' + data.result[i].id + '</th>' +
-                            '<td>' + data.result[i].title + '</td>' +
+          newP.innerHTML =  '<th scope="row">' + data.result[i].idx + '</th>' +
+                            '<td>' + data.result[i].hostName + '</td>' +
                             '<td>' + data.result[i].url + '</td>' +
-                            '<td>' + data.result[i].meta_tag + '</td>' +
-                            '<td>' + data.result[i].meta_class + '</td>' +
-                            '<td>' + data.result[i].c_date + '</td>'
+                            '<td>' + data.result[i].detail_url + '</td>' +
+                            '<td>' + data.result[i].c_date + '</td>' +
+                            '<td><input class="btn btn-primary col-auto" value="go" onclick="startCrawling(' + data.result[i].idx+ ')" type="button"/></td>'
           box.appendChild(newP);
         }
       },
@@ -265,6 +307,10 @@
   // 생성한 html을 삭제해주지 않으면 중첩되어 데이터가 누적되어 삭제로직 추가
   function removeSearchTample() {
     $("tr").remove('#searchTample_tr')
+  }
+
+  function startCrawling(data) {
+    console.log('눌렀니?',data)
   }
   
 </script>
