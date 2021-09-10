@@ -1,13 +1,14 @@
 # /app.py
 from os import error
 from flask import Flask, render_template, request
+from urllib import parse
+
+# dbModule.py import
 import dbModule
 
 # 크롤링 라이브러리 import
 import requests 
 from bs4 import BeautifulSoup
-
-from urllib import parse
 
 app = Flask(__name__)
 

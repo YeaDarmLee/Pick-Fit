@@ -1,45 +1,4 @@
 {% include './layout/header.html' %}
-<script>
-  var input_num = 0;
-  const add_textbox = () => {
-    const box = document.getElementById("tag_input");
-    const newP = document.createElement('spen');
-    newP.innerHTML =  '<div class="card mb-3 col-4 disply_ini">' +
-                      '<div class="form-floating">' +
-                      '<input class="form-control" id="tag' + input_num +'" name="tag' + input_num +'" type="text"/>' +
-                      '<label for="tag' + input_num +'">Search tag</label>' +
-                      '</div>' +
-                      '<div class="form-floating">' +
-                      '<input class="form-control" id="name' + input_num +'" name="name' + input_num +'" type="text"/>' +
-                      '<label for="name' + input_num +'">Class Name</label>' +
-                      '</div>' +
-                      '</div>'
-    box.appendChild(newP);
-    input_num ++
-  }
-
-  var add_m_input_num = 0;
-  const add_m_input = () => {
-    if (add_m_input_num < 6) {
-      const box = document.getElementById("addTample_input");
-      const newP = document.createElement('spen');
-      newP.innerHTML =  '<div class="card mb-3 col-6 disply_ini">' +
-                        '<div class="form-floating">' +
-                        '<input class="form-control" id="tampleTag' + add_m_input_num +'" name="tampleTag' + add_m_input_num +'" type="text"/>' +
-                        '<label for="tampleTag' + add_m_input_num +'">Search tag</label>' +
-                        '</div>' +
-                        '<div class="form-floating">' +
-                        '<input class="form-control" id="tampleClass' + add_m_input_num +'" name="tampleClass' + add_m_input_num +'" type="text"/>' +
-                        '<label for="tampleClass' + add_m_input_num +'">Class Name</label>' +
-                        '</div>' +
-                        '</div>'
-      box.appendChild(newP);
-      add_m_input_num ++
-    } else {
-      alert ('input은 최대 6개까지 생성할 수 있습니다.')
-    }
-  }
-</script>
 <header class="page-section" id="contact">
     <div class="container">
         <div class="row justify-content-center">
@@ -54,18 +13,12 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <form id="contactForm" action="/crawler" method="POST">
-              <!-- Submit Button-->
+              <!-- Button-->
               <div class="col-12 mb-3">
                 <input class="btn btn-primary col-auto" id="submitButton" value="크롤링 시작" type="submit"/>
                 <input class="btn btn-primary col-auto" type="button" value="태그 추가" onclick="add_textbox()"/>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addTample">
-                  양식 추가
-                </button>
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addTample">양식 추가</button>
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target=".bd-example-modal-xl" onclick="searchTample()">양식 조회</button>
-                <!-- <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#searchTample" onclick="searchTample()">
-                  양식 조회
-                </button> -->
                 <a class="btn btn-secondary float-end" href="/">처음으로</a>
               </div>
               <!-- url input-->
@@ -136,7 +89,7 @@
     </div>
   </div>
 
-  <!-- Modal -->
+  <!-- 크롤링 양식 등록 modal -->
   <div class="modal fade" id="addTample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -145,26 +98,22 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p class="text-muted">
-            여기에 설정한 값을 DB에 저장합니다.
-          </p>
-          
+
           <form id="tampleForm">
-            <!-- url input-->
+            <!-- name input -->
             <div class="form-floating mb-3">
               <input class="form-control" id="tampleName" name="tampleName" type="text" required/>
               <label for="tampleName">Name</label>
             </div>
-            <!-- url input-->
+            <!-- url input -->
             <div class="form-floating mb-3">
               <input class="form-control" id="tampleUrl" name="tampleUrl" type="text" required/>
               <label for="tampleUrl">Search url</label>
             </div>
-
+            <!-- tag input -->
             <div id="addTample_input">
             </div>
           </form>
-
           
           <div class="modal-footer">
             <input class="btn btn-primary col-auto" type="button" value="태그 추가" onclick="add_m_input()"/>
@@ -177,6 +126,7 @@
     </div>
   </div>
 
+  <!-- 크롤링 양식 조회 modal -->
   <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
@@ -196,49 +146,9 @@
                 <th scope="col" width="12%">작성일</th>
               </tr>
             </thead>
+            <!-- 데이터 Jquery로 생성 -->
             <tbody id="searchTample_tbody">
-              
             </tbody>
-          </table>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="removeSearchTample()">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade modal-xl" id="searchTample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-muted" id="exampleModalLabel">크롤링 양식 조회</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="removeSearchTample()"></button>
-        </div>
-        <div class="modal-body" class="text-center" id="searchTample_body">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">쇼핑몰</th>
-                <th scope="col">URL</th>
-                <th scope="col">설정Tag</th>
-                <th scope="col">설정Class</th>
-                <th scope="col">작성일</th>
-              </tr>
-            </thead>
-            <div>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>(주)톰어패럴</td>
-                  <td>https://mr-s.co.kr/product/13-기획-링클프리-반팔티/40176/category/819/display/1/</td>
-                  <td>['testTAG', 'testTAG22']</td>
-                  <td>['Class', 'class22']</td>
-                  <td>2021-09-10 13:02:11</td>
-                </tr>
-              </tbody>
-            </div>
           </table>
         </div>
         <div class="modal-footer">
@@ -251,8 +161,51 @@
 </header>
 
 <script>
-  // 양식 저장
+  // 페이지 로딩시 사용되는 변수
+  var input_num = 0;
+  var add_m_input_num = 0;
+
+  function add_textbox() {
+    const box = document.getElementById("tag_input");
+    const newP = document.createElement('spen');
+    newP.innerHTML =  '<div class="card mb-3 col-4 disply_ini">' +
+                      '<div class="form-floating">' +
+                      '<input class="form-control" id="tag' + input_num +'" name="tag' + input_num +'" type="text"/>' +
+                      '<label for="tag' + input_num +'">Search tag</label>' +
+                      '</div>' +
+                      '<div class="form-floating">' +
+                      '<input class="form-control" id="name' + input_num +'" name="name' + input_num +'" type="text"/>' +
+                      '<label for="name' + input_num +'">Class Name</label>' +
+                      '</div>' +
+                      '</div>'
+    box.appendChild(newP);
+    input_num ++
+  }
+
+  function add_m_input() {
+    if (add_m_input_num < 6) {
+      const box = document.getElementById("addTample_input");
+      const newP = document.createElement('spen');
+      newP.innerHTML =  '<div class="card mb-3 col-6 disply_ini">' +
+                        '<div class="form-floating">' +
+                        '<input class="form-control" id="tampleTag' + add_m_input_num +'" name="tampleTag' + add_m_input_num +'" type="text"/>' +
+                        '<label for="tampleTag' + add_m_input_num +'">Search tag</label>' +
+                        '</div>' +
+                        '<div class="form-floating">' +
+                        '<input class="form-control" id="tampleClass' + add_m_input_num +'" name="tampleClass' + add_m_input_num +'" type="text"/>' +
+                        '<label for="tampleClass' + add_m_input_num +'">Class Name</label>' +
+                        '</div>' +
+                        '</div>'
+      box.appendChild(newP);
+      add_m_input_num ++
+    } else {
+      alert ('input은 최대 6개까지 생성할 수 있습니다.')
+    }
+  }
+
+  // 크롤링 양식 등록
   $('#tampleBtn').click(function(){
+    // ID가 tampleForm인 form의 value 가져옴
     var form = $('#tampleForm')[0];
 		var data = new FormData(form);
 
@@ -268,19 +221,16 @@
         success: function(data){
           if (data.code == 20000){
             alert('ajax 전송 성공')
-            // location reload 하던지 form 값 초기화 시켜주는 로직 필요
             location.reload()
-          } else {
-            alert('ajax 전송 실패')
           }
         },
         error: function(request, status, error){
-          alert('ajax 전송 실패')
+          alert('ajax 전송 실패', error)
         }
       })
   })
 
-  // 양식 조회
+  // 저장된 크롤링 양식 조회
   function searchTample() {
     $.ajax({
       type: 'POST',
@@ -290,8 +240,10 @@
 			cache: false,
 			timeout: 600000,
       success: function(data){
+        // html id가 searchTample_tbody 인 객체 가져옴
         const box = document.getElementById("searchTample_tbody");
         
+        // DB에서 가져온 값 table 형식으로 html 생성
         for (var i=0;i<data.result.length;i++){
           const newP = document.createElement('tr');
           newP.setAttribute("id", "searchTample_tr");
@@ -310,6 +262,7 @@
     })
   }
 
+  // 생성한 html을 삭제해주지 않으면 중첩되어 데이터가 누적되어 삭제로직 추가
   function removeSearchTample() {
     $("tr").remove('#searchTample_tr')
   }
