@@ -170,6 +170,31 @@ def searchTample():
   return {'result': result}
 
 
+@app.route('/crawling',methods=('GET', 'POST'))
+def test():
+  from selenium import webdriver
+  from webdriver_manager.chrome import ChromeDriverManager
+
+  options = webdriver.ChromeOptions()
+  options.add_argument('headless')
+  options.add_argument('window-size=1920x1080')
+  options.add_argument("disable-gpu")
+
+  # driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
+  driver = webdriver.Chrome("chromedriver.exe", chrome_options=options)
+
+  driver.get('https://mr-s.co.kr/product/detail.html?product_no=40244')
+  driver.implicitly_wait(2)
+  # driver.get_screenshot_as_file('test.png')
+
+  print('find_elements_by_xpath : ',[e.text for e in driver.find_elements_by_xpath('/html/body/div[2]/div[3]/div[4]/div[1]/div/center[2]/div[1]/div[2]/div[2]/div[2]')])
+
+  
+  driver.close()
+
+  return render_template("crawling.html", result = result)
+
+
 
 ########## test ##########
 
