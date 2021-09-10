@@ -1,10 +1,15 @@
 # /app.py
 from flask import Flask, render_template, request
-app = Flask(__name__)
+from flask.json.tag import JSONTag
 
 # 크롤링 라이브러리 import
 import requests 
 from bs4 import BeautifulSoup
+
+# DB
+import dbModule
+
+app = Flask(__name__)
 
 @app.route('/')
 def hello():
@@ -107,13 +112,59 @@ def crawler():
   
   return render_template("crawler.html", result = result)
 
-# DB에 양식 추가하는 부분
-@app.route('/addTample',methods=('GET', 'POST'))
+# DB에 크롤링 양식 저장
+@app.route('/addTemplate',methods=('GET', 'POST'))
 def addTample():
   # front에서 넘겨받은 form값
   rq_form = request.form
 
-  return rq_form
+  tampleName = request.form.get('tampleName')
+  tampleUrl = request.form.get('tampleUrl')
+  print (rq_form)
+
+  j = 0
+  tag = []
+  classNm = []
+  # 크롤링에 필요한 tag와 class 값 분할
+  for i in rq_form:
+    if (i != 'tampleName' and i != 'tampleUrl'):
+      if (j != 0 and j%2 == 0):
+        tag.append(request.form.get(i))
+      else:
+        classNm.append(request.form.get(i))
+    j=j+1
+  
+  print('tag',tag)
+  print('classNm',classNm)
+
+  # data insert
+  try:
+    db_class = dbModule.Database()
+    sql = "INSERT INTO crawling_form (title,url,meta_tag,meta_class) VALUES ('" + tampleName + "','" + tampleUrl + "',\"" + str(tag) + "\",\"" + str(classNm) + "\")"
+    print (sql)
+    db_class.execute(sql)
+    db_class.commit()
+    result = {
+      "code": 20000    
+    }
+  except:
+    result = {
+      "code": 50000
+    }
+
+  return result
+
+# searchTemplate
+@app.route('/searchTemplate',methods=('GET', 'POST'))
+def searchTample():
+
+  db_class = dbModule.Database()
+  sql = "SELECT * FROM crawling_form;"
+  row = db_class.executeAll(sql)
+
+  return row
+
+########## test 모듈 ##########
 
 # test code
 @app.route('/test',methods=('GET', 'POST'))
@@ -129,5 +180,19 @@ def test():
 
   return 'test'
 
+# databases test code
+@app.route('/testdb')
+def select():
+    db_class = dbModule.Database()
+    sql = "SELECT * FROM crawling_form;"
+    row = db_class.executeAll(sql)
+    print(row[0])
+
+    return render_template('test.html', resultData=row)
+
+########## test 모듈 ##########
+
 if __name__=="__main__":
     app.run(host="127.0.0.1", port="8888", debug=True)
+
+from app import app

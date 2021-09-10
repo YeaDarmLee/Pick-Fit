@@ -205,17 +205,20 @@
     $.ajax({
       type: 'POST',
       enctype: 'multipart/form-data',
-      url: '/addTample',
+      url: '/addTemplate',
       data: data ,
 			processData: false,
 			contentType: false,
 			cache: false,
 			timeout: 600000,
         success: function(data){
-          alert('ajax 전송 성공')
-          console.log(data)
-          // location reload 하던지 form 값 초기화 시켜주는 로직 필요
-          location.reload()
+          if (data.code == 20000){
+            alert('ajax 전송 성공')
+            // location reload 하던지 form 값 초기화 시켜주는 로직 필요
+            location.reload()
+          } else {
+            alert('ajax 전송 실패')
+          }
         },
         error: function(request, status, error){
           alert('ajax 전송 실패')
