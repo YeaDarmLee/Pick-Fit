@@ -19,8 +19,7 @@ python run
 pip install BeautifulSoup4
 pip install requests
 pip install lxml
-pip install sqlalchemy
-pip install mysql-connector-python
+pip install pymysql
 ```
 
 # 프로젝트 설명
