@@ -62,9 +62,10 @@
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addTample">
                   양식 추가
                 </button>
-                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#searchTample">
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target=".bd-example-modal-xl" onclick="searchTample()">양식 조회</button>
+                <!-- <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#searchTample" onclick="searchTample()">
                   양식 조회
-                </button>
+                </button> -->
                 <a class="btn btn-secondary float-end" href="/">처음으로</a>
               </div>
               <!-- url input-->
@@ -176,20 +177,72 @@
     </div>
   </div>
 
-  <div class="modal fade" id="searchTample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-muted" id="exampleModalLabel">크롤링 양식 조회</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="removeSearchTample()"></button>
+        </div>
+        <div class="modal-body" id="searchTample_body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col" width="5%">#</th>
+                <th scope="col" width="13%">쇼핑몰</th>
+                <th scope="col" width="40%">URL</th>
+                <th scope="col" width="15%">설정Tag</th>
+                <th scope="col" width="15%">설정Class</th>
+                <th scope="col" width="12%">작성일</th>
+              </tr>
+            </thead>
+            <tbody id="searchTample_tbody">
+              
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="removeSearchTample()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade modal-xl" id="searchTample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title text-muted" id="exampleModalLabel">크롤링 양식 조회</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="removeSearchTample()"></button>
         </div>
-        <div class="modal-body">
-          <p class="text-muted">
-            저장한 값을 불러옵니다
-          </p>
+        <div class="modal-body" class="text-center" id="searchTample_body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">쇼핑몰</th>
+                <th scope="col">URL</th>
+                <th scope="col">설정Tag</th>
+                <th scope="col">설정Class</th>
+                <th scope="col">작성일</th>
+              </tr>
+            </thead>
+            <div>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>(주)톰어패럴</td>
+                  <td>https://mr-s.co.kr/product/13-기획-링클프리-반팔티/40176/category/819/display/1/</td>
+                  <td>['testTAG', 'testTAG22']</td>
+                  <td>['Class', 'class22']</td>
+                  <td>2021-09-10 13:02:11</td>
+                </tr>
+              </tbody>
+            </div>
+          </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="removeSearchTample()">Close</button>
         </div>
       </div>
     </div>
@@ -198,6 +251,7 @@
 </header>
 
 <script>
+  // 양식 저장
   $('#tampleBtn').click(function(){
     var form = $('#tampleForm')[0];
 		var data = new FormData(form);
@@ -225,5 +279,40 @@
         }
       })
   })
+
+  // 양식 조회
+  function searchTample() {
+    $.ajax({
+      type: 'POST',
+      url: '/searchTemplate',
+			processData: false,
+			contentType: false,
+			cache: false,
+			timeout: 600000,
+      success: function(data){
+        const box = document.getElementById("searchTample_tbody");
+        
+        for (var i=0;i<data.result.length;i++){
+          const newP = document.createElement('tr');
+          newP.setAttribute("id", "searchTample_tr");
+          newP.innerHTML =  '<th scope="row">' + data.result[i].id + '</th>' +
+                            '<td>' + data.result[i].title + '</td>' +
+                            '<td>' + data.result[i].url + '</td>' +
+                            '<td>' + data.result[i].meta_tag + '</td>' +
+                            '<td>' + data.result[i].meta_class + '</td>' +
+                            '<td>' + data.result[i].c_date + '</td>'
+          box.appendChild(newP);
+        }
+      },
+      error: function(request, status, error){
+        alert('ajax 전송 실패')
+      }
+    })
+  }
+
+  function removeSearchTample() {
+    $("tr").remove('#searchTample_tr')
+  }
+  
 </script>
 {% include './layout/footer.html' %}

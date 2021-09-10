@@ -1,31 +1,19 @@
 # /app.py
+from os import error
 from flask import Flask, render_template, request
-from flask.json.tag import JSONTag
+import dbModule
 
 # 크롤링 라이브러리 import
 import requests 
 from bs4 import BeautifulSoup
 
-# DB
-import dbModule
+from urllib import parse
 
 app = Flask(__name__)
 
 @app.route('/')
-def hello():
-  return render_template('index.html')
-
-
-@app.route('/getPostTest',methods=('GET', 'POST'))
 def index():
-  
-  name = request.form.get('name')
-  email = request.form.get('email')
-  phone = request.form.get('phone')
-  message = request.form.get('message')
-  data = {'name': name, 'email': email, 'phone': phone, 'message': message}
-
-  return render_template('getPostTest.html', data = data)
+  return render_template('index.html')
 
 # 
 # 크롤링 route
@@ -72,7 +60,6 @@ def crawler():
     result_txt = []
     result_img = []
     # 크롤링
-    # soup.find("tag",class_="name").get_text()
     # soup.select_one('#s_content > div.section > ul > li:nth-child(1) > dl > dt > a')
     for k in range(0, len(tag)):
       # 태그 Null 값 제외
@@ -120,7 +107,9 @@ def addTample():
 
   tampleName = request.form.get('tampleName')
   tampleUrl = request.form.get('tampleUrl')
-  print (rq_form)
+  
+  # URL 입력시 자동 인코딩으로 인한 TypeError로 디코딩 처리
+  tampleUrl = parse.unquote(tampleUrl)
 
   j = 0
   tag = []
@@ -140,16 +129,19 @@ def addTample():
   # data insert
   try:
     db_class = dbModule.Database()
-    sql = "INSERT INTO crawling_form (title,url,meta_tag,meta_class) VALUES ('" + tampleName + "','" + tampleUrl + "',\"" + str(tag) + "\",\"" + str(classNm) + "\")"
+    sql = "INSERT INTO crawling_form (title,url,meta_tag,meta_class) VALUES ('" + tampleName + "','" + str(tampleUrl) + "',\"" + str(tag) + "\",\"" + str(classNm) + "\")"
     print (sql)
+
     db_class.execute(sql)
     db_class.commit()
     result = {
-      "code": 20000    
+      "code": 20000
     }
-  except:
+  except Exception as e:
+    print(e)
     result = {
-      "code": 50000
+      "code": 50000,
+      "error": e
     }
 
   return result
@@ -162,9 +154,15 @@ def searchTample():
   sql = "SELECT * FROM crawling_form;"
   row = db_class.executeAll(sql)
 
-  return row
+  result = []
+  for i in row:
+    result.append(i)
 
-########## test 모듈 ##########
+  return {'result': result}
+
+
+
+########## test ##########
 
 # test code
 @app.route('/test',methods=('GET', 'POST'))

@@ -1,3 +1,11 @@
+# 
+# DB 접속시 아래 setting 맞춰주고 시작해야함
+# host => slq 서버 주소
+# user => slq 로그인 ID
+# password => sql 로그인 PW
+# db => 접속할 database 명
+# 
+
 import pymysql
 
 class Database():
