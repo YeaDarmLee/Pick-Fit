@@ -22,6 +22,7 @@ pip install lxml
 pip install pymysql
 pip install parse
 pip install selenium
+pip install webdriver_manager
 ```
 
 # 프로젝트 설명
