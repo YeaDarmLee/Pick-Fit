@@ -1,0 +1,38 @@
+<!-- header -->
+{% include './layout/header.html' %}
+
+<!-- navigation -->
+{% include './layout/navigation.html' %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/join.css') }}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/join.js') }}"></script>
+
+<style>
+  .form-row {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+</style>
+
+<!-- Join -->
+<header class="join">
+  <!-- JQUERY STEP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js"></script>
+  <div class="wrapper">
+    <form action="">
+      <div id="wizard_login">
+        <h4></h4>
+        <section>
+          <div class="form-row"> <input type="text" class="form-control" placeholder="Enter your ID" required> </div>
+          <div class="form-row"> <input type="text" class="form-control" placeholder="Enter your PW" required> </div>
+        </section>
+      </div>
+    </form>
+  </div>
+</header>
+
+<!-- Footer-->
+{% include './layout/footer.html' %}
