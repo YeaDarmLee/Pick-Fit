@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, escape, session
 from flask import Blueprint
 
 # import dbModule
@@ -16,8 +16,13 @@ def index2():
 
 @main.route("/myPage")
 def myPage():
+  userid = '%s' % escape(session['user_id'])
 
-  return render_template('user/myPage.html')
+  db_class = dbModule.Database()
+  search_user = "SELECT * FROM user_info where id = '" + userid + "';"
+  data = dict(db_class.executeOne(search_user))
+
+  return render_template('user/myPage.html', result=data)
 
 @main.route("/urlReturnTest")
 def urlReturnTest():

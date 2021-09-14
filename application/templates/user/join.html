@@ -11,27 +11,50 @@
   <div class="container card card_temple col-5">
     <h1>Join Us</h1>
     <form id="Join_form">
-      
-      <!-- ID input -->
-      <div class="form-outline mb-4">
-        <input type="text" id="userNm" name="userNm" class="form-control" />
+      <!-- Name input -->
+      <div class="form-outline mb-4 dis_inblk col-5">
+        <input type="text" id="userNm" name="userNm" class="form-control" required />
         <label class="form-label" for="userNm">User Name</label>
       </div>
 
+      <!-- gender input -->
+      <div class="form-outline mb-4 dis_inblk col-5">
+        <select class="form-select" id="gender" name="gender" aria-label="Default select example" required>
+          <option selected>성별을 선택해 주세요</option>
+          <option value="0">남자</option>
+          <option value="1">여자</option>
+        </select>
+        <label class="form-label" for="gender">Gender</label>
+      </div>
+
       <!-- ID input -->
-      <div class="form-outline mb-4">
-        <input type="text" id="userid" name="userid" class="form-control" />
+      <div class="form-outline mb-4 dis_inblk col-5">
+        <input type="text" id="userid" name="userid" class="form-control" required />
         <label class="form-label" for="userid">User Id</label>
       </div>
 
       <!-- Password input -->
-      <div class="form-outline mb-4">
-        <input type="password" id="password" name="password" class="form-control" />
+      <div class="form-outline mb-4 dis_inblk col-5">
+        <input type="password" id="password" name="password" class="form-control" required />
         <label class="form-label" for="password">Password</label>
       </div>
 
+      <!-- 키 input -->
+      <div class="form-outline mb-4 dis_inblk col-5">
+        <input type="number" id="height" name="height" class="form-control" required />
+        <label class="form-label" for="height">키</label>
+      </div>
+
+      <!-- 몸무게 input -->
+      <div class="form-outline mb-4 dis_inblk col-5">
+        <input type="number" id="weight" name="weight" class="form-control" required />
+        <label class="form-label" for="weight">몸무게</label>
+      </div>
+
       <!-- Submit button -->
-      <button type="submit" id="submit" class="btn btn-primary btn-block" onclick="clkJoinBtn()">Sign in</button>
+      <div>
+        <button type="submit" id="submit" class="btn btn-primary btn-block" onclick="clkJoinBtn()">Sign in</button>
+      </div>
     </form>
   </div>
 </header>
@@ -75,6 +98,14 @@
     });
   }
 </script>
+
+<style>
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+</style>
 
 <!-- Footer-->
 {% include './layout/footer.html' %}

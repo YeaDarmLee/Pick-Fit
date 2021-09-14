@@ -55,7 +55,6 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alert('로그인에 성공 하였습니다.')
           location.replace('/')
         } else {
           alert(data.result)

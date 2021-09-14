@@ -25,14 +25,14 @@ def login_session():
     password_hash = md5.hexdigest()
 
     db_class = dbModule.Database()
-    search_user = "SELECT * FROM user_test where id = '" + userid + "';"
+    search_user = "SELECT * FROM user_info where id = '" + userid + "';"
     data = dict(db_class.executeOne(search_user))
 
     if data is not None:
       if data['pw'] == password_hash:
         # 로그인 처리
-        session['userNm'] = data['userNm']
-        session['userid'] = data['id']
+        session['user_Nm'] = data['userNm']
+        session['user_id'] = data['id']
         session['login'] = True
         print('로그인 성공')
         return {
@@ -58,6 +58,7 @@ def login_session():
 
 @login.route('/logout', methods=['GET'])
 def logout_session():
-  session.pop('userid', None)
   session.pop('login', False)
+  session.pop('user_Nm', None)
+  session.pop('user_id', None)
   return redirect('/')

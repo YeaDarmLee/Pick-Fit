@@ -62,3 +62,20 @@ create table crawling_product(
 	color VARCHAR(500),
     PRIMARY KEY(idx)
 );
+
+-- user 기본정보
+create table user_info(
+	idx INT NOT NULL AUTO_INCREMENT,
+    id VARCHAR(500) not null,
+    pw VARCHAR(500) not null,
+    userNm VARCHAR(200) not null,
+    gender int not null,
+    height VARCHAR(50) not null,
+    weight VARCHAR(50) not null,
+    face_shape int null,
+    body_shape int null,
+    style int null,
+    skin_tone int null,
+    hair int null,
+    PRIMARY KEY(idx)
+);

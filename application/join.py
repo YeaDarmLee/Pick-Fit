@@ -18,6 +18,17 @@ def register():
     userNm = request.form.get('userNm')
     userid = request.form.get('userid')
     password = request.form.get('password')
+    gender = request.form.get('gender')
+    height = request.form.get('height')
+    weight = request.form.get('weight')
+
+    print(gender)
+
+    if userNm == '' or userid == '' or password == '' or gender == '성별을 선택해 주세요' or height == '' or weight == '':
+      return {
+        'code':50000,
+        'result': '모든 값을 입력해 주세요.'
+      }
 
     # 비밀번호 해쉬화
     HASH_NAME = "md5"
@@ -27,12 +38,12 @@ def register():
     password_hash = md5.hexdigest()
 
     db_class = dbModule.Database()
-    search_user = "SELECT * FROM user_test where id = '" + userid + "';"
+    search_user = "SELECT * FROM user_info where id = '" + userid + "';"
     data = db_class.executeOne(search_user)
 
     if data is None:
       db_class = dbModule.Database()
-      search_user = "INSERT INTO user_test(id,pw,userNm) VALUES ('" + userid + "','" + password_hash + "','" + userNm + "')"
+      search_user = "INSERT INTO user_info(id,pw,userNm,gender,height,weight) VALUES ('" + userid + "','" + password_hash + "','" + userNm + "','" + gender + "','" + height + "','" + weight + "')"
 
       db_class.execute(search_user)
       db_class.commit()
@@ -43,7 +54,6 @@ def register():
         'code':20000
       }
     else:
-      print('이미 가입되어 있는 아이디 입니다.')
       return {
         'code':50000,
         'result': '이미 가입되어 있는 아이디 입니다.'
