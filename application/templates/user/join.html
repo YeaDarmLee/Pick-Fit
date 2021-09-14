@@ -1,13 +1,75 @@
 <!-- header -->
 {% include './layout/header.html' %}
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <!-- navigation -->
 {% include './layout/navigation.html' %}
 
 <!-- Join -->
 <header class="join">
-  
+  <div class="container card card_temple col-5">
+    <h1>Join Us</h1>
+    <form id="Join_form">
+      
+      <!-- ID input -->
+      <div class="form-outline mb-4">
+        <input type="text" id="userNm" name="userNm" class="form-control" />
+        <label class="form-label" for="userNm">User Name</label>
+      </div>
+
+      <!-- ID input -->
+      <div class="form-outline mb-4">
+        <input type="text" id="userid" name="userid" class="form-control" />
+        <label class="form-label" for="userid">User Id</label>
+      </div>
+
+      <!-- Password input -->
+      <div class="form-outline mb-4">
+        <input type="password" id="password" name="password" class="form-control" />
+        <label class="form-label" for="password">Password</label>
+      </div>
+
+      <!-- Submit button -->
+      <button type="submit" id="submit" class="btn btn-primary btn-block" onclick="clkJoinBtn()">Sign in</button>
+    </form>
+  </div>
 </header>
+
+<script type="text/javascript">
+  //로그인 되어 있으면 강제 리다이렉팅
+  if ("{{session['login']}}") {
+    window.location = '/';
+  }
+
+  // 버튼 엔터키로 전송시 에러남 -> 에러방지
+  $(document).keypress(function (e) {
+    if (e.keyCode == 13) e.preventDefault();
+  });
+
+  function clkJoinBtn() {
+    console.log(1)
+    var form = $('#Join_form')[0];
+    var data = new FormData(form);
+
+    $.ajax({
+      type: "POST",
+      enctype: 'multipart/form-data',
+      url: '/join/register',
+      data: data,
+      processData: false,
+      contentType: false,
+      cache: false,
+      timeout: 600000,
+      success: function (data) {
+        alert('회원가입에 성공 하였습니다.')
+      },
+      error: function (e) {
+        alert('회원가입에 실패 하였습니다.')
+      }
+    });
+  }
+</script>
 
 <!-- Footer-->
 {% include './layout/footer.html' %}
