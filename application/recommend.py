@@ -6,5 +6,5 @@ recommend = Blueprint("recommend", __name__, url_prefix="/recommend")
 # recommend
 @recommend.route("")
 def index():
-  return 'test'
 
+  return render_template('recommend/recommend.html')
