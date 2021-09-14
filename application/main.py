@@ -14,17 +14,10 @@ def index():
 def index2():
   return render_template('index.html')
 
-@main.route("/test")
-def test():
-  db_class = dbModule.Database()
-  search_url_info = "SELECT * FROM url_info;"
-  url_info_result = db_class.executeAll(search_url_info)
+@main.route("/myPage")
+def myPage():
 
-  result = []
-  for i in url_info_result:
-    result.append(i)
-
-  return {'result': result}
+  return render_template('user/myPage.html')
 
 @main.route("/urlReturnTest")
 def urlReturnTest():

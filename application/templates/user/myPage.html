@@ -1,0 +1,83 @@
+<!-- header -->
+{% include './layout/header.html' %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- navigation -->
+{% include './layout/navigation.html' %}
+
+<!-- myPage -->
+<header class="myPage">
+  <div class="container card card_temple">
+    <h2>MyPage</h2>
+    <div class="row">
+      <div class="col-6">
+        <h4>{{session['userNm']}} 님</h4>
+        <div class="card card_temple col-8 my-sm-1">
+          <p class="text-white">성별 : 남</p>
+          <p class="text-white">키 : cm</p>
+          <p class="text-white">몸무게 : kg</p>
+          <p class="text-white">체형 : text</p>
+          <p class="text-white">취향 : text</p>
+          <p class="text-white">피부톤 : text</p>
+          <p class="text-white">얼굴형 : text</p>
+          <p class="text-white">정보 : text</p>
+          <div class="text-white">헤어스타일 : text</div>
+        </div>
+      </div>
+      <div class="col-6 my-sm-1">
+        <div class="card card_temple">
+          <h4>검색 기록 List</h4>
+          <div class="card card_temple width_100">
+            검색기록 샘플
+          </div>
+          <div class="card card_temple width_100">
+            검색기록 샘플
+          </div>
+          <div class="card card_temple width_100">
+            검색기록 샘플
+          </div>
+          <div class="card card_temple width_100">
+            검색기록 샘플
+          </div>
+          <div class="card card_temple width_100">
+            검색기록 샘플
+          </div>
+          <div class="card card_temple width_100">
+            검색기록 샘플
+          </div>
+          <div class="card card_temple width_100">
+            검색기록 샘플
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="card card_temple col-4">
+      <p>{{session['userNm']}} 님</p>
+      <span>id  :  {{session['userid']}}</span>
+    </div>
+    <div class="card card_temple col-4">
+      <p>성별  :  남성</p>
+      <p>키  :  165cm</p>
+      <div>몸무게  :  50Kg</div>
+    </div>
+    <div class="card card_temple col-4">
+      <p>스타일 종류</p>
+      <div>캐주얼 / 스트릿 / 빈티지</div>
+    </div>
+    <div class="card card_temple col-4">
+      <p>피부톤  :  text</p>
+      <p>얼굴형  :  text</p>
+      <div>헤어스타일  :  중단발</div>
+    </div> -->
+  </div>
+
+</header>
+
+<style>
+  .width_100 {
+    width: 100%;
+  }
+</style>
+<!-- Footer-->
+{% include './layout/footer.html' %}

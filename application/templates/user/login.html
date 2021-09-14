@@ -7,8 +7,9 @@
 {% include './layout/navigation.html' %}
 
 <!-- Login -->
-<header class="join">
-  <div class="container col-5">
+<header class="login">
+  <div class="container card card_temple col-5">
+    <h1>Login</h1>
     <form id="login_form">
       <!-- Email input -->
       <div class="form-outline mb-4">
@@ -23,17 +24,22 @@
       </div>
 
       <!-- Submit button -->
-      <button type="submit" class="btn btn-primary btn-block" onclick="clkBtn()">Sign in</button>
+      <button type="submit" id="submit" class="btn btn-primary btn-block" onclick="clkBtn()">Sign in</button>
     </form>
   </div>
 </header>
 
-
 <script type="text/javascript">
-  if ("{{session['login']}}"){
+  //로그인 되어 있으면 강제 리다이렉팅
+  if ("{{session['login']}}") {
     window.location = '/';
   }
-  
+
+  // 버튼 엔터키로 전송시 에러남 -> 에러방지
+  $(document).keypress(function (e) {
+    if (e.keyCode == 13) e.preventDefault();
+  });
+
   function clkBtn() {
     var form = $('#login_form')[0];
     var data = new FormData(form);

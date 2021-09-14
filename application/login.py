@@ -1,5 +1,6 @@
 from flask import Flask, render_template, session, redirect, request, url_for
 from flask import Blueprint
+import hashlib
 # import dbModule
 from application import dbModule
 
@@ -8,10 +9,6 @@ login = Blueprint("login", __name__, url_prefix="/login")
 # Login
 @login.route("")
 def index():
-  # if session['login']:
-  #   print('session[]OOOOOO')
-  # else:
-  #   print('session[]XXXXX')
   return render_template('user/login.html')
 
 @login.route('/login',methods=['POST'])
@@ -21,14 +18,21 @@ def login_session():
     userid = request.form.get('userid')
     password = request.form.get('password')
 
+    HASH_NAME = "md5"
+    text = password.encode('utf-8')
+    md5 = hashlib.new(HASH_NAME)
+    md5.update(text)
+    password_hash = md5.hexdigest()
+
     db_class = dbModule.Database()
     search_user = "SELECT * FROM user_test where id = '" + userid + "';"
     data = dict(db_class.executeOne(search_user))
 
     if data is not None:
-      if data['pw'] == password:
+      if data['pw'] == password_hash:
         # 로그인 처리
-        session['userid'] = userid
+        session['userNm'] = data['userNm']
+        session['userid'] = data['id']
         session['login'] = True
         print('로그인 성공')
         return redirect('/index')
