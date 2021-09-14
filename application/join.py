@@ -14,7 +14,6 @@ def index():
 @join.route('/register',methods=['POST'])
 def register():
   try:
-
     # 기존 user id 체크
     userNm = request.form.get('userNm')
     userid = request.form.get('userid')
@@ -28,13 +27,31 @@ def register():
     password_hash = md5.hexdigest()
 
     db_class = dbModule.Database()
-    search_user = "INSERT INTO user_test(id,pw,userNm) VALUES ('" + userid + "','" + password_hash + "','" + userNm + "')"
+    search_user = "SELECT * FROM user_test where id = '" + userid + "';"
+    data = db_class.executeOne(search_user)
 
-    db_class.execute(search_user)
-    db_class.commit()
-    print('회원가입 성공')
-    return redirect('/index')
+    if data is None:
+      db_class = dbModule.Database()
+      search_user = "INSERT INTO user_test(id,pw,userNm) VALUES ('" + userid + "','" + password_hash + "','" + userNm + "')"
+
+      db_class.execute(search_user)
+      db_class.commit()
+      
+      print('회원가입 성공')
+
+      return {
+        'code':20000
+      }
+    else:
+      print('이미 가입되어 있는 아이디 입니다.')
+      return {
+        'code':50000,
+        'result': '이미 가입되어 있는 아이디 입니다.'
+      }
   except Exception as e:
     print(e)
-    return {'result': e}
+    return {
+        'code':50000,
+        'result': e
+      }
 

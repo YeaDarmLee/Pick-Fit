@@ -35,7 +35,9 @@ def login_session():
         session['userid'] = data['id']
         session['login'] = True
         print('로그인 성공')
-        return redirect('/index')
+        return {
+          'code':20000
+        }
       else:
         # 비밀번호 틀림
         result = 'PW가 다릅니다.'
@@ -43,12 +45,16 @@ def login_session():
       # 쿼리 데이터가 없으면 출력
       result = 'ID가 없는 사용자 입니다.'
     
-    print(result)
-    return {'result': result}
-
+    return {
+      'code':50000,
+      'result': result
+    }
   except Exception as e:
     print(e)
-    return {'result': e}
+    return {
+        'code':50000,
+        'result': e
+      }
 
 @login.route('/logout', methods=['GET'])
 def logout_session():

@@ -48,7 +48,6 @@
   });
 
   function clkJoinBtn() {
-    console.log(1)
     var form = $('#Join_form')[0];
     var data = new FormData(form);
 
@@ -62,7 +61,13 @@
       cache: false,
       timeout: 600000,
       success: function (data) {
-        alert('회원가입에 성공 하였습니다.')
+        if (data.code === 20000) {
+          alert('회원가입에 성공 하였습니다.')
+          location.replace('/')
+        } else {
+          alert(data.result)
+          location.reload()
+        }
       },
       error: function (e) {
         alert('회원가입에 실패 하였습니다.')

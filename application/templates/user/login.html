@@ -54,7 +54,13 @@
       cache: false,
       timeout: 600000,
       success: function (data) {
-        alert('로그인에 성공 하였습니다.')
+        if (data.code === 20000) {
+          alert('로그인에 성공 하였습니다.')
+          location.replace('/')
+        } else {
+          alert(data.result)
+          location.reload()
+        }
       },
       error: function (e) {
         alert('로그인에 실패 하였습니다.')
