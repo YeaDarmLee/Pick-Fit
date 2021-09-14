@@ -15,10 +15,10 @@
         <h4>{{session['user_Nm']}} 님</h4>
         <div class="card card_temple col-8 my-sm-1">
           {% if result.gender == 0 %}
-            <p class="text-white">성별 : 남</p>
+          <p class="text-white">성별 : 남</p>
           {% else %}
-            <p class="text-white">성별 : 여</p>
-          {% endif %} 
+          <p class="text-white">성별 : 여</p>
+          {% endif %}
           <p class="text-white">키 : {{result.height}}cm</p>
           <p class="text-white">몸무게 : {{result.weight}}kg</p>
           <p class="text-white">체형 : {{result.body_shape}}</p>
@@ -27,53 +27,42 @@
           <p class="text-white">얼굴형 : {{result.face_shape}}</p>
           <div class="text-white">헤어스타일 : {{result.hair}}</div>
         </div>
+        <button type="button" id="button" class="btn btn-primary btn-block">회원탈퇴</button>
         <button type="button" id="button" class="btn btn-primary btn-block">수정하기</button>
+        <button type="button" id="button" class="btn btn-primary btn-block">비밀번호 변경</button>
       </div>
       <div class="col-6 my-sm-1">
         <div class="card card_temple">
           <h4>검색 기록 List</h4>
-          <div class="card card_temple width_100">
-            검색기록 샘플
-          </div>
-          <div class="card card_temple width_100">
-            검색기록 샘플
-          </div>
-          <div class="card card_temple width_100">
-            검색기록 샘플
-          </div>
-          <div class="card card_temple width_100">
-            검색기록 샘플
-          </div>
-          <div class="card card_temple width_100">
-            검색기록 샘플
-          </div>
-          <div class="card card_temple width_100">
-            검색기록 샘플
-          </div>
-          <div class="card card_temple width_100">
-            검색기록 샘플
+          <div class="card card_temple height_500 scroll_bar">
+            <div class="card card_temple width_100">
+              검색기록 샘플 1
+            </div>
+            <div class="card card_temple width_100">
+              검색기록 샘플 2
+            </div>
+            <div class="card card_temple width_100">
+              검색기록 샘플 3
+            </div>
+            <div class="card card_temple width_100">
+              검색기록 샘플 4
+            </div>
+            <div class="card card_temple width_100">
+              검색기록 샘플 5
+            </div>
+            <div class="card card_temple width_100">
+              검색기록 샘플 6
+            </div>
+            <div class="card card_temple width_100">
+              검색기록 샘플 7
+            </div>
+            <div class="card card_temple width_100">
+              검색기록 샘플 8
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- <div class="card card_temple col-4">
-      <p>{{session['userNm']}} 님</p>
-      <span>id  :  {{session['userid']}}</span>
-    </div>
-    <div class="card card_temple col-4">
-      <p>성별  :  남성</p>
-      <p>키  :  165cm</p>
-      <div>몸무게  :  50Kg</div>
-    </div>
-    <div class="card card_temple col-4">
-      <p>스타일 종류</p>
-      <div>캐주얼 / 스트릿 / 빈티지</div>
-    </div>
-    <div class="card card_temple col-4">
-      <p>피부톤  :  text</p>
-      <p>얼굴형  :  text</p>
-      <div>헤어스타일  :  중단발</div>
-    </div> -->
   </div>
 
 </header>
@@ -81,6 +70,11 @@
 <style>
   .width_100 {
     width: 100%;
+  }
+  .height_500 {
+    height: 467px;
+    margin: 0;
+    padding: 0;
   }
 </style>
 <!-- Footer-->
