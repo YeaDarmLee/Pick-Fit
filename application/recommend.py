@@ -1,0 +1,10 @@
+from flask import Flask, render_template, request
+from flask import Blueprint
+
+recommend = Blueprint("recommend", __name__, url_prefix="/recommend")
+
+# recommend
+@recommend.route("")
+def index():
+  return 'test'
+
