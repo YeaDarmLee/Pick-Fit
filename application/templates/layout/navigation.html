@@ -16,8 +16,12 @@
         <li class="nav-item"><a class="nav-link" href="/#team">Team</a></li>
         <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
         <li class="nav-item"><a class="nav-link" href="/crawler">crawler</a></li>
-        <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-        <li class="nav-item"><a class="nav-link" href="/join">Join</a></li>
+        {% if session['login'] %}
+          <li class="nav-item"><a class="nav-link" href="/login/logout">Logout</a></li>
+        {% else %}
+          <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="/join">Join</a></li>
+        {% endif %} 
       </ul>
     </div>
   </div>

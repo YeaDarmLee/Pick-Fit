@@ -1,38 +1,62 @@
 <!-- header -->
 {% include './layout/header.html' %}
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <!-- navigation -->
 {% include './layout/navigation.html' %}
 
-<link rel="stylesheet" href="{{ url_for('static', filename='css/join.css') }}">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="{{ url_for('static', filename='js/join.js') }}"></script>
-
-<style>
-  .form-row {
-    margin-top: 5rem;
-    margin-bottom: 5rem;
-  }
-</style>
-
-<!-- Join -->
+<!-- Login -->
 <header class="join">
-  <!-- JQUERY STEP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js"></script>
-  <div class="wrapper">
-    <form action="">
-      <div id="wizard_login">
-        <h4></h4>
-        <section>
-          <div class="form-row"> <input type="text" class="form-control" placeholder="Enter your ID" required> </div>
-          <div class="form-row"> <input type="text" class="form-control" placeholder="Enter your PW" required> </div>
-        </section>
+  <div class="container col-5">
+    <form id="login_form">
+      <!-- Email input -->
+      <div class="form-outline mb-4">
+        <input type="text" id="userid" name="userid" class="form-control" />
+        <label class="form-label" for="userid">User Id</label>
       </div>
+
+      <!-- Password input -->
+      <div class="form-outline mb-4">
+        <input type="password" id="password" name="password" class="form-control" />
+        <label class="form-label" for="password">Password</label>
+      </div>
+
+      <!-- Submit button -->
+      <button type="submit" class="btn btn-primary btn-block" onclick="clkBtn()">Sign in</button>
     </form>
   </div>
 </header>
+
+
+<script type="text/javascript">  
+  if ("{{session['login']}}"){
+    alert('로그인 했네')
+    window.location = '/';
+  }
+  
+  function clkBtn() {
+    var form = $('#login_form')[0];
+    var data = new FormData(form);
+
+    $.ajax({
+      type: "POST",
+      enctype: 'multipart/form-data',
+      url: '/login/login',
+      data: data,
+      processData: false,
+      contentType: false,
+      cache: false,
+      timeout: 600000,
+      success: function (data) {
+        alert('로그인에 성공 하였습니다.')
+      },
+      error: function (e) {
+        alert('로그인에 실패 하였습니다.')
+      }
+    });
+  }
+</script>
 
 <!-- Footer-->
 {% include './layout/footer.html' %}
