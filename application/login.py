@@ -30,7 +30,8 @@ def login_session():
         # 로그인 처리
         session['userid'] = userid
         session['login'] = True
-        result = '로그인 성공'
+        print('로그인 성공')
+        return redirect('/index')
       else:
         # 비밀번호 틀림
         result = 'PW가 다릅니다.'
@@ -39,7 +40,7 @@ def login_session():
       result = 'ID가 없는 사용자 입니다.'
     
     print(result)
-    return redirect(url_for('/', result = result))
+    return {'result': result}
 
   except Exception as e:
     print(e)

@@ -10,6 +10,10 @@ main = Blueprint("main", __name__, url_prefix="/")
 def index():
   return render_template('index.html')
 
+@main.route("/index")
+def index2():
+  return render_template('index.html')
+
 @main.route("/test")
 def test():
   db_class = dbModule.Database()
