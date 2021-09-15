@@ -11931,8 +11931,8 @@ header.recommend .recommend-heading {
 
 @media (min-width: 768px) {
   header.recommend {
-    padding-top: 14rem;
-    padding-bottom: 14rem;
+    padding-top: 7rem;
+    padding-bottom: 4rem;
   }
   header.recommend .recommend-subheading {
     font-size: 2.25rem;
