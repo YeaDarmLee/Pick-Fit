@@ -26,9 +26,13 @@ def login_session():
 
     db_class = dbModule.Database()
     search_user = "SELECT * FROM user_info where id = '" + userid + "';"
-    data = dict(db_class.executeOne(search_user))
-
-    if data is not None:
+    db_result = db_class.executeOne(search_user)
+    
+    if db_result is None:
+      # 쿼리 데이터가 없으면 출력
+      result = '존재하지 않는 아이디 입니다.'
+    else:
+      data = dict(db_result)
       if data['pw'] == password_hash:
         # 로그인 처리
         session['user_Nm'] = data['userNm']
@@ -41,9 +45,6 @@ def login_session():
       else:
         # 비밀번호 틀림
         result = '비밀번호가 다릅니다.'
-    else:
-      # 쿼리 데이터가 없으면 출력
-      result = '존재하지 않는 아이디 입니다.'
     
     return {
       'code':50000,
