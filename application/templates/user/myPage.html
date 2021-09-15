@@ -27,7 +27,7 @@
         </div>
         <button type="button" id="button" class="btn btn-primary btn-block">회원탈퇴</button>
         <button type="button" id="button" class="btn btn-primary btn-block">수정하기</button>
-        <button type="button" id="button" class="btn btn-primary btn-block">비밀번호 변경</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#change_pw">비밀번호 변경</button>
       </div>
       <div class="col-6 my-sm-1">
         <div class="card card_temple">
@@ -64,11 +64,75 @@
   </div>
 </header>
 
+<!-- Modal (비밀번호 변경) -->
+<div class="modal fade" id="change_pw" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-muted" id="exampleModalLabel">비밀번호 변경</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">        
+        <form class="text-align-center" id="change_pw_form">
+          <!-- current_pw input -->
+          <div class="form-floating mb-3 ">
+            <input class="form-control input-sm" id="current_pw" name="current_pw" type="password" required/>
+            <label for="current_pw">현재 비밀번호</label>
+          </div>
+          <!-- new_pw input -->
+          <div class="form-floating mb-3 ">
+            <input class="form-control input-sm" id="new_pw" name="new_pw" type="password" required/>
+            <label for="new_pw">새 비밀번호</label>
+          </div>
+          <!-- newCheck_pw input -->
+          <div class="form-floating mb-3 ">
+            <input class="form-control input-sm" id="newCheck_pw" name="newCheck_pw" type="password" required/>
+            <label for="newCheck_pw">새 비밀번호 확인</label>
+          </div>
+        </form>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" id="tampleBtn" class="btn btn-warning" onclick="change_pw()">Save changes</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   // 로그인 안할 경우 alert 오픈
   if ("{{session['login']}}" == '' || "{{session['login']}}" == false) {
     $(document).ready(function () {
       alertStart('error', 'MyPage','로그인 후 이용 가능합니다.', 'replace', '/index')
+    });
+  }
+
+  function change_pw() {
+    var form = $('#change_pw_form')[0];
+    var data = new FormData(form);
+
+    $.ajax({
+      type: "POST",
+      enctype: 'multipart/form-data',
+      url: '/user/change_pw',
+      data: data,
+      processData: false,
+      contentType: false,
+      cache: false,
+      timeout: 600000,
+      success: function (data) {
+        if (data.code === 20000) {
+          alertStart('success', 'Change Password', data.result, 'replace', '/')
+        } else {
+          alertStart('error', 'Change Password', data.result)
+        }
+      },
+      error: function (e) {
+        alertStart('error', 'Change Password', '비밀번호 변경중 오류가 발생하였습니다.')
+      }
     });
   }
 </script>

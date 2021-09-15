@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, request, url_for
+from flask import Flask, render_template, session, redirect, request, url_for, escape
 from flask import Blueprint
 import hashlib
 # import dbModule
@@ -70,7 +70,6 @@ def examine():
 def join():
   return render_template('user/join.html')
 
-
 @user.route('/register',methods=['POST'])
 def register():
   try:
@@ -125,3 +124,62 @@ def register():
         'result': e
       }
 
+# 
+@user.route('/change_pw',methods=['POST'])
+def change_pw():
+  try:
+    current_pw = request.form.get('current_pw')
+    new_pw = request.form.get('new_pw')
+    newCheck_pw = request.form.get('newCheck_pw')
+
+    if current_pw == '' or new_pw == '' or newCheck_pw == '':
+      return {
+        'code':50000,
+        'result': '모든 값을 입력해 주세요.'
+      }
+    elif new_pw != newCheck_pw:
+      return {
+        'code':50000,
+        'result': '새 비밀번호가 서로 다릅니다.'
+      }
+
+    # 비밀번호 해쉬화
+    HASH_NAME = "md5"
+    new_pw_text = new_pw.encode('utf-8')
+    md5 = hashlib.new(HASH_NAME)
+    md5.update(new_pw_text)
+    new_pw_hash = md5.hexdigest()
+
+    current_pw_text = current_pw.encode('utf-8')
+    md5 = hashlib.new(HASH_NAME)
+    md5.update(current_pw_text)
+    current_pw_hash = md5.hexdigest()
+
+    # 세션에 있는 user id로 db 조회
+    userid = '%s' % escape(session['user_id'])
+    db_class = dbModule.Database()
+    search_user = "SELECT * FROM user_info where id = '" + userid + "';"
+    data = db_class.executeOne(search_user)
+
+    if data['pw'] == current_pw_hash:
+      current_pw_sql = 'UPDATE user_info SET pw = "' + new_pw_hash + '" WHERE id = "' + userid + '";'
+      db_class.execute(current_pw_sql)
+      db_class.commit()
+
+      return {
+        'code':20000,
+        'result': '비밀번호 변경이 완료되었습니다.'
+      }
+
+    else:
+      return {
+        'code':50000,
+        'result': '현재 비밀번호가 다릅니다.'
+      }
+
+  except Exception as e:
+    print(e)
+    return {
+        'code':50000,
+        'result': e
+      }
