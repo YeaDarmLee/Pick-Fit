@@ -33,11 +33,6 @@
     window.location = '/';
   }
 
-  // 버튼 엔터키로 전송시 에러남 -> 에러방지
-  $(document).keypress(function (e) {
-    if (e.keyCode == 13) e.preventDefault();
-  });
-
   function clkBtn() {
     var form = $('#login_form')[0];
     var data = new FormData(form);

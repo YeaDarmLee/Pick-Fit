@@ -9,27 +9,7 @@ main = Blueprint("main", __name__, url_prefix="/")
 @main.route("")
 @main.route("/index")
 def index():
-  db_class = dbModule.Database()
-  search_contact = "SELECT * FROM contact_info"
-  data = db_class.executeAll(search_contact)
-
-  # print(len(data))
-  # for x in len(data):
-  #   # detail_data = data[x]
-  #   print(data[0])
-  results = []
-  for x in data:
-    detail_data = []
-    detail_data = dict(x)
-    print(x)
-    results.append({
-      'idx':detail_data['idx'],
-      'userNm':detail_data['userNm'],
-      'content':detail_data['content'],
-      'date':detail_data['c_date']
-    })
-  print(results)
-  return render_template('index.html',contact_result=results)
+  return render_template('index.html')
 
 @main.route("/myPage")
 def myPage():
@@ -41,7 +21,38 @@ def myPage():
 
   return render_template('user/myPage.html', result=data)
 
+@main.route("/getContactList",methods=['POST'])
+def getContactList():
+  try:
+    db_class = dbModule.Database()
+    search_contact = "SELECT * FROM contact_info"
+    data = db_class.executeAll(search_contact)
+
+    results = []
+    for x in data:
+      detail_data = []
+      detail_data = dict(x)
+      results.append({
+        'idx':detail_data['idx'],
+        'userNm':detail_data['userNm'],
+        'content':detail_data['content'],
+        'date':detail_data['c_date']
+      })
+    print(results)
+
+    return {
+      'code':20000,
+      'results':results
+    }
+  except Exception as e:
+    print(e)
+    return {
+        'code':50000,
+        'result': e
+      }
+
+
 @main.route("/urlReturnTest")
 def urlReturnTest():
   # return redirect("http://192.168.100.195:9999/#portfolio")
-  return redirect("/#portfolio")
+  return 'test'
