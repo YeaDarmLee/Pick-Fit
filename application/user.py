@@ -226,17 +226,16 @@ def modify():
     face_shape = request.form.get('face_shape')
     hair = request.form.get('hair')
 
-    # if type(body_shape) is str:
-    #   body_shape = 0
-    # if type(style) is str:
-    #   style = 0
-    # if type(skin_tone) is str:
-    #   skin_tone = 0
-    # if type(face_shape) is str:
-    #   face_shape = 0
-    # if type(hair) is str:
-    #   hair = 0
-      
+    if body_shape == None:
+      body_shape = '0'
+    if style == None:
+      style = '0'
+    if skin_tone == None:
+      skin_tone = '0'
+    if face_shape == None:
+      face_shape = '0'
+    if hair == None:
+      hair = '0'
 
     # 세션에 있는 user id로 db 조회
     userid = '%s' % escape(session['user_id'])
