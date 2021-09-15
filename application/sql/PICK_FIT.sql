@@ -58,6 +58,7 @@ create table user_info(
     id VARCHAR(500) not null,
     pw VARCHAR(500) not null,
     userNm VARCHAR(200) not null,
+    age int not null,
     gender int not null,
     height VARCHAR(50) not null,
     weight VARCHAR(50) not null,

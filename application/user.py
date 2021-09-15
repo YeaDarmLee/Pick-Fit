@@ -80,13 +80,14 @@ def register():
     userNm = request.form.get('userNm')
     userid = request.form.get('userid')
     password = request.form.get('password')
+    age = request.form.get('age')
     gender = request.form.get('gender')
     height = request.form.get('height')
     weight = request.form.get('weight')
 
     print(gender)
 
-    if userNm == '' or userid == '' or password == '' or gender == '성별을 선택해 주세요' or height == '' or weight == '':
+    if userNm == '' or userid == '' or password == '' or age == '' or gender == '성별을 선택해 주세요' or height == '' or weight == '':
       return {
         'code':50000,
         'result': '모든 값을 입력해 주세요.'
@@ -104,7 +105,7 @@ def register():
     data = db_class.executeOne(search_user)
 
     if data is None:
-      search_user = "INSERT INTO user_info(id,pw,userNm,gender,height,weight) VALUES ('" + userid + "','" + password_hash + "','" + userNm + "','" + gender + "','" + height + "','" + weight + "')"
+      search_user = "INSERT INTO user_info(id,pw,userNm,age,gender,height,weight) VALUES ('" + userid + "','" + password_hash + "','" + userNm + "','" + age + "','" + gender + "','" + height + "','" + weight + "')"
 
       db_class.execute(search_user)
       db_class.commit()
