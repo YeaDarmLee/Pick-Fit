@@ -51,7 +51,8 @@ def register():
       print('회원가입 성공')
 
       return {
-        'code':20000
+        'code':20000,
+        'result': '회원가입에 성공하였습니다.'
       }
     else:
       return {

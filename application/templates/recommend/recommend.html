@@ -7,8 +7,18 @@
 <!-- recommend -->
 <header class="login">
   <div class="container">
+
   </div>
 </header>
+
+<script>
+  // 비회원일 경우 alert 오픈
+  if ("{{session['login']}}" == '' || "{{session['login']}}" == false) {
+    $(document).ready(function () {
+      alertStart('error', 'recommend','로그인 후 이용 가능합니다.')
+    });
+  }
+</script>
 
 <!-- Footer-->
 {% include './layout/footer.html' %}

@@ -51,7 +51,7 @@
 
       <!-- Submit button -->
       <div>
-        <button type="submit" id="submit" class="btn btn-primary btn-block" onclick="clkJoinBtn()">Sign in</button>
+        <button type="button" class="btn btn-primary btn-block" onclick="clkJoinBtn()">Sign in</button>
       </div>
     </form>
   </div>
@@ -83,15 +83,14 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alert('회원가입에 성공 하였습니다.')
-          location.replace('/')
+          alertStart('success', '회원가입 성공', data.result)
+          // location.replace('/')
         } else {
-          alert(data.result)
-          location.reload()
+          alertStart('error', '회원가입 실패', data.result)
         }
       },
       error: function (e) {
-        alert('회원가입에 실패 하였습니다.')
+        alertStart('error', '회원가입 실패', '회원가입에 실패 하였습니다')
       }
     });
   }

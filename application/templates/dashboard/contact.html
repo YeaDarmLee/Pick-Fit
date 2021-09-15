@@ -6,33 +6,25 @@
     </div>
 
     <!-- * * Forms Contact Form * *-->
-    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+    <form id="contactForm">
       <div class="row align-items-stretch mb-5">
         <div class="col-md-6" style="float:none; margin:0 auto" >
           <!-- Name input-->
           <div class="form-group">
-            <input class="form-control" id="name" type="text" placeholder="Your Name *"
+            <input class="form-control" id="name" name="name" type="text" placeholder="Your Name *"
               data-sb-validations="required" />
             <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
           </div>
           <!-- Message input-->
           <div class="form-group form-group-textarea mb-md-0">
-            <textarea class="form-control" id="message" placeholder="Your Message *"
+            <textarea class="form-control" id="message" name="message" placeholder="Your Message *"
               data-sb-validations="required"></textarea>
             <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
           </div>
 
-          <!-- Submit success message-->
-          <div class="d-none" id="submitSuccessMessage">
-            <div class="text-center text-white mb-3">
-              <div class="fw-bolder">Form submission successful!</div>
-              To activate this form, sign up at
-            </div>
-          </div>
-
           <!-- Submit Button-->
           <div class="text-center">
-            <button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">
+            <button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="button" onclick="contBtn()">
               Send Message</button>
           </div>
         </div>
@@ -40,6 +32,34 @@
     </form>
   </div>
 </section>
+
+<script type="text/javascript">
+  function contBtn() {
+    var form = $('#contactForm')[0];
+    var data = new FormData(form);
+
+    $.ajax({
+      type: "POST",
+      enctype: 'multipart/form-data',
+      url: '/contact/insert',
+      data: data,
+      processData: false,
+      contentType: false,
+      cache: false,
+      timeout: 600000,
+      success: function (data) {
+        if (data.code === 20000) {
+          alertStart('success', 'contact', data.result)
+        } else {
+          alertStart('error', 'contact', data.result)
+        }
+      },
+      error: function (e) {
+        alertStart('error', 'contact','전송에 실패하였습니다.')
+      }
+    });
+  }
+</script>
 
 <style>
   #contact {

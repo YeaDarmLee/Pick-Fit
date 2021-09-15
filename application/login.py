@@ -40,10 +40,10 @@ def login_session():
         }
       else:
         # 비밀번호 틀림
-        result = 'PW가 다릅니다.'
+        result = '비밀번호가 다릅니다.'
     else:
       # 쿼리 데이터가 없으면 출력
-      result = 'ID가 없는 사용자 입니다.'
+      result = '존재하지 않는 아이디 입니다.'
     
     return {
       'code':50000,
