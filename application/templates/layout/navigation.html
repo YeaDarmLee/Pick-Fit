@@ -19,10 +19,10 @@
         <!-- <li class="nav-item"><a class="nav-link" href="/crawler">crawler</a></li> -->
         {% if session['login'] %}
           <li class="nav-item"><a class="nav-link" href="/myPage">{{session['user_Nm']}} 님</a></li>
-          <li class="nav-item"><a class="nav-link" href="/login/logout">Logout</a></li>
+          <li class="nav-item"><a class="nav-link" href="/user/logout">Logout</a></li>
         {% else %}
-          <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-          <li class="nav-item"><a class="nav-link" href="/join">Join</a></li>
+          <li class="nav-item"><a class="nav-link" href="/user/login">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="/user/join">Join</a></li>
         {% endif %} 
       </ul>
     </div>
