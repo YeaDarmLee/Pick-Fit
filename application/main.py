@@ -7,12 +7,29 @@ from application import dbModule
 main = Blueprint("main", __name__, url_prefix="/")
 
 @main.route("")
-def index():
-  return render_template('index.html')
-
 @main.route("/index")
-def index2():
-  return render_template('index.html')
+def index():
+  db_class = dbModule.Database()
+  search_contact = "SELECT * FROM contact_info"
+  data = db_class.executeAll(search_contact)
+
+  # print(len(data))
+  # for x in len(data):
+  #   # detail_data = data[x]
+  #   print(data[0])
+  results = []
+  for x in data:
+    detail_data = []
+    detail_data = dict(x)
+    print(x)
+    results.append({
+      'idx':detail_data['idx'],
+      'userNm':detail_data['userNm'],
+      'content':detail_data['content'],
+      'date':detail_data['c_date']
+    })
+  print(results)
+  return render_template('index.html',contact_result=results)
 
 @main.route("/myPage")
 def myPage():

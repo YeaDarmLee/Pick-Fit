@@ -26,12 +26,49 @@
           <div class="text-center">
             <button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="button" onclick="contBtn()">
               Send Message</button>
+            <button class="btn btn-info btn-xl text-uppercase" id="submitButton" type="button" data-bs-toggle="modal" data-bs-target="#contactMessage">
+              Show Message</button>
           </div>
         </div>
       </div>
     </form>
   </div>
 </section>
+
+<!-- Modal (Show Message) -->
+<div class="modal fade" id="contactMessage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-muted" id="exampleModalLabel">Contact Message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body text-center scroll_bar">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" width="5%">#{{contact_result|length}}</th>
+              <th scope="col" width="10%">name</th>
+              <th scope="col">content</th>
+              <th scope="col" width="10%">date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for contact_result in contact_result %}
+            <tr>
+              <th scope="row">{{contact_result.idx}}</th>
+              <td>{{contact_result.userNm}}</td>
+              <td>{{contact_result.content}}</td>
+              <td>{{contact_result.date}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
   function contBtn() {
