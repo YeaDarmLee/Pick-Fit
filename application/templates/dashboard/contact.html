@@ -26,9 +26,11 @@
           <div class="text-center">
             <button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="button" onclick="contBtn()">
               Send Message</button>
-            <button class="btn btn-info btn-xl text-uppercase" id="submitButton" type="button" onclick="getContactList()">
+            <button class="btn btn-info btn-xl text-uppercase" id="submitButton" type="button"
+              onclick="getContactList()">
               Show Message</button>
-            <button id="contactMessageButton" type="button" data-bs-toggle="modal" data-bs-target="#contactMessage" style="display:none"></button>
+            <button id="contactMessageButton" type="button" data-bs-toggle="modal" data-bs-target="#contactMessage"
+              style="display:none"></button>
           </div>
         </div>
       </div>
@@ -42,7 +44,8 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title text-muted" id="exampleModalLabel">Contact Message</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="removeContact()"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          onclick="removeContact()"></button>
       </div>
 
       <div class="modal-body text-center scroll_bar">
@@ -64,6 +67,8 @@
 </div>
 
 <script type="text/javascript">
+  var check_vlu = false
+
   function contBtn() {
     var form = $('#contactForm')[0];
     var data = new FormData(form);
@@ -91,6 +96,7 @@
   }
 
   function getContactList() {
+    check_vlu = true
     $.ajax({
       type: "POST",
       url: '/getContactList',
@@ -103,13 +109,13 @@
           contact_result = data.results
           const box = document.getElementById("contact_result");
 
-          for (var i=0;i<data.results.length; i++){
+          for (var i = 0; i < data.results.length; i++) {
             const newP = document.createElement('tr');
             newP.setAttribute("id", "searchContact_tr");
-            newP.innerHTML =  '<th scope="row">' + contact_result[i].idx + '</th>' +
-                              '<td>' + contact_result[i].userNm + '</td>' +
-                              '<td>' + contact_result[i].content + '</td>' +
-                              '<td>' + contact_result[i].date + '</td>'
+            newP.innerHTML = '<th scope="row">' + contact_result[i].idx + '</th>' +
+              '<td>' + contact_result[i].userNm + '</td>' +
+              '<td>' + contact_result[i].content + '</td>' +
+              '<td>' + contact_result[i].date + '</td>'
             box.appendChild(newP);
           }
           $('#contactMessageButton').click()
@@ -123,9 +129,18 @@
     });
   }
 
-  function removeContact () {
+  //페이지 전역 클릭 감지 -> 클릭시 모달 꺼짐 꺼질때 data 삭제
+  $(document).click(function (e) {
+    if (!$(e.target).is('#contactMessage') && check_vlu) {
+      removeContact()
+    }
+  });
+
+  function removeContact() {
+    check_vlu = false
     $("tr").remove('#searchContact_tr')
   }
+
 </script>
 
 <style>
