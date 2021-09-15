@@ -215,3 +215,46 @@ def secession():
         'code':50000,
         'result': e
       }
+
+# 수정하기 modify
+@user.route('/modify',methods=['POST'])
+def modify():
+  try:
+    body_shape = request.form.get('body_shape')
+    style = request.form.get('style')
+    skin_tone = request.form.get('skin_tone')
+    face_shape = request.form.get('face_shape')
+    hair = request.form.get('hair')
+
+    # if type(body_shape) is str:
+    #   body_shape = 0
+    # if type(style) is str:
+    #   style = 0
+    # if type(skin_tone) is str:
+    #   skin_tone = 0
+    # if type(face_shape) is str:
+    #   face_shape = 0
+    # if type(hair) is str:
+    #   hair = 0
+      
+
+    # 세션에 있는 user id로 db 조회
+    userid = '%s' % escape(session['user_id'])
+    db_class = dbModule.Database()
+    sql = "UPDATE user_info SET body_shape='" + body_shape + "',style='" + style + "',skin_tone='" + skin_tone + "',face_shape='" + face_shape + "',hair='" + hair + "' WHERE id='" + userid + "';"
+    print(sql)
+    
+    db_class.execute(sql)
+    db_class.commit()
+
+    return {
+      'code':20000,
+      'result': '업데이트가 완료되었습니다.'
+    }
+
+  except Exception as e:
+    print(e)
+    return {
+        'code':50000,
+        'result': e
+      }

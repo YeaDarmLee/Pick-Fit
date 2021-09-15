@@ -26,9 +26,8 @@
           <div class="text-white">헤어스타일 : {{result.hair}}</div>
         </div>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#secession">탈퇴하기</button>
-        <button type="button" id="button" class="btn btn-primary btn-block">수정하기</button>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#change_pw">비밀번호
-          변경</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modify">수정하기</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#change_pw">비밀번호 변경</button>
       </div>
       <div class="col-6 my-sm-1">
         <div class="card card_temple">
@@ -103,6 +102,94 @@
   </div>
 </div>
 
+<!-- Modal (수정하기) -->
+<div class="modal fade" id="modify" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-muted" id="exampleModalLabel">추가정보 입력</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form class="text-align-center" id="modify_form">
+          <!-- 체형 input -->
+          <div class="form-outline mb-4">
+            <select class="form-select" id="body_shape" name="body_shape" aria-label="Default select example" required>
+              <option value="0" selected>체형을 선택해 주세요</option>
+              {% if result.gender == 0 %}
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              {% else %}
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              {% endif %}
+            </select>
+          </div>
+          <!-- 체형 input -->
+          <div class="form-outline mb-4">
+            <select class="form-select" id="style" name="style" aria-label="Default select example" required>
+              <option value="0" selected>스타일을 선택해 주세요</option>
+              <option value="1">캐주얼</option>
+              <option value="2">스트릿</option>
+              <option value="3">빈티지</option>
+              <option value="4">모던</option>
+              <option value="5">페미닌</option>
+              <option value="6">댄디</option>
+              <option value="7">레이어드</option>
+              <option value="8">클래식</option>
+              <option value="9">스포티</option>
+              <option value="10">에스닉</option>
+            </select>
+          </div>
+          <!-- 체형 input -->
+          <div class="form-outline mb-4">
+            <select class="form-select" id="skin_tone" name="skin_tone" aria-label="Default select example" required>
+              <option value="0" selected>피부톤을 선택해 주세요</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <!-- 체형 input -->
+          <div class="form-outline mb-4">
+            <select class="form-select" id="face_shape" name="face_shape" aria-label="Default select example" required>
+              <option value="0" selected>얼굴형을 선택해 주세요</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <!-- 체형 input -->
+          <div class="form-outline mb-4">
+            <select class="form-select" id="hair" name="hair" aria-label="Default select example" required>
+              <option value="0" selected>헤어스타일을 선택해 주세요</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+        </form>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" id="tampleBtn" class="btn btn-warning" onclick="modify()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Modal (회원탈퇴) -->
 <div class="modal fade" id="secession" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -115,7 +202,6 @@
       <div class="modal-body">
         <p class="item-intro text-muted">정말 탈퇴하시겠습니까?</p>
         <p class="item-intro text-muted">탈퇴하실 경우, 현재 등록된 모든 정보가 삭제됩니다.</p>
-
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
           <button type="button" id="tampleBtn" class="btn btn-warning" onclick="secession()">Yes</button>
@@ -149,13 +235,39 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', 'Change Password', data.result, 'replace', '/')
+          alertStart('success', 'Change Password', data.result, 'replace', '/myPage')
         } else {
           alertStart('error', 'Change Password', data.result)
         }
       },
       error: function (e) {
         alertStart('error', 'Change Password', '비밀번호 변경중 오류가 발생하였습니다.')
+      }
+    });
+  }
+  
+  function modify() {
+    var form = $('#modify_form')[0];
+    var data = new FormData(form);
+
+    $.ajax({
+      type: "POST",
+      enctype: 'multipart/form-data',
+      url: '/user/modify',
+      data: data,
+      processData: false,
+      contentType: false,
+      cache: false,
+      timeout: 600000,
+      success: function (data) {
+        if (data.code === 20000) {
+          alertStart('success', 'Change Password', data.result, 'replace', '/myPage')
+        } else {
+          alertStart('error', 'Change Password', data.result)
+        }
+      },
+      error: function (e) {
+        alertStart('error', 'Change Password', '추가정보 업데이트중 오류가 발생하였습니다.')
       }
     });
   }
