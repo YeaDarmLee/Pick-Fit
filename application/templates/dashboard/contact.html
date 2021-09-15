@@ -26,8 +26,11 @@
           <div class="text-center">
             <button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="button" onclick="contBtn()">
               Send Message</button>
-            <button class="btn btn-info btn-xl text-uppercase" id="submitButton" type="button" data-bs-toggle="modal" data-bs-target="#contactMessage">
+            <button class="btn btn-info btn-xl text-uppercase" id="submitButton" type="button"
+              onclick="getContactList()">
               Show Message</button>
+            <button id="contactMessageButton" type="button" data-bs-toggle="modal" data-bs-target="#contactMessage"
+              style="display:none"></button>
           </div>
         </div>
       </div>
@@ -41,28 +44,21 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title text-muted" id="exampleModalLabel">Contact Message</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          onclick="removeContact()"></button>
       </div>
 
       <div class="modal-body text-center scroll_bar">
         <table class="table">
           <thead>
             <tr>
-              <th scope="col" width="5%">#{{contact_result|length}}</th>
+              <th scope="col" width="5%">#</th>
               <th scope="col" width="10%">name</th>
               <th scope="col">content</th>
               <th scope="col" width="10%">date</th>
             </tr>
           </thead>
-          <tbody>
-            {% for contact_result in contact_result %}
-            <tr>
-              <th scope="row">{{contact_result.idx}}</th>
-              <td>{{contact_result.userNm}}</td>
-              <td>{{contact_result.content}}</td>
-              <td>{{contact_result.date}}</td>
-            </tr>
-            {% endfor %}
+          <tbody id="contact_result">
           </tbody>
         </table>
       </div>
@@ -71,6 +67,8 @@
 </div>
 
 <script type="text/javascript">
+  var check_vlu = false
+
   function contBtn() {
     var form = $('#contactForm')[0];
     var data = new FormData(form);
@@ -96,6 +94,53 @@
       }
     });
   }
+
+  function getContactList() {
+    check_vlu = true
+    $.ajax({
+      type: "POST",
+      url: '/getContactList',
+      processData: false,
+      contentType: false,
+      cache: false,
+      timeout: 600000,
+      success: function (data) {
+        if (data.code === 20000) {
+          contact_result = data.results
+          const box = document.getElementById("contact_result");
+
+          for (var i = 0; i < data.results.length; i++) {
+            const newP = document.createElement('tr');
+            newP.setAttribute("id", "searchContact_tr");
+            newP.innerHTML = '<th scope="row">' + contact_result[i].idx + '</th>' +
+              '<td>' + contact_result[i].userNm + '</td>' +
+              '<td>' + contact_result[i].content + '</td>' +
+              '<td>' + contact_result[i].date + '</td>'
+            box.appendChild(newP);
+          }
+          $('#contactMessageButton').click()
+        } else {
+          alertStart('error', 'Contact', data.result)
+        }
+      },
+      error: function (e) {
+        alertStart('error', 'Contact', '리스트를 가져오는 중 오류가 발생하였습니다.')
+      }
+    });
+  }
+
+  //페이지 전역 클릭 감지 -> 클릭시 모달 꺼짐 꺼질때 data 삭제
+  $(document).click(function (e) {
+    if (!$(e.target).is('#contactMessage') && check_vlu) {
+      removeContact()
+    }
+  });
+
+  function removeContact() {
+    check_vlu = false
+    $("tr").remove('#searchContact_tr')
+  }
+
 </script>
 
 <style>
