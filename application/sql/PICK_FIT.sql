@@ -61,11 +61,11 @@ create table user_info(
     gender int not null,
     height VARCHAR(50) not null,
     weight VARCHAR(50) not null,
-    face_shape int null,
-    body_shape int null,
-    style int null,
-    skin_tone int null,
-    hair int null,
+    face_shape int null DEFAULT 0,
+    body_shape int null DEFAULT 0,
+    style int null DEFAULT 0,
+    skin_tone int null DEFAULT 0,
+    hair int null DEFAULT 0,
     PRIMARY KEY(idx)
 );
 
