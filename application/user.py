@@ -31,8 +31,11 @@ def examine():
     md5.update(text)
     password_hash = md5.hexdigest()
 
+    print(userid)
+
     db_class = dbModule.Database()
-    search_user = "SELECT * FROM user_info where id = '" + userid + "';"
+    search_user = "SELECT * FROM user_info WHERE id = '" + userid + "';"
+    print(search_user)
     db_result = db_class.executeOne(search_user)
     
     if db_result is None:
@@ -124,7 +127,7 @@ def register():
         'result': e
       }
 
-# 
+# 비밀번호 변경
 @user.route('/change_pw',methods=['POST'])
 def change_pw():
   try:
@@ -175,6 +178,35 @@ def change_pw():
       return {
         'code':50000,
         'result': '현재 비밀번호가 다릅니다.'
+      }
+
+  except Exception as e:
+    print(e)
+    return {
+        'code':50000,
+        'result': e
+      }
+
+# 회원탈퇴
+@user.route('/secession',methods=['POST'])
+def secession():
+  try:
+    # 세션에 있는 user id로 db 조회
+    userid = '%s' % escape(session['user_id'])
+    db_class = dbModule.Database()
+    sql = "DELETE FROM user_info WHERE id='" + userid + "';"
+
+    db_class.execute(sql)
+    db_class.commit()
+
+    # 세션 초기화
+    session.pop('login', False)
+    session.pop('user_Nm', None)
+    session.pop('user_id', None)
+
+    return {
+        'code':20000,
+        'result': '회원탈퇴가 완료 되었습니다.'
       }
 
   except Exception as e:
