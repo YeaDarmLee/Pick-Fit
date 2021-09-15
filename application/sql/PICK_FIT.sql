@@ -68,3 +68,12 @@ create table user_info(
     hair int null,
     PRIMARY KEY(idx)
 );
+
+-- contact table
+create table contact_info(
+	idx INT NOT NULL AUTO_INCREMENT,
+    userNm VARCHAR(200) not null,
+    content VARCHAR(2000) not null,
+    c_date datetime NOT NULL DEFAULT current_timestamp,
+    PRIMARY KEY(idx)
+);

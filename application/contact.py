@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 from flask import Blueprint
+# import dbModule
+from application import dbModule
 
 contact = Blueprint("contact", __name__, url_prefix="/contact")
 
@@ -21,7 +23,13 @@ def insert_contact():
         'code':50000,
         'result': '모든 값을 입력해 주세요.'
       }
-    print(name, message)
+    
+    db_class = dbModule.Database()
+    search_user = "INSERT INTO contact_info(userNm,content) VALUES ('" + name + "','" + message + "');"
+
+    db_class.execute(search_user)
+    db_class.commit()
+
     return {
         'code':20000,
         'result': '등록이 완료되었습니다.'
