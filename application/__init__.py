@@ -7,6 +7,8 @@ from . import contact
 from . import recommend
 
 app = Flask(__name__)
+
+# 세션 secret_key
 app.secret_key="0d54679e-1522-11ec-82a8-0242ac130003"
 
 app.register_blueprint(main.main)

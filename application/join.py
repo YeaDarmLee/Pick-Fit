@@ -42,7 +42,6 @@ def register():
     data = db_class.executeOne(search_user)
 
     if data is None:
-      db_class = dbModule.Database()
       search_user = "INSERT INTO user_info(id,pw,userNm,gender,height,weight) VALUES ('" + userid + "','" + password_hash + "','" + userNm + "','" + gender + "','" + height + "','" + weight + "')"
 
       db_class.execute(search_user)
