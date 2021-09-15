@@ -83,8 +83,7 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', '회원가입 성공', data.result)
-          // location.replace('/')
+          alertStart('success', '회원가입 성공', data.result, 'replace', '/index')
         } else {
           alertStart('error', '회원가입 실패', data.result)
         }

@@ -8,7 +8,7 @@
     <!-- * * Forms Contact Form * *-->
     <form id="contactForm">
       <div class="row align-items-stretch mb-5">
-        <div class="col-md-6" style="float:none; margin:0 auto" >
+        <div class="col-md-6" style="float:none; margin:0 auto">
           <!-- Name input-->
           <div class="form-group">
             <input class="form-control" id="name" name="name" type="text" placeholder="Your Name *"
@@ -49,13 +49,13 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', 'contact', data.result)
+          alertStart('success', 'contact', data.result, 'replace', '/')
         } else {
           alertStart('error', 'contact', data.result)
         }
       },
       error: function (e) {
-        alertStart('error', 'contact','전송에 실패하였습니다.')
+        alertStart('error', 'contact', '전송에 실패하였습니다.')
       }
     });
   }

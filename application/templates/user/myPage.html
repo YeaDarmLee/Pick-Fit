@@ -62,8 +62,16 @@
       </div>
     </div>
   </div>
-
 </header>
+
+<script>
+  // 로그인 안할 경우 alert 오픈
+  if ("{{session['login']}}" == '' || "{{session['login']}}" == false) {
+    $(document).ready(function () {
+      alertStart('error', 'MyPage','로그인 후 이용 가능합니다.', 'replace', '/index')
+    });
+  }
+</script>
 
 <style>
   .width_100 {

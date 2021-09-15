@@ -55,11 +55,18 @@ window.addEventListener('DOMContentLoaded', event => {
 
 
 // alert 함수
-// 상태 icon = "warning" "error" "success" "info"
-function alertStart(state, title, message) {
+/*
+state = 상태 icon = "warning" "error" "success" "info"
+비동기 처리 위해 funType, url 받아와 사용
+*/
+function alertStart(state, title, message, funType, url) {
   Swal.fire({
     icon: state,
     title: title,
     text: message,
+  }).then(function(){
+    if (funType == 'replace') {
+      location.replace(url)
+    }
   });
 };
