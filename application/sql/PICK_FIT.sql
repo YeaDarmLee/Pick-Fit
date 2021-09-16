@@ -26,3 +26,30 @@ create table contact_info(
     c_date datetime NOT NULL DEFAULT current_timestamp,
     PRIMARY KEY(idx)
 );
+
+-- category table
+create table category_attributes(
+	idx INT NOT NULL AUTO_INCREMENT,
+    category_en VARCHAR(50) not null,
+    category_ko VARCHAR(50) not null,
+    code INT NULL DEFAULT '0',
+    PRIMARY KEY(idx)
+);
+
+-- color table
+create table color_attributes(
+	idx INT NOT NULL AUTO_INCREMENT,
+    attribute_en varchar(50) not null,
+    attribute_ko varchar(50) not null,
+    code varchar(50) null default '0',
+    primary key(idx)
+);
+
+-- detail table
+create table detail_attributes(
+    idx INT NOT NULL AUTO_INCREMENT,
+    attribute_en VARCHAR(50) NOT NULL,
+    attribute_ko VARCHAR(50) NOT NULL,
+    code varchar(50) null default '0',
+    primary key(idx)
+);
