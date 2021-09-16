@@ -23,17 +23,65 @@ def index():
 
 @recommend.route("/trend")
 def trend():
-  return render_template('recommend/trend.html')
+  try:
+    userid = '%s' % escape(session['user_id'])
+
+    db_class = dbModule.Database()
+    search_user = "INSERT INTO search_log(s_type,user_id) VALUES ('tn','" + userid + "');"
+    
+    db_class.execute(search_user)
+    db_class.commit()
+
+    return render_template('recommend/trend.html')
+  except Exception as e:
+    print(e)
+    return render_template('layout/error.html')
 
 @recommend.route("/clothe")
 def clothe():
-  return render_template('recommend/clothe.html')
+  try:
+    userid = '%s' % escape(session['user_id'])
+
+    db_class = dbModule.Database()
+    search_user = "INSERT INTO search_log(s_type,user_id) VALUES ('co','" + userid + "');"
+    
+    db_class.execute(search_user)
+    db_class.commit()
+
+    return render_template('recommend/clothe.html')
+  except Exception as e:
+    print(e)
+    return render_template('layout/error.html')
   
 @recommend.route("/crawling")
 def crawling():
-  return render_template('recommend/crawling.html')
+  try:
+    userid = '%s' % escape(session['user_id'])
+
+    db_class = dbModule.Database()
+    search_user = "INSERT INTO search_log(s_type,user_id) VALUES ('cl','" + userid + "');"
+    
+    db_class.execute(search_user)
+    db_class.commit()
+
+    return render_template('recommend/clothe.html')
+  except Exception as e:
+    print(e)
+    return render_template('layout/error.html')
   
 @recommend.route("/statistic")
 def statistic():
-  return render_template('recommend/statistic.html')
+  try:
+    userid = '%s' % escape(session['user_id'])
+
+    db_class = dbModule.Database()
+    search_user = "INSERT INTO search_log(s_type,user_id) VALUES ('st','" + userid + "');"
+    
+    db_class.execute(search_user)
+    db_class.commit()
+
+    return render_template('recommend/statistic.html')
+  except Exception as e:
+    print(e)
+    return render_template('layout/error.html')
 
