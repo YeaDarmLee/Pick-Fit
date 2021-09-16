@@ -38,10 +38,10 @@
             <img class="card-img-top" src="{{ url_for('static', filename='assets/img/recommend/rm_3.svg') }}"
               alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title text-dark">키워드 조회</h5>
+              <h5 class="card-title text-dark">크롤링</h5>
               <p class="card-text text-muted">You can check shopping trends according to your gender and age for a
                 month.</p>
-              <button class="btn btn-primary" onclick="checkModify('keyword')">Go Search</button>
+              <button class="btn btn-primary" onclick="checkModify('crawling')">Go Search</button>
             </div>
           </div>
 
@@ -80,7 +80,7 @@
     if ('{{result.body_shape}}' == 0 || '{{result.style}}' == 0 || '{{result.skin_tone}}' == 0 || '{{result.face_shape}}' == 0 || '{{result.hair}}' == 0) {
       if (url == 'trend') var title = '트렌드 조회'
       else if (url == 'clothe') var title = '의류 추천'
-      else if (url == 'keyword') var title = '키워드 조회'
+      else if (url == 'crawling') var title = '크롤링'
       else if (url == 'statistic') var title = '통계 조회'
 
       alertStart('warning', title, '해당 서비스를 이용하려면 부가정보를 전부 입력해 주세요.', 'click', '#modifyBtn')

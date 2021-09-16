@@ -29,9 +29,9 @@ def trend():
 def clothe():
   return render_template('recommend/clothe.html')
   
-@recommend.route("/keyword")
-def keyword():
-  return render_template('recommend/keyword.html')
+@recommend.route("/crawling")
+def crawling():
+  return render_template('recommend/crawling.html')
   
 @recommend.route("/statistic")
 def statistic():
