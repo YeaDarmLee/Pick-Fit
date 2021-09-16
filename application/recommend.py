@@ -64,7 +64,7 @@ def crawling():
     db_class.execute(search_user)
     db_class.commit()
 
-    return render_template('recommend/clothe.html')
+    return render_template('recommend/crawling.html')
   except Exception as e:
     print(e)
     return render_template('layout/error.html')
