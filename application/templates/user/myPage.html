@@ -33,7 +33,7 @@
       <div class="col-6 my-sm-1">
         <div class="card card_temple">
           <h4>검색 기록 List</h4>
-          <div class="card card_temple height_500 scroll_bar">
+          <div class="card card_temple height_1000 scroll_bar">
             {% if log %}
             {% for log in log %}
             <div class="row card card_temple width_100 margin_0">
@@ -88,7 +88,7 @@
         </form>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" id="change_pwClsBtn" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" id="tampleBtn" class="btn btn-warning" onclick="change_pw()">Save changes</button>
         </div>
 
@@ -113,7 +113,7 @@
         <p class="item-intro text-muted">정말 탈퇴하시겠습니까?</p>
         <p class="item-intro text-muted">탈퇴하실 경우, 현재 등록된 모든 정보가 삭제됩니다.</p>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" id="secessionClsBtn" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
           <button type="button" id="tampleBtn" class="btn btn-warning" onclick="secession()">Yes</button>
         </div>
 
@@ -145,7 +145,8 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', 'Change Password', data.result, 'replace', '/myPage', 500)
+          $('#change_pwClsBtn').click()
+          alertStart('success', 'Change Password', data.result, 'replace', '/myPage', 1000)
         } else {
           alertStart('error', 'Change Password', data.result)
         }
@@ -171,7 +172,8 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', 'Change Modify', data.result, 'replace', '/myPage', 500)
+          $('#modifyClsBtn').click()
+          alertStart('success', 'Change Modify', data.result, 'replace', '/myPage', 1000)
         } else {
           alertStart('error', 'Change Modify', data.result)
         }
@@ -192,7 +194,8 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', '회원탈퇴', data.result, 'replace', '/', 500)
+          $('#secessionClsBtn').click()
+          alertStart('success', '회원탈퇴', data.result, 'replace', '/', 1000)
         } else {
           alertStart('error', '회원탈퇴', data.result)
         }
@@ -208,7 +211,7 @@
   .width_100 {
     width: 100%;
   }
-  .height_500 {
+  .height_1000 {
     height: 467px;
     margin: 0;
     padding: 0;

@@ -4,7 +4,7 @@
     {% if request.path == '/' %}
       <a class="navbar-brand" href="/#page-top"><img src="{{ url_for('static', filename='assets/img/navbar-logo.svg') }}" alt="..." /></a>
     {% else %}
-      <a class="navbar-brand" onclick="change_url('/#page-top',500)"><img src="{{ url_for('static', filename='assets/img/navbar-logo.svg') }}" alt="..." /></a>
+      <a class="navbar-brand" onclick="change_url('/#page-top',1000)"><img src="{{ url_for('static', filename='assets/img/navbar-logo.svg') }}" alt="..." /></a>
     {% endif %}
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
       aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,20 +21,20 @@
           <li class="nav-item"><a class="nav-link" href="/#team">Team</a></li>
           <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
         {% else %}
-          <li class="nav-item"><a class="nav-link" onclick="change_url('/#page-top',500)">Home</a></li>
-          <li class="nav-item"><a class="nav-link" onclick="change_url('/#services',500)">Services</a></li>
-          <li class="nav-item"><a class="nav-link" onclick="change_url('/#portfolio',500)">Portfolio</a></li>
-          <li class="nav-item"><a class="nav-link" onclick="change_url('/#about',500)">About</a></li>
-          <li class="nav-item"><a class="nav-link" onclick="change_url('/#team',500)">Team</a></li>
-          <li class="nav-item"><a class="nav-link" onclick="change_url('/#contact',500)">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/#page-top',1000)">Home</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/#services',1000)">Services</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/#portfolio',1000)">Portfolio</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/#about',1000)">About</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/#team',1000)">Team</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/#contact',1000)">Contact</a></li>
         {% endif %}
 
         {% if session['login'] %}
-          <li class="nav-item"><a class="nav-link" onclick="change_url('/myPage',500)">{{session['user_Nm']}} 님</a></li>
-          <li class="nav-item"><a class="nav-link" onclick="change_url('/user/logout',500)">Logout</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/myPage',1000)">{{session['user_Nm']}} 님</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/user/logout',1000)">Logout</a></li>
         {% else %}
-          <li class="nav-item"><a class="nav-link" onclick="change_url('/user/login',500)">Login</a></li>
-          <li class="nav-item"><a class="nav-link" onclick="change_url('/user/join',500)">Join</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/user/login',1000)">Login</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/user/join',1000)">Join</a></li>
         {% endif %}
       </ul>
     </div>

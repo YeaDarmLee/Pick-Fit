@@ -17,7 +17,7 @@
 <script>
   function check_login() {
     if ("{{session['login']}}") {
-      change_url('/recommend',500)
+      change_url('/recommend',1000)
     } else {
       alertStart('error', 'Recommend', '로그인 후 이용 가능합니다.')
     }

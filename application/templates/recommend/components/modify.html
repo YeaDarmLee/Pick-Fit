@@ -230,7 +230,7 @@
       success: function (data) {
         if (data.code === 20000) {
           $("#closeBtn").click()
-          alertStart('success', 'Change Modify', data.result, 'replace', '/recommend', 500)
+          alertStart('success', 'Change Modify', data.result, 'replace', '/recommend', 1000)
         } else {
           alertStart('error', 'Change Modify', data.result)
         }
