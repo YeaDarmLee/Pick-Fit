@@ -20,7 +20,6 @@ def logout():
 
 @user.route('/examine',methods=['POST'])
 def examine():
-  
   try:
     userid = request.form.get('userid')
     password = request.form.get('password')
@@ -180,7 +179,6 @@ def change_pw():
         'code':50000,
         'result': '현재 비밀번호가 다릅니다.'
       }
-
   except Exception as e:
     print(e)
     return {

@@ -6,11 +6,6 @@ from application import dbModule
 contact = Blueprint("contact", __name__, url_prefix="/contact")
 
 # contact
-@contact.route("")
-def index():
-  return 'test'
-
-
 @contact.route('/insert',methods=['POST'])
 def insert_contact():
   
