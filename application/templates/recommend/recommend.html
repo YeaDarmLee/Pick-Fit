@@ -16,27 +16,26 @@
             <img class="card-img-top" src="{{ url_for('static', filename='assets/img/recommend/rm_1.svg') }}" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title text-dark">트렌드 조회</h5>
-              <p class="card-text text-muted">한달간 사용자의 성별과 연령에 따른 쇼핑 트렌드를 조회할 수 있습니다.</p>
-              <a href="/recommend/trend" class="btn btn-primary">Go Search</a>
+              <p class="card-text text-muted">You can check shopping trends according to your gender and age for a month.</p>
+              <button class="btn btn-primary" onclick="checkModify('trend')">Go Search</button>
             </div>
           </div>
 
           <div class="card col-5 detail_card mg_btm_1rem">
-            
             <img class="card-img-top" src="{{ url_for('static', filename='assets/img/recommend/rm_2.svg') }}" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title text-dark">트렌드 조회</h5>
-              <p class="card-text text-muted">한달간 사용자의 성별과 연령에 따른 쇼핑 트렌드를 조회할 수 있습니다.</p>
-              <a href="#" class="btn btn-primary">Go Search</a>
+              <h5 class="card-title text-dark">의류 추천</h5>
+              <p class="card-text text-muted">You can check shopping trends according to your gender and age for a month.</p>
+              <button class="btn btn-primary" onclick="checkModify('clothe')">Go Search</button>
             </div>
           </div>
 
           <div class="card col-5 detail_card">
             <img class="card-img-top" src="{{ url_for('static', filename='assets/img/recommend/rm_3.svg') }}" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title text-dark">트렌드 조회</h5>
-              <p class="card-text text-muted">한달간 사용자의 성별과 연령에 따른 쇼핑 트렌드를 조회할 수 있습니다.</p>
-              <a href="#" class="btn btn-primary">Go Search</a>
+              <h5 class="card-title text-dark">키워드 조회</h5>
+              <p class="card-text text-muted">You can check shopping trends according to your gender and age for a month.</p>
+              <button class="btn btn-primary" onclick="checkModify('keyword')">Go Search</button>
             </div>
           </div>
           
@@ -44,16 +43,21 @@
             <img class="card-img-top" src="{{ url_for('static', filename='assets/img/recommend/rm_4.svg') }}" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title text-dark">통계 조회</h5>
-              <p class="card-text text-muted">한달간 사용자의 성별과 연령에 따른 쇼핑 트렌드를 조회할 수 있습니다.</p>
-              <a href="#" class="btn btn-primary">Go Search</a>
+              <p class="card-text text-muted">You can check shopping trends according to your gender and age for a month.</p>
+              <button class="btn btn-primary" onclick="checkModify('statistic')">Go Search</button>
             </div>
           </div>
+
+          <button type="button" id="modifyBtn" data-bs-toggle="modal" data-bs-target="#modify" style="display: none;">수정하기</button>
 
         </div>
       </div>
     </div>
   </div>
 </header>
+
+<!-- Modal (수정하기) -->
+{% include './recommend/components/modify.html' %}
 
 <script>
   // 로그인 안할 경우 alert 오픈
@@ -63,7 +67,17 @@
     });
   }
 
-  function test() {
+  function checkModify(url) {
+    if ('{{result.body_shape}}' == 0 || '{{result.style}}' == 0 || '{{result.skin_tone}}' == 0 || '{{result.face_shape}}' == 0 || '{{result.hair}}' == 0) {
+      if (url == 'trend') var title = '트렌드 조회'
+      else if (url == 'clothe') var title = '의류 추천'
+      else if (url == 'keyword') var title = '키워드 조회'
+      else if (url == 'statistic') var title = '통계 조회'
+
+      alertStart('warning', title, '해당 서비스를 이용하려면 부가정보를 전부 입력해 주세요.', 'click', '#modifyBtn')
+    } else {
+      location.replace('/recommend/' + url)
+    }
   }
 </script>
 

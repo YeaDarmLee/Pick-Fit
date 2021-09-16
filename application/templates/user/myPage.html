@@ -27,9 +27,8 @@
           <div class="text-white">헤어스타일 : {{result.hair}}</div>
         </div>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#secession">탈퇴하기</button>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modify">수정하기</button>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#change_pw">비밀번호
-          변경</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modify">부가정보 수정</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#change_pw">비밀번호 변경</button>
       </div>
       <div class="col-6 my-sm-1">
         <div class="card card_temple">
@@ -178,13 +177,13 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', 'Change Password', data.result, 'replace', '/myPage')
+          alertStart('success', 'Change Modify', data.result, 'replace', '/myPage')
         } else {
-          alertStart('error', 'Change Password', data.result)
+          alertStart('error', 'Change Modify', data.result)
         }
       },
       error: function (e) {
-        alertStart('error', 'Change Password', '추가정보 업데이트중 오류가 발생하였습니다.')
+        alertStart('error', 'Change Modify', '추가정보 업데이트중 오류가 발생하였습니다.')
       }
     });
   }
@@ -199,13 +198,13 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', 'Change Password', data.result, 'replace', '/')
+          alertStart('success', '회원탈퇴', data.result, 'replace', '/')
         } else {
-          alertStart('error', 'Change Password', data.result)
+          alertStart('error', '회원탈퇴', data.result)
         }
       },
       error: function (e) {
-        alertStart('error', 'Change Password', '회원탈퇴중 오류가 발생하였습니다.')
+        alertStart('error', '회원탈퇴', '회원탈퇴중 오류가 발생하였습니다.')
       }
     });
   }

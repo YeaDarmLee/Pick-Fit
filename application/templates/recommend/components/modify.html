@@ -1,0 +1,242 @@
+<div class="modal fade" id="modify" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-dark" id="exampleModalLabel">부가정보 입력</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body padding_top_0 scroll_bar">
+        <form class="text-align-center" id="modify_form">
+          <!-- 체형 input -->
+          {% if result.body_shape == 0 %}
+          <div class="row margin_1rem">
+            <h5 class="col-md-12 text-center">체형</h5>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="body_shape_1" name="body_shape" value="1">
+                <label class="custom-control-label" for="body_shape_1">
+                  <img src="{{ url_for('static', filename='assets/img/about/1.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="body_shape_2" name="body_shape" value="2">
+                <label class="custom-control-label" for="body_shape_2">
+                  <img src="{{ url_for('static', filename='assets/img/about/2.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="body_shape_3" name="body_shape" value="3">
+                <label class="custom-control-label" for="body_shape_3">
+                  <img src="{{ url_for('static', filename='assets/img/about/3.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="body_shape_4" name="body_shape" value="4">
+                <label class="custom-control-label" for="body_shape_4">
+                  <img src="{{ url_for('static', filename='assets/img/about/4.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+          </div>
+          {% endif %} 
+
+          <!-- 스타일 input -->
+          {% if result.style == 0 %}
+          <div class="row margin_1rem">
+            <h5 class="col-md-12 text-center">스타일</h5>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="style_1" name="style" value="1">
+                <label class="custom-control-label" for="style_1">
+                  <img src="{{ url_for('static', filename='assets/img/about/1.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="style_2" name="style" value="2">
+                <label class="custom-control-label" for="style_2">
+                  <img src="{{ url_for('static', filename='assets/img/about/2.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="style_3" name="style" value="3">
+                <label class="custom-control-label" for="style_3">
+                  <img src="{{ url_for('static', filename='assets/img/about/3.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="style_4" name="style" value="4">
+                <label class="custom-control-label" for="style_4">
+                  <img src="{{ url_for('static', filename='assets/img/about/4.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+          </div>
+          {% endif %} 
+
+          <!-- 피부톤 input -->
+          {% if result.skin_tone == 0 %}
+          <div class="row margin_1rem">
+            <h5 class="col-md-12 text-center">피부톤</h5>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="skin_tone_1" name="skin_tone" value="1">
+                <label class="custom-control-label" for="skin_tone_1">
+                  <img src="{{ url_for('static', filename='assets/img/about/1.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="skin_tone_2" name="skin_tone" value="2">
+                <label class="custom-control-label" for="skin_tone_2">
+                  <img src="{{ url_for('static', filename='assets/img/about/2.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="skin_tone_3" name="skin_tone" value="3">
+                <label class="custom-control-label" for="skin_tone_3">
+                  <img src="{{ url_for('static', filename='assets/img/about/3.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="skin_tone_4" name="skin_tone" value="4">
+                <label class="custom-control-label" for="skin_tone_4">
+                  <img src="{{ url_for('static', filename='assets/img/about/4.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          <!-- 얼굴형 input -->
+          {% if result.face_shape == 0 %}
+          <div class="row margin_1rem">
+            <h5 class="col-md-12 text-center">얼굴형</h5>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="face_shape_1" name="face_shape" value="1">
+                <label class="custom-control-label" for="face_shape_1">
+                  <img src="{{ url_for('static', filename='assets/img/about/1.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="face_shape_2" name="face_shape" value="2">
+                <label class="custom-control-label" for="face_shape_2">
+                  <img src="{{ url_for('static', filename='assets/img/about/2.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="face_shape_3" name="face_shape" value="3">
+                <label class="custom-control-label" for="face_shape_3">
+                  <img src="{{ url_for('static', filename='assets/img/about/3.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="face_shape_4" name="face_shape" value="4">
+                <label class="custom-control-label" for="face_shape_4">
+                  <img src="{{ url_for('static', filename='assets/img/about/4.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          <!-- 헤어스타일 input -->
+          {% if result.hair == 0 %}
+          <div class="row margin_1rem">
+            <h5 class="col-md-12 text-center">헤어스타일</h5>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="hair_1" name="hair" value="1">
+                <label class="custom-control-label" for="hair_1">
+                  <img src="{{ url_for('static', filename='assets/img/about/1.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="hair_2" name="hair" value="2">
+                <label class="custom-control-label" for="hair_2">
+                  <img src="{{ url_for('static', filename='assets/img/about/2.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="hair_3" name="hair" value="3">
+                <label class="custom-control-label" for="hair_3">
+                  <img src="{{ url_for('static', filename='assets/img/about/3.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio image-checkbox">
+                <input type="radio" class="custom-control-input" id="hair_4" name="hair" value="4">
+                <label class="custom-control-label" for="hair_4">
+                  <img src="{{ url_for('static', filename='assets/img/about/4.jpg') }}" alt="#" class="img-fluid">
+                </label>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </form>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="tampleBtn" class="btn btn-warning" onclick="modify()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function modify() {
+    var form = $('#modify_form')[0];
+    var data = new FormData(form);
+
+    $.ajax({
+      type: "POST",
+      enctype: 'multipart/form-data',
+      url: '/user/modify',
+      data: data,
+      processData: false,
+      contentType: false,
+      cache: false,
+      timeout: 600000,
+      success: function (data) {
+        if (data.code === 20000) {
+          alertStart('success', 'Change Modify', data.result, 'replace', '/recommend')
+        } else {
+          alertStart('error', 'Change Modify', data.result)
+        }
+      },
+      error: function (e) {
+        alertStart('error', 'Change Modify', '추가정보 업데이트중 오류가 발생하였습니다.')
+      }
+    });
+  }
+</script>
