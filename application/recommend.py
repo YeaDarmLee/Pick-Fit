@@ -9,13 +9,17 @@ recommend = Blueprint("recommend", __name__, url_prefix="/recommend")
 # recommend
 @recommend.route("")
 def index():
-  userid = '%s' % escape(session['user_id'])
+  try:
+    userid = '%s' % escape(session['user_id'])
 
-  db_class = dbModule.Database()
-  search_user = "SELECT * FROM user_info where id = '" + userid + "';"
-  data = dict(db_class.executeOne(search_user))
+    db_class = dbModule.Database()
+    search_user = "SELECT * FROM user_info where id = '" + userid + "';"
+    data = dict(db_class.executeOne(search_user))
 
-  return render_template('recommend/recommend.html', result=data)
+    return render_template('recommend/recommend.html', result=data)
+  except Exception as e:
+    print(e)
+    return render_template('layout/error.html')
 
 @recommend.route("/trend")
 def trend():
