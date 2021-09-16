@@ -54,8 +54,8 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 
-// alert 함수
 /*
+** alert 함수 **
 state = 상태 icon = "warning" "error" "success" "info"
 비동기 처리 위해 funType, url 받아와 사용
 */
