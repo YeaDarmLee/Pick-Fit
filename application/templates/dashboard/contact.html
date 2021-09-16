@@ -55,7 +55,7 @@
               <th scope="col" width="5%">#</th>
               <th scope="col" width="10%">name</th>
               <th scope="col">content</th>
-              <th scope="col" width="10%">date</th>
+              <th scope="col" width="15%">date</th>
             </tr>
           </thead>
           <tbody id="contact_result">
@@ -99,7 +99,7 @@
     check_vlu = true
     $.ajax({
       type: "POST",
-      url: '/getContactList',
+      url: '/contact/getContactList',
       processData: false,
       contentType: false,
       cache: false,

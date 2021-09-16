@@ -35,3 +35,33 @@ def insert_contact():
         'code':50000,
         'result': e
       }
+
+@contact.route("/getContactList",methods=['POST'])
+def getContactList():
+  try:
+    db_class = dbModule.Database()
+    search_contact = "SELECT * FROM contact_info ORDER BY c_date DESC limit 100;"
+    data = db_class.executeAll(search_contact)
+
+    results = []
+    for x in data:
+      detail_data = []
+      detail_data = dict(x)
+      results.append({
+        'idx':detail_data['idx'],
+        'userNm':detail_data['userNm'],
+        'content':detail_data['content'],
+        'date':detail_data['c_date']
+      })
+    print(results)
+
+    return {
+      'code':20000,
+      'results':results
+    }
+  except Exception as e:
+    print(e)
+    return {
+        'code':50000,
+        'result': e
+      }

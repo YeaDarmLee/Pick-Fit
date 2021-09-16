@@ -29,7 +29,6 @@
           <li class="nav-item"><a class="nav-link" onclick="change_url('/#contact',500)">Contact</a></li>
         {% endif %}
 
-        <!-- <li class="nav-item"><a class="nav-link" href="/crawler">crawler</a></li> -->
         {% if session['login'] %}
           <li class="nav-item"><a class="nav-link" onclick="change_url('/myPage',500)">{{session['user_Nm']}} 님</a></li>
           <li class="nav-item"><a class="nav-link" onclick="change_url('/user/logout',500)">Logout</a></li>
