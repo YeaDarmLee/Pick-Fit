@@ -206,7 +206,7 @@
       </div>
       
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" id="tampleBtn" class="btn btn-warning" onclick="modify()">Save changes</button>
       </div>
     </div>
@@ -229,6 +229,7 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
+          $("#closeBtn").click()
           alertStart('success', 'Change Modify', data.result, 'replace', '/recommend', 500)
         } else {
           alertStart('error', 'Change Modify', data.result)
