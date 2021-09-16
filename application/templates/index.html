@@ -4,21 +4,12 @@
 <!-- navigation -->
 {% include './layout/navigation.html' %}
 
-<!-- loading -->
-<div id="load">
-  <div class="loader">
-    <div class="dot dot-1"></div>
-    <div class="dot dot-2"></div>
-    <div class="dot dot-3"></div>
-  </div>    
-</div>
-
 <!-- Masthead -->
 <header class="masthead">
   <div class="container">
     <div class="masthead-subheading">we'll find your style for you</div>
     <div class="masthead-heading text-uppercase">Pick & Fit</div>
-    <a class="btn btn-primary btn-xl text-uppercase" href="/recommend">Recommend</a>
+    <a class="btn btn-primary btn-xl text-uppercase" onclick="change_url('/recommend',500)">Recommend</a>
     <a class="btn btn-info btn-xl text-uppercase" href="#services">Tell Me More</a>
   </div>
 </header>

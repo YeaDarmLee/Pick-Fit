@@ -229,7 +229,7 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', 'Change Modify', data.result, 'replace', '/recommend')
+          alertStart('success', 'Change Modify', data.result, 'replace', '/recommend', 500)
         } else {
           alertStart('error', 'Change Modify', data.result)
         }

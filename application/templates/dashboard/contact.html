@@ -84,7 +84,7 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', 'contact', data.result, 'replace', '/')
+          alertStart('success', 'contact', data.result, 'replace', '/', 500)
         } else {
           alertStart('error', 'contact', data.result)
         }

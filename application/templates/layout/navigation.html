@@ -10,20 +10,30 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-        <li class="nav-item"><a class="nav-link" href="/#page-top">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/#services">Services</a></li>
-        <li class="nav-item"><a class="nav-link" href="/#portfolio">Portfolio</a></li>
-        <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="/#team">Team</a></li>
-        <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+        {% if request.path == '/' %}
+          <li class="nav-item"><a class="nav-link" href="/#page-top">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#portfolio">Portfolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#team">Team</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+        {% else %}
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/#page-top',500)">Home</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/#services',500)">Services</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/#portfolio',500)">Portfolio</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/#about',500)">About</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/#team',500)">Team</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/#contact',500)">Contact</a></li>
+        {% endif %}
+
         <!-- <li class="nav-item"><a class="nav-link" href="/crawler">crawler</a></li> -->
         {% if session['login'] %}
-          <li class="nav-item"><a class="nav-link" href="/myPage">{{session['user_Nm']}} 님</a></li>
-          <li class="nav-item"><a class="nav-link" href="/user/logout">Logout</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/myPage',500)">{{session['user_Nm']}} 님</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/user/logout',500)">Logout</a></li>
         {% else %}
-          <li class="nav-item"><a class="nav-link" href="/user/login">Login</a></li>
-          <li class="nav-item"><a class="nav-link" href="/user/join">Join</a></li>
-        {% endif %} 
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/user/login',500)">Login</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="change_url('/user/join',500)">Join</a></li>
+        {% endif %}
       </ul>
     </div>
   </div>

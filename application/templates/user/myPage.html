@@ -151,7 +151,7 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', 'Change Password', data.result, 'replace', '/myPage')
+          alertStart('success', 'Change Password', data.result, 'replace', '/myPage', 500)
         } else {
           alertStart('error', 'Change Password', data.result)
         }
@@ -177,7 +177,7 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', 'Change Modify', data.result, 'replace', '/myPage')
+          alertStart('success', 'Change Modify', data.result, 'replace', '/myPage', 500)
         } else {
           alertStart('error', 'Change Modify', data.result)
         }
@@ -198,7 +198,7 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', '회원탈퇴', data.result, 'replace', '/')
+          alertStart('success', '회원탈퇴', data.result, 'replace', '/', 500)
         } else {
           alertStart('error', '회원탈퇴', data.result)
         }
