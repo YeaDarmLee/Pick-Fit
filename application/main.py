@@ -18,9 +18,34 @@ def myPage():
 
     db_class = dbModule.Database()
     search_user = "SELECT * FROM user_info where id = '" + userid + "';"
-    data = dict(db_class.executeOne(search_user))
+    user_data = dict(db_class.executeOne(search_user))
+    
+    search_log = "SELECT * FROM search_log where user_id = '" + userid + "';"
+    log_data = db_class.executeAll(search_log)
 
-    return render_template('user/myPage.html', result=data)
+    results = []
+    for x in log_data:
+      s_type = ''
+      detail_data = []
+      detail_data = dict(x)
+      if detail_data['s_type'] == 'tn':
+        s_type = '트렌드 조회'
+      elif detail_data['s_type'] == 'co':
+        s_type = '의류 추천'
+      elif detail_data['s_type'] == 'cl':
+        s_type = '크롤링'
+      elif detail_data['s_type'] == 'st':
+        s_type = '통계 조회'
+      
+      results.append({
+        'idx':detail_data['idx'],
+        's_type':s_type,
+        'user_id':detail_data['user_id'],
+        'date':detail_data['c_date']
+      })
+
+    return render_template('user/myPage.html', user=user_data, log=results)
+
   except Exception as e:
     print(e)
     return render_template('layout/error.html')
