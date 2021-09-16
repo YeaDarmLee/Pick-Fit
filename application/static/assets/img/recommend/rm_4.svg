@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1300" height="900" version="1.1" viewBox="0 0 1300 900.00001" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <marker id="p" overflow="visible" orient="auto">
+   <path transform="scale(.4) translate(7.4 1)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill="#fff" fill-rule="evenodd" stroke="#fff" stroke-width="1pt"/>
+  </marker>
+  <marker id="o" overflow="visible" orient="auto">
+   <path transform="scale(.4) translate(7.4 1)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill="#fff" fill-rule="evenodd" stroke="#fff" stroke-width="1pt"/>
+  </marker>
+  <marker id="n" overflow="visible" orient="auto">
+   <path transform="scale(.4) translate(7.4 1)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill="#fff" fill-rule="evenodd" stroke="#fff" stroke-width="1pt"/>
+  </marker>
+  <marker id="m" overflow="visible" orient="auto">
+   <path transform="scale(.4) translate(7.4 1)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill="#fff" fill-rule="evenodd" stroke="#fff" stroke-width="1pt"/>
+  </marker>
+  <marker id="l" overflow="visible" orient="auto">
+   <path transform="scale(.4) translate(7.4 1)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill="#fff" fill-rule="evenodd" stroke="#fff" stroke-width="1pt"/>
+  </marker>
+  <marker id="k" overflow="visible" orient="auto">
+   <path transform="scale(.4) translate(7.4 1)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill="#fff" fill-rule="evenodd" stroke="#fff" stroke-width="1pt"/>
+  </marker>
+  <marker id="i" overflow="visible" orient="auto">
+   <path transform="scale(.4) translate(7.4 1)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill="#fff" fill-rule="evenodd" stroke="#fff" stroke-width="1pt"/>
+  </marker>
+  <linearGradient id="j" x2="1300" y1="1052.4" y2="152.36" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#a566a1" offset="0"/>
+   <stop stop-color="#95c589" offset=".50921"/>
+   <stop stop-color="#ff8080" offset="1"/>
+  </linearGradient>
+ </defs>
+ <g transform="translate(0 -152.36)">
+  <rect y="152.36" width="1300" height="900" ry="0" fill="url(#j)" stroke="#a6a6a6"/>
+ </g>
+ <g transform="matrix(1.1491 0 0 1.1491 -5.0137 -5.7451)">
+  <path d="m119.01 87.397v608.06h875.83" fill="none" stroke="#fff" stroke-width="5"/>
+  <path transform="matrix(.43137 0 0 .61277 67.672 33.842)" d="m119.01 48.347 11.273 19.525 11.273 19.525-22.545-1e-6h-22.545l11.273-19.525z" fill="#fff"/>
+  <path transform="matrix(0 .43137 -.61277 0 1048.4 644.12)" d="m119.01 48.347 11.273 19.525 11.273 19.525-22.545-1e-6h-22.545l11.273-19.525z" fill="#fff"/>
+  <g transform="matrix(.99965 0 0 .58934 .20404 285.37)" fill="none" stroke="#fff" stroke-width="5">
+   <path d="m232.29 677.58v33.936"/>
+   <path d="m350.57 677.58v33.936"/>
+   <path d="m468.85 677.58v33.936"/>
+   <path d="m587.13 677.58v33.936"/>
+   <path d="m705.41 677.58v33.936"/>
+   <path d="m823.69 677.58v33.936"/>
+   <path d="m941.97 677.58v33.936"/>
+  </g>
+  <g transform="matrix(.59317 0 0 1 48.212 0)" fill="none" stroke="#fff" stroke-width="5">
+   <path d="m101.54 582.17h33.936"/>
+   <path d="m101.54 463.9h33.936"/>
+   <path d="m101.54 345.62h33.936"/>
+   <path d="m101.54 227.34h33.936"/>
+   <path d="m101.54 109.06h33.936"/>
+  </g>
+ </g>
+ <path d="m262.05 793.41v-78.81" fill="none" marker-end="url(#o)" stroke="#fff" stroke-width="3"/>
+ <path d="m397.92 793.41v-166.91" fill="none" marker-end="url(#n)" stroke="#fff" stroke-width="3"/>
+ <path d="m533.79 793.41v-99.19" fill="none" marker-end="url(#m)" stroke="#fff" stroke-width="3"/>
+ <path d="m669.66 793.41v-253.03" fill="none" marker-end="url(#l)" stroke="#fff" stroke-width="3"/>
+ <path d="m805.53 793.41v-352.96" fill="none" marker-end="url(#k)" stroke="#fff" stroke-width="3"/>
+ <path d="m941.4 793.41v-385.83" fill="none" marker-end="url(#i)" stroke="#fff" stroke-width="3"/>
+ <path d="m1077.3 793.41v-475.9" fill="none" marker-end="url(#p)" stroke="#fff" stroke-width="3"/>
+ <path d="m131.17 714.6h130.89" fill="none" stroke="#fff" stroke-dasharray="1, 4"/>
+ <path d="m131.17 626.51h266.76" fill="none" stroke="#fff" stroke-dasharray="2, 8" stroke-width="2"/>
+ <path d="m131.74 540.38h537.92" fill="none" stroke="#fff" stroke-dasharray="2, 8" stroke-width="2"/>
+ <path d="m131.74 440.45h673.79" fill="none" stroke="#fff" stroke-dasharray="2, 8" stroke-width="2"/>
+ <path d="m533.79 694.22h-402.63" fill="none" stroke="#fff" stroke-dasharray="2, 8" stroke-width="2"/>
+ <path d="m941.4 407.58h-809.66" fill="none" stroke="#fff" stroke-dasharray="2, 8" stroke-width="2"/>
+ <path d="m131.74 317.51h945.53" fill="none" stroke="#fff" stroke-dasharray="2, 8" stroke-width="2"/>
+ <path d="m131.74 793.41 130.31-78.81 135.87-88.096 135.87 67.716 135.87-153.84 135.87-99.93 135.87-32.872 135.87-90.068v475.9z" fill="#fff" fill-opacity=".16505" fill-rule="evenodd" stroke="#fff" stroke-dasharray="4, 4"/>
+</svg>
