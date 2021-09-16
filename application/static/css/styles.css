@@ -11993,3 +11993,8 @@ header.error .error-heading {
     margin-bottom: 4rem;
   }
 }
+
+/* 모달 종료시 padding-right값이 계속 추가되는 오류 해결용 */
+body { padding-right: 0 !important; }
+.modal-open { padding-right: 0px !important; }
+.modal { padding-right: 0px !important; }
