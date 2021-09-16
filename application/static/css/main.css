@@ -76,7 +76,7 @@ body{
   position: fixed;
   display: block;
   /* opacity: 0.8; */
-  background-color: rgba( 85, 85, 85, 0.1 );
+  background-color: rgba( 85, 85, 85, 0.4 );
   z-index: 99;
   text-align: center;
 }
@@ -106,18 +106,21 @@ body{
 }
 
 .dot-3 {
-  background-color: #f74d75;
-  animation: dot-3-move 2s ease infinite, index 6s ease infinite;
+  /* background-color: #f74d75; */
+  background-color: #fff;
+  animation: dot-3-move 1s ease infinite, index 3s ease infinite;
 }
 
 .dot-2 {
-  background-color: #10beae;
-  animation: dot-2-move 2s ease infinite, index 6s -4s ease infinite;
+  /* background-color: #10beae; */
+  background-color: #ffc800;
+  animation: dot-2-move 1s ease infinite, index 3s -1s ease infinite;
 }
 
 .dot-1 {
-  background-color: #ffe386;
-  animation: dot-1-move 2s ease infinite, index 6s -2s ease infinite;
+  /* background-color: #ffe386; */
+  background-color: #0dcaf0;
+  animation: dot-1-move 1s ease infinite, index 3s -1s ease infinite;
 }
 
 @keyframes dot-3-move {
