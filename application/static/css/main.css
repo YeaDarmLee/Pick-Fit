@@ -158,3 +158,9 @@ body{
   33.3% {z-index: 2}
   66.6% {z-index: 1}
 }
+
+.tooltip_icon {
+  right: 20px;
+  top: 20px;
+  position: absolute;
+}

@@ -7,7 +7,16 @@
 <!-- Join -->
 <header class="join">
   <div class="container card card_temple col-5">
-    <h1>Join Us</h1>
+    <div class="row">
+      <div class="col-12">
+        <h2>Join Us</h2>
+        <div class="tooltip_icon">
+          <span class="fa-stack fa-1x">
+            <i class="far fa-question-circle fa-stack-1x" data-bs-toggle="modal" data-bs-target="#tooltip" onclick=""></i>
+          </span>
+        </div>
+      </div>
+    </div>
     <form id="Join_form">
       <!-- Name input -->
       <div class="form-outline mb-4 dis_inblk col-5">
@@ -62,6 +71,29 @@
     </form>
   </div>
 </header>
+
+<!-- Modal (tooltip) -->
+<div class="modal fade" id="tooltip" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-muted" id="exampleModalLabel">Join Us</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="my-2">
+          <h5>안내</h5>
+          <li class="item-intro text-muted">모든 값을 입력해야 회원가입이 진행 됩니다.</li>
+        </div>
+        <div class="my-2">
+          <h5>키, 몸무게, 나이</h5>
+          <li class="item-intro text-muted">무조건 숫자값으로 입력해야 합니다. (소수점 가능)</li>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
   //로그인 되어 있으면 강제 리다이렉팅
