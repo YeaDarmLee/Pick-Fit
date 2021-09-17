@@ -3,10 +3,10 @@ import pymysql
 class Database():
   def __init__(self):
     self.db = pymysql.connect(
-      host='localhost',
-      user='root',
-      password='dldPekfa1!',
-      db='PICK_FIT',
+      host='211.47.75.102',
+      user='public0917',
+      password='public2423!',
+      db='dbpublic0917',
       charset='utf8'
     )
     self.cursor = self.db.cursor(pymysql.cursors.DictCursor)
