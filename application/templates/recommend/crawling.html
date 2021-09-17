@@ -8,7 +8,7 @@
 
 <!-- crawling -->
 <header class="crawling">
-  <div class="container card card_temple">
+  <div class="container card card_temple" id="index">
     <!-- Page Content -->
     <div class="container mb-4">
 
@@ -49,16 +49,39 @@
             </div>
           </div>
         </div>
-
       </div>
-      <!-- /.row -->
     </div>
-    <!-- /.container -->
+  </div>
 
+
+  <div class="container card card_temple my-4" id="result">
+    <div class="modal-header">
+      <h5 class="modal-title text-lite" id="exampleModalLabel">크롤링 Result</h5>
+      <button type="button" class="btn-close" onclick="crawlingToggle()"></button>
+    </div>
+    <div class="container mb-4">
+      <div class="row my-4">
+      </div>
+    </div>
   </div>
 </header>
 
 <script>
+  var result_show = false
+  $('#result').hide()
+
+  function crawling() {
+    if (result_show) {
+      $('#result').slideUp()  
+    } else {
+      crawlingToggle()
+    }
+    result_show = !result_show
+  }
+  
+  function crawlingToggle() {
+    $('#result').slideToggle()
+  }
 </script>
 
 <style>
