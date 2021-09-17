@@ -55,7 +55,7 @@
               <th scope="col" width="5%">#</th>
               <th scope="col" width="10%">name</th>
               <th scope="col">content</th>
-              <th scope="col" width="10%">date</th>
+              <th scope="col" width="15%">date</th>
             </tr>
           </thead>
           <tbody id="contact_result">
@@ -84,7 +84,7 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', 'contact', data.result, 'replace', '/')
+          alertStart('success', 'contact', data.result, 'replace', '/', 1000)
         } else {
           alertStart('error', 'contact', data.result)
         }
@@ -99,7 +99,7 @@
     check_vlu = true
     $.ajax({
       type: "POST",
-      url: '/getContactList',
+      url: '/contact/getContactList',
       processData: false,
       contentType: false,
       cache: false,
@@ -110,12 +110,14 @@
           const box = document.getElementById("contact_result");
 
           for (var i = 0; i < data.results.length; i++) {
+            let contact_date = new Date(contact_result[i].date);
+
             const newP = document.createElement('tr');
             newP.setAttribute("id", "searchContact_tr");
             newP.innerHTML = '<th scope="row">' + contact_result[i].idx + '</th>' +
               '<td>' + contact_result[i].userNm + '</td>' +
               '<td>' + contact_result[i].content + '</td>' +
-              '<td>' + contact_result[i].date + '</td>'
+              '<td>' + contact_date.getFullYear() + '-' + (contact_date.getMonth() + 1) + '-' + contact_date.getDate() + '</td>'
             box.appendChild(newP);
           }
           $('#contactMessageButton').click()
@@ -146,5 +148,9 @@
 <style>
   #contact {
     padding-bottom: 150px;
+  }
+
+  #contactMessage {
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   }
 </style>

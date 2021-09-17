@@ -7,58 +7,58 @@
 <!-- myPage -->
 <header class="myPage">
   <div class="container card card_temple">
-    <h2>MyPage</h2>
     <div class="row">
+      <div class="col-12">
+        <h2>MyPage</h2>
+        <div class="tooltip_icon">
+          <span class="fa-stack fa-1x">
+            <i class="far fa-question-circle fa-stack-1x" data-bs-toggle="modal" data-bs-target="#tooltip" onclick=""></i>
+          </span>
+        </div>
+      </div>
       <div class="col-6">
         <h4>{{session['user_Nm']}} 님</h4>
         <div class="card card_temple col-8 my-sm-1">
-          {% if result.gender == 0 %}
-          <p class="text-white">성별 : 남</p>
+          {% if user.gender == 0 %}
+            <p class="text-white">성별 : 남</p>
           {% else %}
-          <p class="text-white">성별 : 여</p>
+            <p class="text-white">성별 : 여</p>
           {% endif %}
-          <p class="text-white">나이 : {{result.age}}</p>
-          <p class="text-white">키 : {{result.height}}cm</p>
-          <p class="text-white">몸무게 : {{result.weight}}kg</p>
-          <p class="text-white">체형 : {{result.body_shape}}</p>
-          <p class="text-white">취향 : {{result.style}}</p>
-          <p class="text-white">피부톤 : {{result.skin_tone}}</p>
-          <p class="text-white">얼굴형 : {{result.face_shape}}</p>
-          <div class="text-white">헤어스타일 : {{result.hair}}</div>
+          <p class="text-white">나이 : {{user.age}}</p>
+          <p class="text-white">키 : {{user.height}}cm</p>
+          <p class="text-white">몸무게 : {{user.weight}}kg</p>
+          <p class="text-white">체형 : {{user.body_shape}}</p>
+          <p class="text-white">취향 : {{user.style}}</p>
+          <p class="text-white">피부톤 : {{user.skin_tone}}</p>
+          <p class="text-white">얼굴형 : {{user.face_shape}}</p>
+          <div class="text-white">헤어스타일 : {{user.hair}}</div>
         </div>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#secession">탈퇴하기</button>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modify">수정하기</button>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#change_pw">비밀번호
-          변경</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modify">부가정보 수정</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#change_pw">비밀번호 변경</button>
       </div>
       <div class="col-6 my-sm-1">
         <div class="card card_temple">
-          <h4>검색 기록 List</h4>
-          <div class="card card_temple height_500 scroll_bar">
-            <div class="card card_temple width_100">
-              검색기록 샘플 1
-            </div>
-            <div class="card card_temple width_100">
-              검색기록 샘플 2
-            </div>
-            <div class="card card_temple width_100">
-              검색기록 샘플 3
-            </div>
-            <div class="card card_temple width_100">
-              검색기록 샘플 4
-            </div>
-            <div class="card card_temple width_100">
-              검색기록 샘플 5
-            </div>
-            <div class="card card_temple width_100">
-              검색기록 샘플 6
-            </div>
-            <div class="card card_temple width_100">
-              검색기록 샘플 7
-            </div>
-            <div class="card card_temple width_100">
-              검색기록 샘플 8
-            </div>
+          <h4 class="card-title">검색 기록 List</h4>
+          <div class="card card_temple height_1000 scroll_bar">
+            {% if log %}
+              {% for log in log %}
+                <div class="row card card_temple width_100 margin_0">
+                  <div class="row">
+                    <div class="col-2">{{log.idx}}</div>
+                    <div class="col-7">{{log.s_type}}</div>
+                    <div class="col-3">{{log.date}}</div>
+                  </div>
+                </div>
+              {% endfor %}
+            {% else %}
+              <div class="row card card_temple width_100 margin_0">
+                <div class="row">
+                  <div class="col-12">검색 기록이 없습니다.</div>
+                </div>
+              </div>
+            {% endif %}
+
           </div>
         </div>
       </div>
@@ -95,7 +95,7 @@
         </form>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" id="change_pwClsBtn" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" id="tampleBtn" class="btn btn-warning" onclick="change_pw()">Save changes</button>
         </div>
 
@@ -120,10 +120,33 @@
         <p class="item-intro text-muted">정말 탈퇴하시겠습니까?</p>
         <p class="item-intro text-muted">탈퇴하실 경우, 현재 등록된 모든 정보가 삭제됩니다.</p>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" id="secessionClsBtn" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
           <button type="button" id="tampleBtn" class="btn btn-warning" onclick="secession()">Yes</button>
         </div>
 
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal (tooltip) -->
+<div class="modal fade" id="tooltip" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-muted" id="exampleModalLabel">My Page</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="my-2">
+          <h5>User 정보</h5>
+          <li class="item-intro text-muted">회원 탈퇴시 모든 정보는 삭제됩니다.</li>
+        </div>
+        <div class="my-2">
+          <h5>검색 기록 List</h5>
+          <li class="item-intro text-muted">검색 기록은 최근 기준 최대 100건 까지 노출됩니다.</li>
+        </div>
       </div>
     </div>
   </div>
@@ -152,7 +175,8 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', 'Change Password', data.result, 'replace', '/myPage')
+          $('#change_pwClsBtn').click()
+          alertStart('success', 'Change Password', data.result, 'replace', '/myPage', 1000)
         } else {
           alertStart('error', 'Change Password', data.result)
         }
@@ -178,13 +202,14 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', 'Change Password', data.result, 'replace', '/myPage')
+          $('#modifyClsBtn').click()
+          alertStart('success', 'Change Modify', data.result, 'replace', '/myPage', 1000)
         } else {
-          alertStart('error', 'Change Password', data.result)
+          alertStart('error', 'Change Modify', data.result)
         }
       },
       error: function (e) {
-        alertStart('error', 'Change Password', '추가정보 업데이트중 오류가 발생하였습니다.')
+        alertStart('error', 'Change Modify', '추가정보 업데이트중 오류가 발생하였습니다.')
       }
     });
   }
@@ -199,13 +224,14 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', 'Change Password', data.result, 'replace', '/')
+          $('#secessionClsBtn').click()
+          alertStart('success', '회원탈퇴', data.result, 'replace', '/', 1000)
         } else {
-          alertStart('error', 'Change Password', data.result)
+          alertStart('error', '회원탈퇴', data.result)
         }
       },
       error: function (e) {
-        alertStart('error', 'Change Password', '회원탈퇴중 오류가 발생하였습니다.')
+        alertStart('error', '회원탈퇴', '회원탈퇴중 오류가 발생하였습니다.')
       }
     });
   }
@@ -215,7 +241,7 @@
   .width_100 {
     width: 100%;
   }
-  .height_500 {
+  .height_1000 {
     height: 467px;
     margin: 0;
     padding: 0;
@@ -226,7 +252,9 @@
   .padding_top_0{
     padding-top: 0px;
   }
-
+  .margin_0 {
+    margin: 0;
+  }
 </style>
 <!-- Footer-->
 {% include './layout/footer.html' %}
