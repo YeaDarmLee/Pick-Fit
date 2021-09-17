@@ -79,3 +79,7 @@ function change_url(url, time) {
     location.replace(url)
   }, time);
 }
+
+function goRecommend() {
+  change_url('/recommend',1000)
+}

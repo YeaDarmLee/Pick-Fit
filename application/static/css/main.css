@@ -164,3 +164,9 @@ body{
   top: 20px;
   position: absolute;
 }
+
+.icon_left {
+  left: 20px;
+  top: 20px;
+  position: absolute;
+}
