@@ -1,11 +1,21 @@
 #content_fadein {
-  animation: fadein 1s;
+  animation: fadein 2s;
+  -moz-animation: fadein 2s;
   /* Firefox */
-  -moz-animation: fadein 1s;
+  -webkit-animation: fadein 2s;
   /* Safari and Chrome */
-  -webkit-animation: fadein 1s;
+  -o-animation: fadein 2s;
   /* Opera */
-  -o-animation: fadein 1s;
+}
+
+#content_fadeout {
+  animation: fadein 2s;
+  -moz-animation: fadein 2s;
+  /* Firefox */
+  -webkit-animation: fadein 2s;
+  /* Safari and Chrome */
+  -o-animation: fadein 2s;
+  /* Opera */
 }
 
 @keyframes fadein {
@@ -37,142 +47,51 @@
   }
 }
 
-#box_slide {
-  animation: slide 1.5s;
-  /* Firefox */
-  -moz-animation: slide 1.5s;
-  /* Safari and Chrome */
-  -webkit-animation: slide 1.5s;
-  /* Opera */
-  -o-animation: slide 1.5s;
-}
-
-@keyframes slide {
-  from {
-    margin-left: -800px;
-  }
-  to {
-    margin-left: 0%;
-  }
-}
-
-@-moz-keyframes slide {
-  /* Firefox */
-  from {
-    margin-left: -800px;
-  }
-  to {
-    margin-left: 0%;
-  }
-}
-
-@-webkit-keyframes slide {
-  /* Safari and Chrome */
-  from {
-    margin-left: -800px;
-  }
-  to {
-    margin-left: 0%;
-  }
-}
-
-@-o-keyframes slide {
+@-o-keyframes fadein {
   /* Opera */
   from {
-    margin-left: -800px;
+    opacity: 0;
   }
   to {
-    margin-left: 0%;
+    opacity: 1;
   }
 }
 
-#bar_slide {
-  animation: bar_slide 1.5s;
-  /* Firefox */
-  -moz-animation: bar_slide 1.5s;
-  /* Safari and Chrome */
-  -webkit-animation: bar_slide 1.5s;
-  /* Opera */
-  -o-animation: bar_slide 1.5s;
-}
-
-@keyframes bar_slide {
+@keyframes fadeout {
   from {
-    width: 0%;
+    opacity: 1;
   }
   to {
-    width: 100%;
+    opacity: 0;
   }
 }
 
-@-moz-keyframes bar_slide {
+@-moz-keyframes fadeout {
   /* Firefox */
   from {
-    width: 0%;
+    opacity: 1;
   }
   to {
-    width: 100%;
+    opacity: 0;
   }
 }
 
-@-webkit-keyframes bar_slide {
+@-webkit-keyframes fadeout {
   /* Safari and Chrome */
   from {
-    width: 0%;
+    opacity: 1;
   }
   to {
-    width: 100%;
+    opacity: 0;
   }
 }
 
-@-o-keyframes bar_slide {
+@-o-keyframes fadeout {
   /* Opera */
   from {
-    width: 0%;
+    opacity: 1;
   }
   to {
-    width: 100%;
+    opacity: 0;
   }
-}
-
-.custom-progress {
-  height: 10px;
-  border-radius: 50px;
-  box-shadow: none;
-  margin-bottom: 25px;
-}
-.progress {
-  display: -ms-flexbox;
-  display: flex;
-  height: 1rem;
-  overflow: hidden;
-  font-size: .75rem;
-  background-color: #e9ecef;
-  border-radius: .25rem;
-}
-.bg-sky {
-  background-color: #02c2c7
-}
-.bg-orange {
-  background-color: #e95601
-}
-.bg-green {
-  background-color: #5bbd2a
-}
-.bg-yellow {
-  background-color: #f0d001
-}
-.bg-pink {
-  background-color: #ff48a4
-}
-.bg-purple {
-  background-color: #9d60ff
-}
-.bg-lightred {
-  background-color: #ff5722
-}
-
-.card-img-top {
-  margin-top: 10px;
-  border-radius: 10px;
 }

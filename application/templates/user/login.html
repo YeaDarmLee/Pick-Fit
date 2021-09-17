@@ -48,7 +48,7 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          change_url('/', 1000)
+          location.replace('/')
         } else {
           alertStart('error', '로그인 실패', data.result)
         }

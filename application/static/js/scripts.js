@@ -54,28 +54,19 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 
+// alert 함수
 /*
-** alert 함수 **
 state = 상태 icon = "warning" "error" "success" "info"
 비동기 처리 위해 funType, url 받아와 사용
 */
-function alertStart(state, title, message, funType, text, time) {
+function alertStart(state, title, message, funType, url) {
   Swal.fire({
     icon: state,
     title: title,
     text: message,
   }).then(function(){
     if (funType == 'replace') {
-      change_url(text, time)
-    } else if (funType == 'click') {
-      $(text).click()
+      location.replace(url)
     }
   });
 };
-
-function change_url(url, time) {
-  $('#load').slideToggle()
-  setTimeout(function () {
-    location.replace(url)
-  }, time);
-}

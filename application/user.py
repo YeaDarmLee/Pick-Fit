@@ -20,6 +20,7 @@ def logout():
 
 @user.route('/examine',methods=['POST'])
 def examine():
+  
   try:
     userid = request.form.get('userid')
     password = request.form.get('password')
@@ -179,6 +180,7 @@ def change_pw():
         'code':50000,
         'result': '현재 비밀번호가 다릅니다.'
       }
+
   except Exception as e:
     print(e)
     return {
@@ -225,22 +227,22 @@ def modify():
     face_shape = request.form.get('face_shape')
     hair = request.form.get('hair')
 
-    query = ''
-    if body_shape != None:
-      query += 'body_shape = "' + body_shape + '",'
-    if style != None:
-      query += 'style = "' + style + '",'
-    if skin_tone != None:
-      query += 'skin_tone = "' + skin_tone + '",'
-    if face_shape != None:
-      query += 'face_shape = "' + face_shape + '",'
-    if hair != None:
-      query += 'hair = "' + hair + '",'
+    if body_shape == None:
+      body_shape = '0'
+    if style == None:
+      style = '0'
+    if skin_tone == None:
+      skin_tone = '0'
+    if face_shape == None:
+      face_shape = '0'
+    if hair == None:
+      hair = '0'
 
     # 세션에 있는 user id로 db 조회
     userid = '%s' % escape(session['user_id'])
     db_class = dbModule.Database()
-    sql = "UPDATE user_info SET " + query[0:len(query)-1] + " WHERE id='" + userid + "';"
+    sql = "UPDATE user_info SET body_shape='" + body_shape + "',style='" + style + "',skin_tone='" + skin_tone + "',face_shape='" + face_shape + "',hair='" + hair + "' WHERE id='" + userid + "';"
+    print(sql)
     
     db_class.execute(sql)
     db_class.commit()

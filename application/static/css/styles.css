@@ -11794,8 +11794,8 @@ header.join .join-heading {
 
 @media (min-width: 768px) {
   header.join {
-    padding-top: 15rem;
-    padding-bottom: 15.5rem;
+    padding-top: 14rem;
+    padding-bottom: 14.5rem;
   }
   header.join .join-subheading {
     font-size: 2.25rem;
@@ -11839,8 +11839,8 @@ header.login .login-heading {
 
 @media (min-width: 768px) {
   header.login {
-    padding-top: 18rem;
-    padding-bottom: 18.5rem;
+    padding-top: 17rem;
+    padding-bottom: 17.5rem;
   }
   header.login .login-subheading {
     font-size: 2.25rem;
@@ -11885,8 +11885,8 @@ header.myPage .myPage-heading {
 
 @media (min-width: 768px) {
   header.myPage {
-    padding-top: 10rem;
-    padding-bottom: 7rem;
+    padding-top: 9rem;
+    padding-bottom: 6rem;
   }
   header.myPage .myPage-subheading {
     font-size: 2.25rem;
@@ -11931,8 +11931,8 @@ header.recommend .recommend-heading {
 
 @media (min-width: 768px) {
   header.recommend {
-    padding-top: 8rem;
-    padding-bottom: 5rem;
+    padding-top: 7rem;
+    padding-bottom: 4rem;
   }
   header.recommend .recommend-subheading {
     font-size: 2.25rem;
@@ -11947,100 +11947,3 @@ header.recommend .recommend-heading {
     margin-bottom: 4rem;
   }
 }
-
-
-header.error {
-  padding-top: 8rem;
-  padding-bottom: 8.5rem;
-  text-align: center;
-  color: #fff;
-  background-image: url("../assets/img/header-bg.jpg");
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-position: center center;
-  background-size: cover;
-}
-header.error .error-subheading {
-  font-size: 1.5rem;
-  font-style: italic;
-  line-height: 1.5rem;
-  margin-bottom: 25px;
-  font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-header.error .error-heading {
-  font-size: 3.25rem;
-  font-weight: 700;
-  line-height: 3.25rem;
-  margin-bottom: 2rem;
-  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-
-@media (min-width: 768px) {
-  header.error {
-    padding-top: 24rem;
-    padding-bottom: 24rem;
-  }
-  header.error .error-subheading {
-    font-size: 2.25rem;
-    font-style: italic;
-    line-height: 2.25rem;
-    margin-bottom: 2rem;
-  }
-  header.error .error-heading {
-    font-size: 4.5rem;
-    font-weight: 700;
-    line-height: 4.5rem;
-    margin-bottom: 4rem;
-  }
-}
-
-
-header.crawling {
-  padding-top: 8rem;
-  padding-bottom: 8.5rem;
-  text-align: center;
-  color: #fff;
-  background-image: url("../assets/img/header-bg.jpg");
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-position: center center;
-  background-size: cover;
-}
-header.crawling .crawling-subheading {
-  font-size: 1.5rem;
-  font-style: italic;
-  line-height: 1.5rem;
-  margin-bottom: 25px;
-  font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-header.crawling .crawling-heading {
-  font-size: 3.25rem;
-  font-weight: 700;
-  line-height: 3.25rem;
-  margin-bottom: 2rem;
-  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-
-@media (min-width: 768px) {
-  header.crawling {
-    padding-top: 8rem;
-    padding-bottom: 8.5rem;
-  }
-  header.crawling .crawling-subheading {
-    font-size: 2.25rem;
-    font-style: italic;
-    line-height: 2.25rem;
-    margin-bottom: 2rem;
-  }
-  header.crawling .crawling-heading {
-    font-size: 4.5rem;
-    font-weight: 700;
-    line-height: 4.5rem;
-    margin-bottom: 4rem;
-  }
-}
-
-/* 모달 종료시 padding-right값이 계속 추가되는 오류 해결용 */
-body { padding-right: 0 !important; }
-.modal-open { padding-right: 0px !important; }
-.modal { padding-right: 0px !important; }
