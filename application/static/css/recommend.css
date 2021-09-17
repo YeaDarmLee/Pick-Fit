@@ -1,21 +1,11 @@
 #content_fadein {
-  animation: fadein 2s;
-  -moz-animation: fadein 2s;
+  animation: fadein 1s;
   /* Firefox */
-  -webkit-animation: fadein 2s;
+  -moz-animation: fadein 1s;
   /* Safari and Chrome */
-  -o-animation: fadein 2s;
+  -webkit-animation: fadein 1s;
   /* Opera */
-}
-
-#content_fadeout {
-  animation: fadein 2s;
-  -moz-animation: fadein 2s;
-  /* Firefox */
-  -webkit-animation: fadein 2s;
-  /* Safari and Chrome */
-  -o-animation: fadein 2s;
-  /* Opera */
+  -o-animation: fadein 1s;
 }
 
 @keyframes fadein {
@@ -47,51 +37,142 @@
   }
 }
 
-@-o-keyframes fadein {
+#box_slide {
+  animation: slide 1.5s;
+  /* Firefox */
+  -moz-animation: slide 1.5s;
+  /* Safari and Chrome */
+  -webkit-animation: slide 1.5s;
   /* Opera */
+  -o-animation: slide 1.5s;
+}
+
+@keyframes slide {
   from {
-    opacity: 0;
+    margin-left: -800px;
   }
   to {
-    opacity: 1;
+    margin-left: 0%;
   }
 }
 
-@keyframes fadeout {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@-moz-keyframes fadeout {
+@-moz-keyframes slide {
   /* Firefox */
   from {
-    opacity: 1;
+    margin-left: -800px;
   }
   to {
-    opacity: 0;
+    margin-left: 0%;
   }
 }
 
-@-webkit-keyframes fadeout {
+@-webkit-keyframes slide {
   /* Safari and Chrome */
   from {
-    opacity: 1;
+    margin-left: -800px;
   }
   to {
-    opacity: 0;
+    margin-left: 0%;
   }
 }
 
-@-o-keyframes fadeout {
+@-o-keyframes slide {
   /* Opera */
   from {
-    opacity: 1;
+    margin-left: -800px;
   }
   to {
-    opacity: 0;
+    margin-left: 0%;
   }
+}
+
+#bar_slide {
+  animation: bar_slide 1.5s;
+  /* Firefox */
+  -moz-animation: bar_slide 1.5s;
+  /* Safari and Chrome */
+  -webkit-animation: bar_slide 1.5s;
+  /* Opera */
+  -o-animation: bar_slide 1.5s;
+}
+
+@keyframes bar_slide {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@-moz-keyframes bar_slide {
+  /* Firefox */
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@-webkit-keyframes bar_slide {
+  /* Safari and Chrome */
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@-o-keyframes bar_slide {
+  /* Opera */
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.custom-progress {
+  height: 10px;
+  border-radius: 50px;
+  box-shadow: none;
+  margin-bottom: 25px;
+}
+.progress {
+  display: -ms-flexbox;
+  display: flex;
+  height: 1rem;
+  overflow: hidden;
+  font-size: .75rem;
+  background-color: #e9ecef;
+  border-radius: .25rem;
+}
+.bg-sky {
+  background-color: #02c2c7
+}
+.bg-orange {
+  background-color: #e95601
+}
+.bg-green {
+  background-color: #5bbd2a
+}
+.bg-yellow {
+  background-color: #f0d001
+}
+.bg-pink {
+  background-color: #ff48a4
+}
+.bg-purple {
+  background-color: #9d60ff
+}
+.bg-lightred {
+  background-color: #ff5722
+}
+
+.card-img-top {
+  margin-top: 10px;
+  border-radius: 10px;
 }

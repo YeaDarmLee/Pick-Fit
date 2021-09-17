@@ -2,13 +2,14 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-dark" id="exampleModalLabel">추가정보 입력</h5>
+        <h5 class="modal-title text-dark" id="exampleModalLabel">부가정보 입력</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body padding_top_0 scroll_bar">
         <form class="text-align-center" id="modify_form">
           <!-- 체형 input -->
+          {% if result.body_shape == 0 %}
           <div class="row margin_1rem">
             <h5 class="col-md-12 text-center">체형</h5>
             <div class="col-md-3">
@@ -44,8 +45,10 @@
               </div>
             </div>
           </div>
+          {% endif %} 
 
           <!-- 스타일 input -->
+          {% if result.style == 0 %}
           <div class="row margin_1rem">
             <h5 class="col-md-12 text-center">스타일</h5>
             <div class="col-md-3">
@@ -81,8 +84,10 @@
               </div>
             </div>
           </div>
+          {% endif %} 
 
           <!-- 피부톤 input -->
+          {% if result.skin_tone == 0 %}
           <div class="row margin_1rem">
             <h5 class="col-md-12 text-center">피부톤</h5>
             <div class="col-md-3">
@@ -118,8 +123,10 @@
               </div>
             </div>
           </div>
+          {% endif %}
 
           <!-- 얼굴형 input -->
+          {% if result.face_shape == 0 %}
           <div class="row margin_1rem">
             <h5 class="col-md-12 text-center">얼굴형</h5>
             <div class="col-md-3">
@@ -155,8 +162,10 @@
               </div>
             </div>
           </div>
+          {% endif %}
 
           <!-- 헤어스타일 input -->
+          {% if result.hair == 0 %}
           <div class="row margin_1rem">
             <h5 class="col-md-12 text-center">헤어스타일</h5>
             <div class="col-md-3">
@@ -192,13 +201,43 @@
               </div>
             </div>
           </div>
+          {% endif %}
         </form>
       </div>
       
       <div class="modal-footer">
-        <button type="button" id="modifyClsBtn" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" id="tampleBtn" class="btn btn-warning" onclick="modify()">Save changes</button>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  function modify() {
+    var form = $('#modify_form')[0];
+    var data = new FormData(form);
+
+    $.ajax({
+      type: "POST",
+      enctype: 'multipart/form-data',
+      url: '/user/modify',
+      data: data,
+      processData: false,
+      contentType: false,
+      cache: false,
+      timeout: 600000,
+      success: function (data) {
+        if (data.code === 20000) {
+          $("#closeBtn").click()
+          alertStart('success', 'Change Modify', data.result, 'replace', '/recommend', 1000)
+        } else {
+          alertStart('error', 'Change Modify', data.result)
+        }
+      },
+      error: function (e) {
+        alertStart('error', 'Change Modify', '추가정보 업데이트중 오류가 발생하였습니다.')
+      }
+    });
+  }
+</script>
