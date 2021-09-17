@@ -7,15 +7,22 @@
 <!-- myPage -->
 <header class="myPage">
   <div class="container card card_temple">
-    <h2>MyPage</h2>
     <div class="row">
+      <div class="col-12">
+        <h2>MyPage</h2>
+        <div class="header_icon">
+          <span class="fa-stack fa-1x">
+            <i class="far fa-question-circle fa-stack-1x" data-bs-toggle="modal" data-bs-target="#tooltip" onclick=""></i>
+          </span>
+        </div>
+      </div>
       <div class="col-6">
         <h4>{{session['user_Nm']}} 님</h4>
         <div class="card card_temple col-8 my-sm-1">
           {% if user.gender == 0 %}
-          <p class="text-white">성별 : 남</p>
+            <p class="text-white">성별 : 남</p>
           {% else %}
-          <p class="text-white">성별 : 여</p>
+            <p class="text-white">성별 : 여</p>
           {% endif %}
           <p class="text-white">나이 : {{user.age}}</p>
           <p class="text-white">키 : {{user.height}}cm</p>
@@ -32,24 +39,24 @@
       </div>
       <div class="col-6 my-sm-1">
         <div class="card card_temple">
-          <h4>검색 기록 List</h4>
+          <h4 class="card-title">검색 기록 List</h4>
           <div class="card card_temple height_1000 scroll_bar">
             {% if log %}
-            {% for log in log %}
-            <div class="row card card_temple width_100 margin_0">
-              <div class="row">
-                <div class="col-1">{{log.idx}}</div>
-                <div class="col-8">{{log.s_type}}</div>
-                <div class="col-3">{{log.date}}</div>
-              </div>
-            </div>
-            {% endfor %}
+              {% for log in log %}
+                <div class="row card card_temple width_100 margin_0">
+                  <div class="row">
+                    <div class="col-1">{{log.idx}}</div>
+                    <div class="col-8">{{log.s_type}}</div>
+                    <div class="col-3">{{log.date}}</div>
+                  </div>
+                </div>
+              {% endfor %}
             {% else %}
-            <div class="row card card_temple width_100 margin_0">
-              <div class="row">
-                <div class="col-12">검색 기록이 없습니다.</div>
+              <div class="row card card_temple width_100 margin_0">
+                <div class="row">
+                  <div class="col-12">검색 기록이 없습니다.</div>
+                </div>
               </div>
-            </div>
             {% endif %}
 
           </div>
@@ -117,6 +124,29 @@
           <button type="button" id="tampleBtn" class="btn btn-warning" onclick="secession()">Yes</button>
         </div>
 
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal (tooltip) -->
+<div class="modal fade" id="tooltip" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-muted" id="exampleModalLabel">My Page</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="my-2">
+          <h5>User 정보</h5>
+          <li class="item-intro text-muted">회원 탈퇴시 모든 정보는 삭제됩니다.</li>
+        </div>
+        <div class="my-2">
+          <h5>검색 기록 List</h5>
+          <li class="item-intro text-muted">검색 기록은 최근 기준 최대 100건 까지 노출됩니다.</li>
+        </div>
       </div>
     </div>
   </div>
@@ -225,7 +255,11 @@
   .margin_0 {
     margin: 0;
   }
-
+  .header_icon {
+    right: 20px;
+    top: 20px;
+    position: absolute;
+  }
 </style>
 <!-- Footer-->
 {% include './layout/footer.html' %}
