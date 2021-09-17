@@ -43,9 +43,9 @@
           <div class="card card_temple height_1000 scroll_bar">
             {% if log %}
               {% for log in log %}
-                <div class="row card card_temple width_100 margin_0">
+                <div class="row card card_temple width_100 margin_0" data-bs-toggle="modal" data-bs-target="#detail" onclick="search_detail({{log.idx}})">
                   <div class="row">
-                    <div class="col-2">{{log.idx}}</div>
+                    <div class="col-2">{{loop.index}}</div>
                     <div class="col-7">{{log.s_type}}</div>
                     <div class="col-3">{{log.date}}</div>
                   </div>
@@ -119,6 +119,29 @@
       <div class="modal-body">
         <p class="item-intro text-muted">정말 탈퇴하시겠습니까?</p>
         <p class="item-intro text-muted">탈퇴하실 경우, 현재 등록된 모든 정보가 삭제됩니다.</p>
+        <div class="modal-footer">
+          <button type="button" id="secessionClsBtn" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" id="tampleBtn" class="btn btn-warning" onclick="secession()">Yes</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal (detail) -->
+<div class="modal fade" id="detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-muted" id="exampleModalLabel">검색 기록 상세정보</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+
+        상세정보 여기
+
         <div class="modal-footer">
           <button type="button" id="secessionClsBtn" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
           <button type="button" id="tampleBtn" class="btn btn-warning" onclick="secession()">Yes</button>
@@ -234,6 +257,10 @@
         alertStart('error', '회원탈퇴', '회원탈퇴중 오류가 발생하였습니다.')
       }
     });
+  }
+
+  function search_detail (idx) {
+    console.log("검색할 idx값" + idx + "으로 DB에서 조회 후 다시 검사해야할듯")
   }
 </script>
 
