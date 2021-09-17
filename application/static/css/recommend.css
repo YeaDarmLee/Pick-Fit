@@ -171,3 +171,8 @@
 .bg-lightred {
   background-color: #ff5722
 }
+
+.card-img-top {
+  margin-top: 10px;
+  border-radius: 10px;
+}

@@ -6,109 +6,55 @@
 {% include './layout/navigation.html' %}
 
 
-<!-- recommend -->
-<header class="recommend">
+<!-- crawling -->
+<header class="crawling">
   <div class="container card card_temple">
     <!-- Page Content -->
-    <div class="container">
+    <div class="container mb-4">
 
-      <!-- Portfolio Item Heading -->
+      <!-- Item Heading -->
       <h1 class="my-4">크롤링
-        <small>Secondary Text</small>
+        <small>Crawling Test Page</small>
       </h1>
 
-      <!-- Portfolio Item Row -->
+      <!-- Item Row -->
       <div class="row">
         <div class="col-md-8">
-          <img class="img-fluid" src="https://via.placeholder.com/750x500" alt="">
+          <img class="card-img-top" src="{{ url_for('static', filename='assets/img/recommend/coding.jfif') }}">
         </div>
+
         <div class="col-md-4">
-          <h3 class="my-3">Project Description</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque
-            urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo
-            eu convallis placerat, felis enim.</p>
-          <h3 class="my-3">Project Details</h3>
-          <ul>
-            <li>Lorem Ipsum</li>
-            <li>Dolor Sit Amet</li>
-            <li>Consectetur</li>
-            <li>Adipiscing Elit</li>
-          </ul>
-        </div>
-      </div>
-      <!-- /.row -->
-
-      <!-- Related Projects Row -->
-      <h3 class="my-4">Related Projects</h3>
-      <div class="row">
-        <div class="col-md-3 col-sm-6 mb-4">
-          <a href="#">
-            <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-          </a>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-4">
-          <a href="#">
-            <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-          </a>
+          <div class="mb-4">
+            <h3 class="my-0 text-info">Crawling</h3>
+            <p>왼쪽 입력창에 크롤링할 페이지의 url을 입력하신 후 <br>'크롤링하기' 버튼을 클릭하면 크롤링이 시작됩니다.</p>
+            <h3 class="my-0 text-info">XPath</h3>
+            <p>XML Path Language를 의미합니다. XPath는 XML 문서의 특정 요소나 속성에 접근하기 위한 경로를 지정하는 언어입니다.</p>
+          </div>
+          <div>
+            <form class="my-2" id="crawling">
+              <!-- url input-->
+              <div class="form-outline mb-2">
+                <input type="text" id="searchUrl" name="searchUrl" class="form-control" />
+                <label class="form-label" for="searchUrl">Search URL</label>
+              </div>
+              <!-- url input-->
+              <div class="form-outline mb-4">
+                <input type="text" id="xpath" name="xpath" class="form-control" />
+                <label class="form-label" for="xpath">Full X Path</label>
+              </div>
+            </form>
+            <!-- Submit button -->
+            <div>
+              <button type="button" class="btn btn-primary btn-block" onclick="crawling()">크롤링하기</button>
+            </div>
+          </div>
         </div>
 
-        <div class="col-md-3 col-sm-6 mb-4">
-          <a href="#">
-            <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-          </a>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-          <a href="#">
-            <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-          </a>
-        </div>
       </div>
       <!-- /.row -->
     </div>
     <!-- /.container -->
-    <div class="sm-no-margin">
-      <div class="progress-text">
-        <div class="row">
-          <div class="col-7">Positive Behaviors</div>
-          <div class="col-5 text-right">40%</div>
-        </div>
-      </div>
-      <div class="custom-progress progress">
-        <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:40%"
-          class="animated custom-bar progress-bar slideInLeft bg-sky"></div>
-      </div>
-      <div class="progress-text">
-        <div class="row">
-          <div class="col-7">Teamworking Abilities</div>
-          <div class="col-5 text-right">50%</div>
-        </div>
-      </div>
-      <div class="custom-progress progress">
-        <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:50%"
-          class="animated custom-bar progress-bar slideInLeft bg-orange"></div>
-      </div>
-      <div class="progress-text">
-        <div class="row">
-          <div class="col-7">Time Management </div>
-          <div class="col-5 text-right">60%</div>
-        </div>
-      </div>
-      <div class="custom-progress progress">
-        <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:60%"
-          class="animated custom-bar progress-bar slideInLeft bg-green"></div>
-      </div>
-      <div class="progress-text">
-        <div class="row">
-          <div class="col-7">Excellent Communication</div>
-          <div class="col-5 text-right">80%</div>
-        </div>
-      </div>
-      <div class="custom-progress progress">
-        <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:80%"
-          class="animated custom-bar progress-bar slideInLeft bg-yellow"></div>
-      </div>
-    </div>
+
   </div>
 </header>
 
