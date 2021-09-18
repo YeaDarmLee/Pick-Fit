@@ -53,3 +53,75 @@ create table detail_attributes(
     code varchar(50) null default '0',
     primary key(idx)
 );
+
+--print table
+create table print_attributes(
+    idx INT NOT NULL AUTO_INCREMENT,
+    attribute_en VARCHAR(50) NOT NULL,
+    attribute_ko VARCHAR(50) NOT NULL,
+    code varchar(50) null default '0',
+    primary key(idx)
+);
+
+-- material table
+create table material_attributes(
+    idx INT NOT NULL AUTO_INCREMENT,
+    attribute_en VARCHAR(50) NOT NULL,
+    attribute_ko VARCHAR(50) NOT NULL,
+    code VARCHAR(50) NULL DEFAULT '0',
+    PRIMARY KEY(idx)
+);
+
+-- sleevelength table
+create table sleevelength_attributes(
+    idx INT NOT NULL AUTO_INCREMENT,
+    attribute_en VARCHAR(50) NOT NULL,
+    attribute_ko VARCHAR(50) NOT NULL,
+    code VARCHAR(50) NULL DEFAULT '0',
+    PRIMARY KEY(idx)
+);
+
+-- neckline table
+create table neckline_attributes(
+    idx INT NOT NULL AUTO_INCREMENT,
+    attribute_en VARCHAR(50) NOT NULL,
+    attribute_ko VARCHAR(50) NOT NULL,
+    code VARCHAR(50) NULL DEFAULT '0',
+    PRIMARY KEY(idx)
+);
+
+-- collar table
+create table collar_attributes(
+    idx INT NOT NULL AUTO_INCREMENT,
+    attribute_en VARCHAR(50) NOT NULL,
+    attribute_ko VARCHAR(50) NOT NULL,
+    code VARCHAR(50) NULL DEFAULT '0',
+    PRIMARY KEY(idx)
+);
+
+-- fit table
+create table fit_attributes(
+    idx INT NOT NULL AUTO_INCREMENT,
+    attribute_en VARCHAR(50) NOT NULL,
+    attribute_ko VARCHAR(50) NOT NULL,
+    code VARCHAR(50) NULL DEFAULT '0',
+    PRIMARY KEY(idx)
+);
+
+-- shape table
+create table shape_attributes(
+    idx INT NOT NULL AUTO_INCREMENT,
+    attribute_en VARCHAR(50) NOT NULL,
+    attribute_ko VARCHAR(50) NOT NULL,
+    code VARCHAR(50) NULL DEFAULT '0',
+    PRIMARY KEY(idx)
+);
+
+-- silhouette table
+create table silhouette_attributes(
+    idx INT NOT NULL AUTO_INCREMENT,
+    attribute_en VARCHAR(50) NOT NULL,
+    attribute_ko VARCHAR(50) NOT NULL,
+    code VARCHAR(50) NULL DEFAULT '0',
+    PRIMARY KEY(idx)
+);
