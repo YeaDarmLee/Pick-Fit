@@ -123,7 +123,7 @@
     }else if(pw.search(/\s/) != -1){
       alertStart('error', '비밀번호', '공백 없이 입력해주세요.')
     }else if(num < 0 || eng < 0 || spe < 0 ){
-      alertStart('error', '비밀번호', '영문,숫자, 특수문자를 혼합하여 입력해주세요.')
+      alertStart('error', '비밀번호', '영문, 숫자, 특수문자를 혼합하여 입력해주세요.')
     }else {
       var form = $('#Join_form')[0];
       var data = new FormData(form);
