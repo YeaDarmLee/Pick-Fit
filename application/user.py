@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, redirect, request, url_for, escape
 from flask import Blueprint
-import hashlib
+import hashlib, re
 # import dbModule
 from application import dbModule
 
@@ -84,13 +84,28 @@ def register():
     height = request.form.get('height')
     weight = request.form.get('weight')
 
-    print(gender)
-
+    # null 체크
     if userNm == '' or userid == '' or password == '' or age == '' or gender == '성별을 선택해 주세요' or height == '' or weight == '':
       return {
         'code':50000,
         'result': '모든 값을 입력해 주세요.'
       }
+    
+    # 비밀번호 형식 체크
+    if password != '':
+      if len(password) < 6:
+        return {
+          'code':50000,
+          'result': '비밀번호는 6자 이상으로 설정해 주세요.'
+        }
+
+      reg = re.compile("^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$")
+      mat = re.match(reg, password)
+      if mat is None:
+        return {
+          'code':50000,
+          'result': '비밀번호는 영문 + 숫자 조합으로 작성해 주세요.'
+        }
 
     # 비밀번호 해쉬화
     HASH_NAME = "md5"
