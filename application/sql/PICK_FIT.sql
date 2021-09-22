@@ -125,3 +125,11 @@ create table silhouette_attributes(
     code VARCHAR(50) NULL DEFAULT '0',
     PRIMARY KEY(idx)
 );
+
+create table search_log (
+	idx INT NOT NULL AUTO_INCREMENT,
+  s_type varchar(5),
+  user_id varchar(500),
+  c_date datetime NOT NULL DEFAULT current_timestamp,
+  PRIMARY KEY(idx)
+)
