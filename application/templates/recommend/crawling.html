@@ -29,8 +29,8 @@
           <div class="mb-4">
             <h3 class="my-0 text-info">Crawling</h3>
             <p>왼쪽 입력창에 크롤링할 페이지의 url을 입력하신 후 <br>'크롤링하기' 버튼을 클릭하면 크롤링이 시작됩니다.</p>
-            <h3 class="my-0 text-info">XPath</h3>
-            <p>XML Path Language를 의미합니다. XPath는 XML 문서의 특정 요소나 속성에 접근하기 위한 경로를 지정하는 언어입니다.</p>
+            <h3 class="my-0 text-info">HTML Tag</h3>
+            <p>HTML 요소(HTML 엘리먼트, HTML element)는 HTML 문서나 웹 페이지를 이루는 개별적인 요소를 의미하며, 문서 객체 모델(DOM)으로 파싱됩니다. 각 노드는 HTML 속성을 지정할 수 있습니다.</p>
           </div>
           <div>
             <form class="my-2" id="crawling">
@@ -41,8 +41,8 @@
               </div>
               <!-- url input-->
               <div class="form-outline mb-4">
-                <input type="text" id="xpath" name="xpath" class="form-control" />
-                <label class="form-label" for="xpath">Full X Path</label>
+                <input type="text" id="tag" name="tag" class="form-control" />
+                <label class="form-label" for="tag">Html Tag</label>
               </div>
             </form>
             <!-- Submit button -->
@@ -108,6 +108,7 @@
       cache: false,
       timeout: 600000,
       success: function (data) {
+        console.log(data)
         $('#load').slideToggle()
         if (data.code === 20000) {
           const r_search_Url = document.getElementById("r_search_Url");
@@ -118,16 +119,17 @@
           const r_result = document.getElementById("r_result");
           const newh5 = document.createElement('h5');
           newh5.setAttribute("id", "newh5");
-          newh5.innerHTML = data.xpath_result
+          newh5.innerHTML = data.result
 
           r_search_Url.appendChild(newh3);
           r_result.appendChild(newh5);
           resultOpen()
         } else {
-          alertStart('error', '크롤링 실패', data.result)
+          alertStart('error', '크롤링 실패', data)
         }
       },
       error: function (e) {
+        console.log(e)
         alertStart('error', '크롤링 실패', e)
       }
     });

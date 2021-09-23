@@ -4,8 +4,8 @@ import json
 # import dbModule
 from application import dbModule
 # 크롤링 라이브러리 import
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+import requests 
+from bs4 import BeautifulSoup
 
 recommend = Blueprint("recommend", __name__, url_prefix="/recommend")
 
@@ -64,27 +64,21 @@ def crawling():
 def crawling_search():
   try:
     searchUrl = request.form.get('searchUrl')
-    xpath = request.form.get('xpath')
+    tag = request.form.get('tag')
 
-    options = webdriver.ChromeOptions()
-    options.add_argument('headless')
-    options.add_argument("disable-gpu")
-
-    driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
-
-    driver.get(searchUrl)
-    driver.implicitly_wait(2)
-
-    xpath_result = [e.text for e in driver.find_elements_by_xpath(xpath)]
-    print(xpath_result[0])
-    print(driver.find_elements_by_xpath(xpath))
+    # 크롤링 url 기본값
+    headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
+    response = requests.get(searchUrl, headers=headers)
+    html_text = response.text
+    soup = BeautifulSoup(html_text, "lxml")
+    result = soup.find(tag).text
 
     userid = '%s' % escape(session['user_id'])
     
     cl_result = []
     cl_result.append({
         'searchUrl':searchUrl,
-        'xpath':xpath
+        'tag':tag
       })
 
     db_class = dbModule.Database()
@@ -94,9 +88,9 @@ def crawling_search():
 
     return {
         'code':20000,
-        'xpath_result': xpath_result,
+        'result': result,
         'searchUrl': searchUrl,
-        'xpath': xpath,
+        'tag': tag,
       }
   except Exception as e:
     print(e)

@@ -290,7 +290,7 @@ def search_detail():
       json_result = json.loads(idx_result['result'])
       result_j.append({
         'searchUrl':json_result['searchUrl'],
-        'xpath': json_result['xpath']
+        'tag': json_result['tag']
       })
     
     result.append({
