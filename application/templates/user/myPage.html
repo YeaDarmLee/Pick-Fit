@@ -43,7 +43,7 @@
           <div class="card card_temple height_1000 scroll_bar">
             {% if log %}
               {% for log in log %}
-                <div class="row card card_temple width_100 margin_0" data-bs-toggle="modal" data-bs-target="#detail" onclick="search_detail({{log.idx}})">
+                <div class="row card card_temple width_100 margin_0" data-bs-toggle="modal" data-bs-target="#detail" onclick="search_detail('{{log.idx}}')">
                   <div class="row">
                     <div class="col-2">{{loop.index}}</div>
                     <div class="col-7">{{log.s_type}}</div>
