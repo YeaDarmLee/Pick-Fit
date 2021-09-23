@@ -126,10 +126,11 @@ create table silhouette_attributes(
     PRIMARY KEY(idx)
 );
 
-create table search_log (
+create table search_log(
 	idx INT NOT NULL AUTO_INCREMENT,
-  s_type varchar(5),
-  user_id varchar(500),
-  c_date datetime NOT NULL DEFAULT current_timestamp,
-  PRIMARY KEY(idx)
-)
+    s_type VARCHAR(5) not null, -- 검색타입 (트렌드 = tn, 의류 = co, 크롤링 = cl, 통계 = st)
+    user_id VARCHAR(50) not null,	-- 검색한 user id
+    result VARCHAR(10000),
+    c_date datetime NOT NULL DEFAULT current_timestamp,
+    PRIMARY KEY(idx)
+);

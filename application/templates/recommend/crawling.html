@@ -63,7 +63,8 @@
     </div>
     <div class="container mb-4">
       <div class="modal-body">
-        결과값 어떻게 노출시킬꺼임?
+        <div class="mb-4" id="r_search_Url"></div>
+        <div id="r_result"></div>
       </div>
     </div>
   </div>
@@ -77,15 +78,59 @@
     if (result_show) {
       resultClose()
     } else {
-      resultOpen()
+      $('#load').slideToggle()
+      crawling_search()
     }
-    result_show = !result_show
   }
+
   function resultOpen() {
+    result_show = true
     $('#result').slideToggle()
   }
   function resultClose() {
+    result_show = false
     $('#result').slideToggle()
+    $("#newh3").remove()
+    $("#newh5").remove()
+  }
+  
+  function crawling_search() {
+    var form = $('#crawling')[0];
+    var data = new FormData(form);
+
+    $.ajax({
+      type: "POST",
+      enctype: 'multipart/form-data',
+      url: '/recommend/crawling_search',
+      data: data,
+      processData: false,
+      contentType: false,
+      cache: false,
+      timeout: 600000,
+      success: function (data) {
+        $('#load').slideToggle()
+        if (data.code === 20000) {
+          const r_search_Url = document.getElementById("r_search_Url");
+          const newh3 = document.createElement('h3');
+          newh3.setAttribute("id", "newh3");
+          newh3.innerHTML = data.searchUrl
+
+          const r_result = document.getElementById("r_result");
+          const newh5 = document.createElement('h5');
+          newh5.setAttribute("id", "newh5");
+          newh5.innerHTML = data.xpath_result
+
+          r_search_Url.appendChild(newh3);
+          r_result.appendChild(newh5);
+          resultOpen()
+        } else {
+          alertStart('error', '크롤링 실패', data.result)
+        }
+      },
+      error: function (e) {
+        alertStart('error', '크롤링 실패', e)
+      }
+    });
   }
 </script>
 
