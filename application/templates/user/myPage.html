@@ -135,16 +135,16 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title text-muted" id="exampleModalLabel">검색 기록 상세정보</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="removeContact()"></button>
       </div>
 
       <div class="modal-body">
 
-        상세정보 여기
+        <div id="modal_main">
+        </div>
 
         <div class="modal-footer">
-          <button type="button" id="secessionClsBtn" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-          <button type="button" id="tampleBtn" class="btn btn-warning" onclick="secession()">Yes</button>
+          <button type="button" id="secessionClsBtn" class="btn btn-secondary" data-bs-dismiss="modal" onclick="removeContact()">Close</button>
         </div>
 
       </div>
@@ -176,6 +176,8 @@
 </div>
 
 <script>
+  var check_vlu = false
+
   // 로그인 안할 경우 alert 오픈
   if ("{{session['login']}}" == '' || "{{session['login']}}" == false) {
     $(document).ready(function () {
@@ -260,7 +262,62 @@
   }
 
   function search_detail (idx) {
-    console.log("검색할 idx값" + idx + "으로 DB에서 조회 후 다시 검사해야할듯")
+    check_vlu = true
+    $.ajax({
+      type: "POST",
+      dataType : 'json',
+      data: idx,
+      url: '/user/search_detail',
+      processData: false,
+      contentType: false,
+      cache: false,
+      timeout: 600000,
+      success: function (data) {
+        if (data.code === 20000) {
+          var result = data.result[0]
+
+          const box = document.getElementById("modal_main");
+          const newDiv = document.createElement('div')
+          newDiv.setAttribute("id", "createElement_Div");
+
+          const newh5 = document.createElement('h5');
+          const newP1 = document.createElement('p');
+          const newP2 = document.createElement('p');
+          const newP3 = document.createElement('p');
+
+          if (result.s_type === 'cl') {
+            newh5.innerHTML = '크롤링'
+            newP1.innerHTML = 'searchUrl : ' + result.result.searchUrl
+            newP2.innerHTML = 'xpath : ' + result.result.xpath
+            newP3.innerHTML = 'Data : ' + result.c_date
+          }
+
+          newDiv.appendChild(newh5);
+          newDiv.appendChild(newP1);
+          newDiv.appendChild(newP2);
+          newDiv.appendChild(newP3);
+          box.appendChild(newDiv);
+        } else {
+          alertStart('error', '검색 기록 조회', '검색 기록을 가져오지 못했습니다.')
+        }
+      },
+      error: function (e) {
+        console.log(e)
+        alertStart('error', '검색 기록 조회', '검색 기록을 가져오지 못했습니다.')
+      }
+    });
+  }
+
+  //페이지 전역 클릭 감지 -> 클릭시 모달 꺼짐 꺼질때 data 삭제
+  $(document).click(function (e) {
+    if (!$(e.target).is('#detail') && check_vlu) {
+      removeContact()
+    }
+  });
+
+  function removeContact() {
+    check_vlu = false
+    $("div").remove('#createElement_Div')
   }
 </script>
 

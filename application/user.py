@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, redirect, request, url_for, escape
 from flask import Blueprint
-import hashlib, re
+import hashlib, re, json
 # import dbModule
 from application import dbModule
 
@@ -265,6 +265,46 @@ def modify():
       'result': '업데이트가 완료되었습니다.'
     }
 
+  except Exception as e:
+    print(e)
+    return {
+        'code':50000,
+        'result': e
+      }
+
+# 수정하기 modify
+@user.route('/search_detail',methods=['POST'])
+def search_detail():
+  try:
+    idx = json.loads(request.data)
+
+    db_class = dbModule.Database()
+    search_idx = "SELECT * FROM search_log WHERE idx = '" + str(idx) + "';"
+    idx_result = dict(db_class.executeOne(search_idx))
+    print(idx_result)
+
+    result = []
+    result_j = []
+    # 크롤링
+    if idx_result['s_type'] == 'cl':
+      json_result = json.loads(idx_result['result'])
+      result_j.append({
+        'searchUrl':json_result['searchUrl'],
+        'xpath': json_result['xpath']
+      })
+    
+    result.append({
+      'idx':idx_result['idx'],
+      's_type':idx_result['s_type'],
+      'user_id':idx_result['user_id'],
+      'result':result_j[0],
+      'c_date':idx_result['c_date'],
+    })
+
+    return {
+      'code':20000,
+      'result': result
+    }
   except Exception as e:
     print(e)
     return {

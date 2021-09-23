@@ -86,9 +86,9 @@ def crawling_search():
         'searchUrl':searchUrl,
         'xpath':xpath
       })
-      
+
     db_class = dbModule.Database()
-    search_log = "INSERT INTO search_log(s_type,user_id,result) VALUES ('cl','" + userid + "','" + json.dumps(cl_result) + "');"
+    search_log = "INSERT INTO search_log(s_type,user_id,result) VALUES ('cl','" + userid + "','" + json.dumps(cl_result[0]) + "');"
     db_class.execute(search_log)
     db_class.commit()
 
