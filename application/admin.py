@@ -25,7 +25,7 @@ def fileUpload():
       # file_name
       file_name = file_data['이미지 정보']['이미지 식별자']
       column = 'file_name'
-      values = "'" + str(file_name) + "'"
+      values = "'" + str(file_name) + ".jpg'"
 
       # title
       if (len(labeling_data['아우터'][0]) > 0) :

@@ -144,7 +144,6 @@ create table search_log(
 create table clothing_data (
 	idx INT NOT NULL AUTO_INCREMENT,
     file_name VARCHAR(50),
-    img Binary,
     title VARCHAR(50),
     style VARCHAR(50),
     style_sub VARCHAR(50),
