@@ -1,4 +1,5 @@
-CREATE DATABASE PICK_FIT;
+-- 가비아 DB명
+CREATE DATABASE dbpublic0917;
 
 -- user 기본정보
 create table user_info(
@@ -15,8 +16,12 @@ create table user_info(
     style int null DEFAULT 0,
     skin_tone int null DEFAULT 0,
     hair int null DEFAULT 0,
+    dev int not null DEFAULT 0,
     PRIMARY KEY(idx)
 );
+
+-- 관리자일 경우 아래 쿼리 실행
+UPDATE user_info SET dev = 1 WHERE id = '';
 
 -- contact table
 create table contact_info(
