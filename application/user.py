@@ -16,6 +16,7 @@ def logout():
   session.pop('login', False)
   session.pop('user_Nm', None)
   session.pop('user_id', None)
+  session.pop('dev', None)
   return redirect('/')
 
 @user.route('/examine',methods=['POST'])
@@ -46,6 +47,7 @@ def examine():
         # 로그인 처리
         session['user_Nm'] = data['userNm']
         session['user_id'] = data['id']
+        session['dev'] = data['dev']
         session['login'] = True
         print('로그인 성공')
         return {
