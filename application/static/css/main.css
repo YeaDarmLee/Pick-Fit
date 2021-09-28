@@ -9,7 +9,7 @@ body::-webkit-scrollbar,
 .scroll_bar::-webkit-scrollbar,
 .modal::-webkit-scrollbar {
   width: 10px;
-  height: 4px;
+  height: 10px;
 }
 body::-webkit-scrollbar-track,
 .scroll_bar::-webkit-scrollbar-track,
@@ -60,6 +60,9 @@ body{
 }
 .dis_inblk {
   display: inline-block;
+}
+.dis_block {
+  display: block;
 }
 
 .scroll_bar {
@@ -169,4 +172,10 @@ body{
   left: 20px;
   top: 20px;
   position: absolute;
+}
+
+.row_scroll{
+  padding-bottom: 5px;
+  white-space:nowrap;
+  overflow-x:scroll;
 }

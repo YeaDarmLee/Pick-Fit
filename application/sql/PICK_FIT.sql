@@ -1,4 +1,5 @@
-CREATE DATABASE PICK_FIT;
+-- 가비아 DB명
+CREATE DATABASE dbpublic0917;
 
 -- user 기본정보
 create table user_info(
@@ -15,8 +16,12 @@ create table user_info(
     style int null DEFAULT 0,
     skin_tone int null DEFAULT 0,
     hair int null DEFAULT 0,
+    dev int not null DEFAULT 0,
     PRIMARY KEY(idx)
 );
+
+-- 관리자일 경우 아래 쿼리 실행
+UPDATE user_info SET dev = 1 WHERE id = '';
 
 -- contact table
 create table contact_info(
@@ -28,101 +33,101 @@ create table contact_info(
 );
 
 -- category table
-create table category_attributes(
+create table at_category(
 	idx INT NOT NULL AUTO_INCREMENT,
-    category_en VARCHAR(50) not null,
-    category_ko VARCHAR(50) not null,
-    code INT NULL DEFAULT '0',
+    en VARCHAR(50) not null,
+    ko VARCHAR(50) not null,
+    code VARCHAR(10) not null default '0',
     PRIMARY KEY(idx)
 );
 
 -- color table
-create table color_attributes(
+create table at_color(
 	idx INT NOT NULL AUTO_INCREMENT,
-    attribute_en varchar(50) not null,
-    attribute_ko varchar(50) not null,
-    code varchar(50) null default '0',
+    en varchar(50) not null,
+    ko varchar(50) not null,
+    code varchar(10) null default '0',
     primary key(idx)
 );
 
 -- detail table
-create table detail_attributes(
+create table at_detail(
     idx INT NOT NULL AUTO_INCREMENT,
-    attribute_en VARCHAR(50) NOT NULL,
-    attribute_ko VARCHAR(50) NOT NULL,
-    code varchar(50) null default '0',
+    en VARCHAR(50) NOT NULL,
+    ko VARCHAR(50) NOT NULL,
+    code varchar(10) null default '0',
     primary key(idx)
 );
 
 --print table
-create table print_attributes(
+create table at_print(
     idx INT NOT NULL AUTO_INCREMENT,
-    attribute_en VARCHAR(50) NOT NULL,
-    attribute_ko VARCHAR(50) NOT NULL,
-    code varchar(50) null default '0',
+    en VARCHAR(50) NOT NULL,
+    ko VARCHAR(50) NOT NULL,
+    code varchar(10) null default '0',
     primary key(idx)
 );
 
 -- material table
-create table material_attributes(
+create table at_material(
     idx INT NOT NULL AUTO_INCREMENT,
-    attribute_en VARCHAR(50) NOT NULL,
-    attribute_ko VARCHAR(50) NOT NULL,
-    code VARCHAR(50) NULL DEFAULT '0',
+    en VARCHAR(50) NOT NULL,
+    ko VARCHAR(50) NOT NULL,
+    code VARCHAR(10) NULL DEFAULT '0',
     PRIMARY KEY(idx)
 );
 
 -- sleevelength table
-create table sleevelength_attributes(
+create table at_sleevelength(
     idx INT NOT NULL AUTO_INCREMENT,
-    attribute_en VARCHAR(50) NOT NULL,
-    attribute_ko VARCHAR(50) NOT NULL,
-    code VARCHAR(50) NULL DEFAULT '0',
+    en VARCHAR(50) NOT NULL,
+    ko VARCHAR(50) NOT NULL,
+    code VARCHAR(10) NULL DEFAULT '0',
     PRIMARY KEY(idx)
 );
 
 -- neckline table
-create table neckline_attributes(
+create table at_neckline(
     idx INT NOT NULL AUTO_INCREMENT,
-    attribute_en VARCHAR(50) NOT NULL,
-    attribute_ko VARCHAR(50) NOT NULL,
-    code VARCHAR(50) NULL DEFAULT '0',
+    en VARCHAR(50) NOT NULL,
+    ko VARCHAR(50) NOT NULL,
+    code VARCHAR(10) NULL DEFAULT '0',
     PRIMARY KEY(idx)
 );
 
 -- collar table
-create table collar_attributes(
+create table at_collar(
     idx INT NOT NULL AUTO_INCREMENT,
-    attribute_en VARCHAR(50) NOT NULL,
-    attribute_ko VARCHAR(50) NOT NULL,
-    code VARCHAR(50) NULL DEFAULT '0',
+    en VARCHAR(50) NOT NULL,
+    ko VARCHAR(50) NOT NULL,
+    code VARCHAR(10) NULL DEFAULT '0',
     PRIMARY KEY(idx)
 );
 
 -- fit table
-create table fit_attributes(
+create table at_fit(
     idx INT NOT NULL AUTO_INCREMENT,
-    attribute_en VARCHAR(50) NOT NULL,
-    attribute_ko VARCHAR(50) NOT NULL,
-    code VARCHAR(50) NULL DEFAULT '0',
+    en VARCHAR(50) NOT NULL,
+    ko VARCHAR(50) NOT NULL,
+    code VARCHAR(10) NULL DEFAULT '0',
     PRIMARY KEY(idx)
 );
 
 -- shape table
-create table shape_attributes(
+create table at_shape(
     idx INT NOT NULL AUTO_INCREMENT,
-    attribute_en VARCHAR(50) NOT NULL,
-    attribute_ko VARCHAR(50) NOT NULL,
-    code VARCHAR(50) NULL DEFAULT '0',
+    en VARCHAR(50) NOT NULL,
+    ko VARCHAR(50) NOT NULL,
+    code VARCHAR(10) NULL DEFAULT '0',
     PRIMARY KEY(idx)
 );
 
 -- silhouette table
-create table silhouette_attributes(
+create table at_silhouette(
     idx INT NOT NULL AUTO_INCREMENT,
-    attribute_en VARCHAR(50) NOT NULL,
-    attribute_ko VARCHAR(50) NOT NULL,
-    code VARCHAR(50) NULL DEFAULT '0',
+    en VARCHAR(50) NOT NULL,
+    ko VARCHAR(50) NOT NULL,
+    code VARCHAR(10) NULL DEFAULT '0',
     PRIMARY KEY(idx)
 );
 
@@ -132,5 +137,29 @@ create table search_log(
     user_id VARCHAR(50) not null,	-- 검색한 user id
     result VARCHAR(10000),
     c_date datetime NOT NULL DEFAULT current_timestamp,
+    PRIMARY KEY(idx)
+);
+
+-- 의류 정보 데이터
+create table clothing_data (
+	idx INT NOT NULL AUTO_INCREMENT,
+    file_name VARCHAR(50) NOT NULL DEFAULT 0,
+    img LONGBLOB,
+    title VARCHAR(50) NOT NULL DEFAULT 0,
+    style VARCHAR(50) NOT NULL DEFAULT 0,
+    style_sub VARCHAR(50) NOT NULL DEFAULT 0,
+    length VARCHAR(50) NOT NULL DEFAULT 0,
+    color VARCHAR(50) NOT NULL DEFAULT 0,
+    color_sub VARCHAR(50) NOT NULL DEFAULT 0,
+    category VARCHAR(50) NOT NULL DEFAULT 0,
+    collar VARCHAR(50) NOT NULL DEFAULT 0,
+    sleeve VARCHAR(50) NOT NULL DEFAULT 0,
+    detail VARCHAR(50) NOT NULL DEFAULT 0,
+    material VARCHAR(50) NOT NULL DEFAULT 0,
+    pattern VARCHAR(50) NOT NULL DEFAULT 0,
+    neckline VARCHAR(50) NOT NULL DEFAULT 0,
+    fit VARCHAR(50) NOT NULL DEFAULT 0,
+    safe VARCHAR(50) NOT NULL DEFAULT 0,
+    silhouette VARCHAR(50) NOT NULL DEFAULT 0,
     PRIMARY KEY(idx)
 );

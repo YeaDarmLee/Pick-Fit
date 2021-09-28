@@ -14,101 +14,93 @@
         <i class="fas fa-arrow-left" onclick="goRecommend()"></i>
       </span>
       <!-- Portfolio Item Heading -->
-      <h1 class="my-4">의류 추천
-        <small>Secondary Text</small>
-      </h1>
+      <h1 class="my-4">의류 추천</h1>
 
-      <!-- Portfolio Item Row -->
-      <div class="row">
-        <div class="col-md-8">
-          <img class="img-fluid" src="https://via.placeholder.com/750x500" alt="">
-        </div>
-        <div class="col-md-4">
-          <h3 class="my-3">Project Description</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque
-            urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo
-            eu convallis placerat, felis enim.</p>
-          <h3 class="my-3">Project Details</h3>
-          <ul>
-            <li>Lorem Ipsum</li>
-            <li>Dolor Sit Amet</li>
-            <li>Consectetur</li>
-            <li>Adipiscing Elit</li>
-          </ul>
-        </div>
-      </div>
-      <!-- /.row -->
+      <div class="card col-12 detail_card mg_btm_1rem">
+        <div class="card-body">
+          <p class="card-text text-muted">
+            선택한 체형, 얼굴형, 키, 몸무게를 종합하여 AI 데이터 셋을 활용한 최적의 검색조건입니다!
+          </p>
 
-      <!-- Related Projects Row -->
-      <h3 class="my-4">Related Projects</h3>
-      <div class="row">
-        <div class="col-md-3 col-sm-6 mb-4">
-          <a href="#">
-            <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-          </a>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-4">
-          <a href="#">
-            <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-          </a>
-        </div>
+          <div class="row">
+            <div class="col-12 mb-4">
 
-        <div class="col-md-3 col-sm-6 mb-4">
-          <a href="#">
-            <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-          </a>
-        </div>
+                {% if user.face_shape == 1 %}
+                <span class="text-muted">얼굴형 : 달걀형 | </span>
+                {% elif user.face_shape == 2 %}
+                <span class="text-muted">얼굴형 : 역삼각형 | </span>
+                {% elif user.face_shape == 3 %}
+                <span class="text-muted">얼굴형 : 둥근형 | </span>
+                {% elif user.face_shape == 4 %}
+                <span class="text-muted">얼굴형 : 각진형 | </span>
+                {% elif user.face_shape == 5 %}
+                <span class="text-muted">얼굴형 : 긴 얼굴형 | </span>
+                {% endif %}
 
-        <div class="col-md-3 col-sm-6 mb-4">
-          <a href="#">
-            <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-          </a>
+                {% if user.body_shape == 1 %}
+                <span class="text-muted">체형 : 모래시계형</span>
+                {% elif user.body_shape == 2 %}
+                <span class="text-muted">체형 : 직사각형</span>
+                {% elif user.body_shape == 3 %}
+                <span class="text-muted">체형 : 삼각형</span>
+                {% elif user.body_shape == 4 %}
+                <span class="text-muted">체형 : 역삼각형</span>
+                {% elif user.body_shape == 5 %}
+                <span class="text-muted">체형 : 타원형</span>
+                {% endif %}
+
+                {% if user.face_shape == 1 %}
+                <p class="card-text text-muted f_14p">
+                추천 넥라인 [전부]<br>
+                사실 달걀형 얼굴은 어떤 넥라인도 소화 할수 있는 얼굴형입니다!<br>
+                당신은 축복 받은 얼굴!</p>
+                {% elif user.face_shape == 2 %}
+                <p class="card-text text-muted f_14p">
+                추천 넥라인 [유넥|오프숄더|원숄더|스퀘어넥|후드|터틀넥|보트넥|스위트하트]<br>
+                역삼각형의 얼굴형을 가진 분들은 라운드넥을 입어 뾰족한 얼굴형을 부드럽게 커버해주는 걸 추천드려요.<br>
+                V넥을 입을 때 보단 훨씬 인상이 차분하고 부드러워지는 걸 느낄 수 있을 거에요.</p>
+                {% elif user.face_shape == 3 %}
+                <p class="card-text text-muted f_14p">
+                추천 넥라인 [브이넥|홀터넥|오프숄더|원숄더|스퀘어넥|노카라|스위트하트]<br>
+                둥근 얼굴형을 가진 분들은 날렵한 넥라인을 선택해 보는 걸 추천해드려요.<br>
+                V넥의 날렵한 라인이 동그란 얼굴과 만나 한층 갸름하고 슬림해진 얼굴을 만들어줄 수 있습니다.</p>
+                {% elif user.face_shape == 4 %}
+                <p class="card-text text-muted f_14p">
+                추천 넥라인 [유넥|홀터넥|노카라|오프숄더|원숄더|후드|스위트하트]<br>
+                동그란 얼굴형과는 반대로 곡선의 넥라인을 선택해 보는 걸 추천해드려요.<br>
+                곡선라인이 각진 턱을 둥글게 보일 수 있도록 만들어주죠!</p>
+                {% elif user.face_shape == 5 %}
+                <p class="card-text text-muted f_14p">
+                추천 넥라인 [홀터넥|후드|터틀넥|보트넥]<br>
+                긴 얼굴형을 가진 분들은 넥라인을 목선에 딱 맞춰 입는걸 추천드려요.<br>
+                넥이 깊게 파인 디자인은 얼굴을 더 길어 보이게 할 수 있거든요.</p>
+                {% endif %}
+
+                <!-- {% if user.body_shape == 1 %}
+                <p class="card-text text-muted f_14p">체형 : 모래시계형</p>
+                {% elif user.body_shape == 2 %}
+                <p class="card-text text-muted f_14p">체형 : 직사각형</p>
+                {% elif user.body_shape == 3 %}
+                <p class="card-text text-muted f_14p">체형 : 삼각형</p>
+                {% elif user.body_shape == 4 %}
+                <p class="card-text text-muted f_14p">체형 : 역삼각형</p>
+                {% elif user.body_shape == 5 %}
+                <p class="card-text text-muted f_14p">체형 : 타원형</p>
+                {% endif %} -->
+            </div>
+          </div>
+
+          <div class="row">
+            {% for i in result %}
+            <div class="col-md-3 col-sm-6 mb-4" style="height: 280px;">
+              <img src="data:image/jpg;charset=utf-8;base64,{{i}}" style="height: 100%; width: 100%; object-fit: cover;">
+            </div>
+            {% endfor %}
+          </div>
+
         </div>
       </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.container -->
-    <div class="sm-no-margin">
-      <div class="progress-text">
-        <div class="row">
-          <div class="col-7">Positive Behaviors</div>
-          <div class="col-5 text-right">40%</div>
-        </div>
-      </div>
-      <div class="custom-progress progress">
-        <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:40%"
-          class="animated custom-bar progress-bar slideInLeft bg-sky"></div>
-      </div>
-      <div class="progress-text">
-        <div class="row">
-          <div class="col-7">Teamworking Abilities</div>
-          <div class="col-5 text-right">50%</div>
-        </div>
-      </div>
-      <div class="custom-progress progress">
-        <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:50%"
-          class="animated custom-bar progress-bar slideInLeft bg-orange"></div>
-      </div>
-      <div class="progress-text">
-        <div class="row">
-          <div class="col-7">Time Management </div>
-          <div class="col-5 text-right">60%</div>
-        </div>
-      </div>
-      <div class="custom-progress progress">
-        <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:60%"
-          class="animated custom-bar progress-bar slideInLeft bg-green"></div>
-      </div>
-      <div class="progress-text">
-        <div class="row">
-          <div class="col-7">Excellent Communication</div>
-          <div class="col-5 text-right">80%</div>
-        </div>
-      </div>
-      <div class="custom-progress progress">
-        <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:80%"
-          class="animated custom-bar progress-bar slideInLeft bg-yellow"></div>
-      </div>
+
     </div>
   </div>
 </header>
@@ -117,7 +109,11 @@
 </script>
 
 <style>
-
+  .f_14p {
+    font-size: 14px;
+    margin-top: 16px;
+    margin-bottom: 0px;
+  }
 </style>
 
 <!-- Footer-->

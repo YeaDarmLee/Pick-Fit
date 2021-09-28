@@ -3,6 +3,7 @@ from . import main
 from . import user
 from . import contact
 from . import recommend
+from . import admin
 
 app = Flask(__name__)
 
@@ -13,3 +14,4 @@ app.register_blueprint(main.main)
 app.register_blueprint(user.user)
 app.register_blueprint(contact.contact)
 app.register_blueprint(recommend.recommend)
+app.register_blueprint(admin.admin)
