@@ -19,19 +19,92 @@
       <div class="col-6">
         <h4>{{session['user_Nm']}} 님</h4>
         <div class="card card_temple col-8 my-sm-1">
+
           {% if user.gender == 0 %}
             <p class="text-white">성별 : 남</p>
           {% else %}
             <p class="text-white">성별 : 여</p>
           {% endif %}
+
           <p class="text-white">나이 : {{user.age}}</p>
           <p class="text-white">키 : {{user.height}}cm</p>
           <p class="text-white">몸무게 : {{user.weight}}kg</p>
-          <p class="text-white">체형 : {{user.body_shape}}</p>
-          <p class="text-white">취향 : {{user.style}}</p>
-          <p class="text-white">피부톤 : {{user.skin_tone}}</p>
-          <p class="text-white">얼굴형 : {{user.face_shape}}</p>
-          <div class="text-white">헤어스타일 : {{user.hair}}</div>
+
+          {% if user.face_shape == 1 %}
+            <p class="text-white">체형 : 모래시계형</p>
+          {% elif user.face_shape == 2 %}
+            <p class="text-white">체형 : 직사각형</p>
+          {% elif user.face_shape == 3 %}
+            <p class="text-white">체형 : 삼각형</p>
+          {% elif user.face_shape == 4 %}
+            <p class="text-white">체형 : 역삼각형</p>
+          {% elif user.face_shape == 5 %}
+            <p class="text-white">체형 : 타원형</p>
+          {% elif user.face_shape == 0 %}
+            <p class="text-white">체형 : 선택안함</p>
+          {% endif %}
+          
+          {% if user.style == 1 %}
+            <p class="text-white">취향 : 클래식</p>
+          {% elif user.style == 2 %}
+            <p class="text-white">취향 : 캐주얼</p>
+          {% elif user.style == 3 %}
+            <p class="text-white">취향 : 매니시</p>
+          {% elif user.style == 4 %}
+            <p class="text-white">취향 : 애스닉</p>
+          {% elif user.style == 5 %}
+            <p class="text-white">취향 : 모던</p>
+          {% elif user.style == 6 %}
+            <p class="text-white">취향 : 내추럴</p>
+          {% elif user.style == 7 %}
+            <p class="text-white">취향 : 스포티</p>
+          {% elif user.style == 8 %}
+            <p class="text-white">취향 : 힙합</p>
+          {% elif user.style == 0 %}
+            <p class="text-white">취향 : 선택안함</p>
+          {% endif %}
+
+          {% if user.face_shape == 1 %}
+            <p class="text-white">얼굴형 : 달걀형</p>
+          {% elif user.face_shape == 2 %}
+            <p class="text-white">얼굴형 : 역삼각형</p>
+          {% elif user.face_shape == 3 %}
+            <p class="text-white">얼굴형 : 둥근형</p>
+          {% elif user.face_shape == 4 %}
+            <p class="text-white">얼굴형 : 각진형</p>
+          {% elif user.face_shape == 5 %}
+            <p class="text-white">얼굴형 : 긴 얼굴형</p>
+          {% elif user.face_shape == 0 %}
+            <p class="text-white">얼굴형 : 선택안함</p>
+          {% endif %}
+
+          {% if user.face_shape == 1 %}
+            <p class="text-white">피부톤 : 1-1</p>
+          {% elif user.face_shape == 2 %}
+            <p class="text-white">피부톤 : 1-2</p>
+          {% elif user.face_shape == 3 %}
+            <p class="text-white">피부톤 : 1-3</p>
+          {% elif user.face_shape == 4 %}
+            <p class="text-white">피부톤 : 2-1</p>
+          {% elif user.face_shape == 5 %}
+            <p class="text-white">피부톤 : 2-2</p>
+          {% elif user.face_shape == 6 %}
+            <p class="text-white">피부톤 : 2-3</p>
+          {% elif user.face_shape == 0 %}
+            <p class="text-white">피부톤 : 선택안함</p>
+          {% endif %}
+          
+          {% if user.face_shape == 1 %}
+            <div class="text-white">헤어스타일 : 장발</div>
+          {% elif user.face_shape == 2 %}
+            <div class="text-white">헤어스타일 : 중발</div>
+          {% elif user.face_shape == 3 %}
+            <div class="text-white">헤어스타일 : 단발</div>
+          {% elif user.face_shape == 4 %}
+            <div class="text-white">헤어스타일 : 숏컷</div>
+          {% elif user.face_shape == 0 %}
+            <div class="text-white">헤어스타일 : 선택안함</div>
+          {% endif %}
         </div>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#secession">탈퇴하기</button>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modify">부가정보 수정</button>
