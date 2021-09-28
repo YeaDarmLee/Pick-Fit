@@ -294,6 +294,11 @@ def search_detail():
         'searchUrl':json_result['searchUrl'],
         'tag': json_result['tag']
       })
+    # 의류추천
+    elif idx_result['s_type'] == 'co':
+      result_j.append({
+        'search': '캐주얼'
+      })
     
     result.append({
       'idx':idx_result['idx'],

@@ -363,6 +363,10 @@
             newP1.innerHTML = 'searchUrl : ' + result.result.searchUrl
             newP2.innerHTML = 'Tag : ' + result.result.tag
             newP3.innerHTML = 'Data : ' + result.c_date
+          } else if (result.s_type === 'co') {
+            newh5.innerHTML = '의류추천'
+            newP1.innerHTML = '검색조건 : ' + result.result.search
+            newP3.innerHTML = 'Data : ' + result.c_date
           }
 
           newDiv.appendChild(newh5);
