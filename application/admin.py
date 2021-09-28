@@ -5,6 +5,11 @@ import json
 # import dbModule
 from application import dbModule
 
+# 이미지 관련
+from werkzeug.utils import secure_filename
+import io, base64
+from PIL import Image
+
 admin = Blueprint("admin", __name__, url_prefix="/admin")
 
 @admin.route("")
@@ -147,6 +152,35 @@ def fileUpload():
       db_class.commit()
       
       print('values :::: ',values)
+
+    return {
+      'code':20000,
+      'result': '업데이트가 완료되었습니다.'
+    }
+
+  except Exception as e:
+    print(e)
+    return {
+        'code':50000,
+        'result': e
+      }
+
+@admin.route('/imgUpload', methods = ['GET', 'POST'])
+def imgUpload():
+  try:
+    files = request.files.getlist("file[]")
+    
+    for i in files:
+      data = i.read()
+
+      binary = base64.b64encode(data)
+      binary = binary.decode('UTF-8')
+
+      db_class = dbModule.Database()
+      sql = "UPDATE clothing_data SET img = '" + binary + "' WHERE file_name = '" + i.filename + "';"
+      print(i.filename)
+      db_class.execute(sql)
+      db_class.commit()
 
     return {
       'code':20000,
