@@ -30,17 +30,17 @@
           <p class="text-white">키 : {{user.height}}cm</p>
           <p class="text-white">몸무게 : {{user.weight}}kg</p>
 
-          {% if user.face_shape == 1 %}
+          {% if user.body_shape == 1 %}
             <p class="text-white">체형 : 모래시계형</p>
-          {% elif user.face_shape == 2 %}
+          {% elif user.body_shape == 2 %}
             <p class="text-white">체형 : 직사각형</p>
-          {% elif user.face_shape == 3 %}
+          {% elif user.body_shape == 3 %}
             <p class="text-white">체형 : 삼각형</p>
-          {% elif user.face_shape == 4 %}
+          {% elif user.body_shape == 4 %}
             <p class="text-white">체형 : 역삼각형</p>
-          {% elif user.face_shape == 5 %}
+          {% elif user.body_shape == 5 %}
             <p class="text-white">체형 : 타원형</p>
-          {% elif user.face_shape == 0 %}
+          {% elif user.body_shape == 0 %}
             <p class="text-white">체형 : 선택안함</p>
           {% endif %}
           

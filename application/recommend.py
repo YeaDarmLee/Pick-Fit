@@ -126,10 +126,10 @@ def clothe():
       face_shape_sql = " AND neckline REGEXP '브이넥|홀터넥|오프숄더|원숄더|스퀘어넥|노카라|스위트하트|0'"
     elif face_shape == 4:
       print('각진형')
-      face_shape_sql = " AND neckline REGEXP '유넥|홀터넥|노카라|후드|스위트하트|0'"
+      face_shape_sql = " AND neckline REGEXP '유넥|홀터넥|노카라|오프숄더|원숄더|후드|스위트하트|0'"
     elif face_shape == 5:
       print('긴 얼굴형')
-      face_shape_sql = " AND neckline REGEXP '유넥|홀터넥|후드|터틀넥|보트넥|0'"
+      face_shape_sql = " AND neckline REGEXP '홀터넥|후드|터틀넥|보트넥|0'"
     
     # 체형에 따른 넥라인 정의 및 추가조건 필요
     if body_shape == 1:
