@@ -62,28 +62,28 @@ def clothe():
     hair = user_data['hair']
 
     if style == 1:
-      print('클래식')
+      style = '클래식'
       style_sql = "WHERE style = '클래식' OR style_sub = '클래식'"
     elif style == 2:
-      print('캐주얼')
+      style = '캐주얼'
       style_sql = "WHERE style = '캐주얼' OR style_sub = '캐주얼'"
     elif style == 3:
-      print('매니시')
+      style = '매니시'
       style_sql = "WHERE style = '매니시' OR style_sub = '매니시'"
     elif style == 4:
-      print('애스닉')
+      style = '애스닉'
       style_sql = "WHERE style = '애스닉' OR style_sub = '애스닉'"
     elif style == 5:
-      print('모던')
+      style = '모던'
       style_sql = "WHERE style = '모던' OR style_sub = '모던'"
     elif style == 6:
-      print('내추럴')
+      style = '내추럴'
       style_sql = "WHERE style = '내추럴' OR style_sub = '내추럴'"
     elif style == 7:
-      print('스포티')
+      style = '스포티'
       style_sql = "WHERE style = '스포티' OR style_sub = '스포티'"
     elif style == 8:
-      print('힙합')
+      style = '힙합'
       style_sql = "WHERE style = '힙합' OR style_sub = '힙합'"
     
     # 키에따른 조건 필요 (패턴, 길이)
@@ -159,7 +159,7 @@ def clothe():
       img_binary = img_binary.decode('UTF-8')
       img_array.append(img_binary)
     
-    search_log = "INSERT INTO search_log(s_type,user_id,result) VALUES ('co','" + userid + "','미정');"
+    search_log = "INSERT INTO search_log(s_type,user_id,result) VALUES ('co','" + userid + "','" + style + "');"
     db_class.execute(search_log)
     db_class.commit()
 
