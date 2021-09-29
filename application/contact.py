@@ -40,7 +40,7 @@ def insert_contact():
 def getContactList():
   try:
     db_class = dbModule.Database()
-    search_contact = "SELECT * FROM contact_info ORDER BY c_date DESC limit 100;"
+    search_contact = "SELECT * FROM contact_info ORDER BY idx DESC limit 100;"
     data = db_class.executeAll(search_contact)
 
     results = []
