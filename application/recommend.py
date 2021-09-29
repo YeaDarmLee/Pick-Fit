@@ -84,7 +84,7 @@ def clothe():
       style_sql = "WHERE style = '스포티' OR style_sub = '스포티'"
     elif style == 8:
       style = '힙합'
-      style_sql = "WHERE style = '힙합' OR style_sub = '힙합'"
+      style_sql = "WHERE (style = '힙합' AND style_sub = '스트리트') OR (style_sub = '힙합') AND color = '블랙'"
     
     # 키에따른 조건 필요 (패턴, 길이)
     if float(height) <= 140:
@@ -149,7 +149,6 @@ def clothe():
       body_shape_sql = ""
 
     query = "SELECT * FROM clothing_data " + style_sql + bmi_sql + face_shape_sql + height_sql + " order by rand() limit 50;"
-
     db_class = dbModule.Database()
     result = db_class.executeAll(query)
 
