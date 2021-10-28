@@ -108,7 +108,6 @@
       cache: false,
       timeout: 600000,
       success: function (data) {
-        console.log(data)
         $('#load').slideToggle()
         if (data.code === 20000) {
           const r_search_Url = document.getElementById("r_search_Url");
@@ -125,12 +124,13 @@
           r_result.appendChild(newh5);
           resultOpen()
         } else {
-          alertStart('error', '크롤링 실패', data)
+          alertStart('error', '크롤링 실패', data.result)
         }
       },
       error: function (e) {
-        console.log(e)
-        alertStart('error', '크롤링 실패', e)
+        $('#load').slideToggle()
+        console.error(e)
+        alertStart('error', '크롤링 실패', e.statusText)
       }
     });
   }
