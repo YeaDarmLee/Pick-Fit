@@ -43,23 +43,17 @@
           {% elif user.body_shape == 0 %}
             <p class="text-white">체형 : 선택안함</p>
           {% endif %}
-          
+
           {% if user.style == 1 %}
-            <p class="text-white">취향 : 클래식</p>
+            <p class="text-white">취향 : 로맨틱</p>
           {% elif user.style == 2 %}
-            <p class="text-white">취향 : 캐주얼</p>
-          {% elif user.style == 3 %}
-            <p class="text-white">취향 : 매니시</p>
-          {% elif user.style == 4 %}
-            <p class="text-white">취향 : 애스닉</p>
-          {% elif user.style == 5 %}
             <p class="text-white">취향 : 모던</p>
-          {% elif user.style == 6 %}
-            <p class="text-white">취향 : 내추럴</p>
-          {% elif user.style == 7 %}
+          {% elif user.style == 3 %}
             <p class="text-white">취향 : 스포티</p>
-          {% elif user.style == 8 %}
-            <p class="text-white">취향 : 힙합</p>
+          {% elif user.style == 4 %}
+            <p class="text-white">취향 : 클래식</p>
+          {% elif user.style == 5 %}
+            <p class="text-white">취향 : 스트리트</p>
           {% elif user.style == 0 %}
             <p class="text-white">취향 : 선택안함</p>
           {% endif %}
