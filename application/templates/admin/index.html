@@ -4,22 +4,26 @@
 <!-- navigation -->
 {% include './layout/navigation.html' %}
 
-<!-- myPage -->
-<header class="myPage">
+<!-- adminPage -->
+<header class="adminPage">
   <div class="container card card_temple">
     <div class="row">
       <div class="col-12">
         <h2>Admin</h2>
-        <form method="POST" id="fileUpload" enctype="multipart/form-data">
-          <input class="" type="file" name="file[]" multiple />
-          <button class="btn btn-secondary" type="button" onclick="fileUpload()">업로드</button>
-        </form>
-        <h2>test</h2>
-        
-        <form method="POST" id="imgUpload" enctype="multipart/form-data">
-          <input class="" type="file" name="file[]" multiple />
-          <button class="btn btn-secondary" type="button" onclick="imgUpload()">업로드</button>
-        </form>
+
+        <div class="card card_temple col-6">
+          <h4>Json 업로드</h4>
+          <form method="POST" id="fileUpload" enctype="multipart/form-data" class="mb-4">
+            <input class="" type="file" name="file[]" multiple />
+            <button class="btn btn-secondary" type="button" onclick="fileUpload()">업로드</button>
+          </form>
+
+          <h4>이미지 업로드</h4>
+          <form method="POST" id="imgUpload" enctype="multipart/form-data">
+            <input class="" type="file" name="file[]" multiple />
+            <button class="btn btn-secondary" type="button" onclick="imgUpload()">업로드</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -104,6 +108,9 @@
   }
   .margin_0 {
     margin: 0;
+  }
+  .adminPage {
+
   }
 </style>
 <!-- Footer-->

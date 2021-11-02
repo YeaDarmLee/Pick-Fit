@@ -19,6 +19,14 @@ def insert_contact():
         'result': '모든 값을 입력해 주세요.'
       }
     
+    checkNm = name.replace(" ","")
+    checkMg = message.replace(" ","")
+    if checkNm == '' or checkMg == '':
+      return {
+        'code':50000,
+        'result': '공백은 입력할 수 없습니다.'
+      }
+    
     db_class = dbModule.Database()
     search_user = "INSERT INTO contact_info(userNm,content) VALUES ('" + name + "','" + message + "');"
 

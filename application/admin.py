@@ -145,6 +145,12 @@ def fileUpload():
         column = column + ',silhouette'
         values = values + ",'" + silhouette + "'"
       
+      detail_data = file_data['데이터셋 정보']['데이터셋 상세설명']['상세설명']
+      column = column + ',shop,price,p_name'
+      values = values + ",'" + detail_data['쇼핑몰'] + "'"
+      values = values + ",'" + detail_data['가격'] + "'"
+      values = values + ",'" + detail_data['상품명'] + "'"
+      
       sql = "INSERT clothing_data (" + column + ") VALUES (" + values + ")"
 
       db_class = dbModule.Database()

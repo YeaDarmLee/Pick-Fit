@@ -62,29 +62,20 @@ def clothe():
     hair = user_data['hair']
 
     if style == 1:
-      style = '클래식'
-      style_sql = "WHERE style = '클래식' OR style_sub = '클래식'"
+      style = '로맨틱'
+      style_sql = "WHERE style = '로맨틱' OR style_sub = '로맨틱'"
     elif style == 2:
-      style = '캐주얼'
-      style_sql = "WHERE style = '캐주얼' OR style_sub = '캐주얼'"
-    elif style == 3:
-      style = '매니시'
-      style_sql = "WHERE style = '매니시' OR style_sub = '매니시'"
-    elif style == 4:
-      style = '애스닉'
-      style_sql = "WHERE style = '애스닉' OR style_sub = '애스닉'"
-    elif style == 5:
       style = '모던'
       style_sql = "WHERE style = '모던' OR style_sub = '모던'"
-    elif style == 6:
-      style = '내추럴'
-      style_sql = "WHERE style = '내추럴' OR style_sub = '내추럴'"
-    elif style == 7:
+    elif style == 3:
       style = '스포티'
       style_sql = "WHERE style = '스포티' OR style_sub = '스포티'"
-    elif style == 8:
-      style = '힙합'
-      style_sql = "WHERE (style = '힙합' AND style_sub = '스트리트') OR (style_sub = '힙합') AND color = '블랙'"
+    elif style == 4:
+      style = '클래식'
+      style_sql = "WHERE style = '클래식' OR style_sub = '클래식'"
+    elif style == 5:
+      style = '스트리트'
+      style_sql = "WHERE style = '스트리트' OR style_sub = '스트리트'"
     
     # 키에따른 조건 필요 (패턴, 길이)
     if float(height) <= 140:
