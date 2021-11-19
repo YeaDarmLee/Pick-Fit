@@ -25,6 +25,8 @@ def fileUpload():
       file_json = json.load(i)
       file_data = dict(file_json)
 
+      print('#############  Json 업로드 시작  #############')
+
       labeling_data = file_data['데이터셋 정보']['데이터셋 상세설명']['라벨링']
 
       # file_name
@@ -145,19 +147,44 @@ def fileUpload():
         column = column + ',silhouette'
         values = values + ",'" + silhouette + "'"
       
-      detail_data = file_data['데이터셋 정보']['데이터셋 상세설명']['상세설명']
+      if file_data['데이터셋 정보']['데이터셋 상세설명'].get('상세설명') is not None:
+        detail_data = file_data['데이터셋 정보']['데이터셋 상세설명']['상세설명']
+      else:
+        detail_data = file_data['데이터셋 정보']['상세설명']
+
       column = column + ',shop,price,p_name'
-      values = values + ",'" + detail_data['쇼핑몰'] + "'"
-      values = values + ",'" + detail_data['가격'] + "'"
-      values = values + ",'" + detail_data['상품명'] + "'"
-      
+
+      if detail_data.get('아우터') is not None:
+        values = values + ",'" + detail_data['아우터'][0]['쇼핑몰'] + "'"
+        values = values + ",'" + detail_data['아우터'][0]['가격'].replace(",","",2).replace("원","") + "'"
+        values = values + ",'" + detail_data['아우터'][0]['상품명'] + "'"
+      elif detail_data.get('원피스') is not None:
+        values = values + ",'" + detail_data['원피스'][0]['쇼핑몰'] + "'"
+        values = values + ",'" + detail_data['원피스'][0]['가격'].replace(",","",2).replace("원","") + "'"
+        values = values + ",'" + detail_data['원피스'][0]['상품명'] + "'"
+      elif detail_data.get('상의') is not None:
+        values = values + ",'" + detail_data['상의'][0]['쇼핑몰'] + "'"
+        values = values + ",'" + detail_data['상의'][0]['가격'].replace(",","",2).replace("원","") + "'"
+        values = values + ",'" + detail_data['상의'][0]['상품명'] + "'"
+      elif detail_data.get('하의') is not None:
+        values = values + ",'" + detail_data['하의'][0]['쇼핑몰'] + "'"
+        values = values + ",'" + detail_data['하의'][0]['가격'].replace(",","",2).replace("원","") + "'"
+        values = values + ",'" + detail_data['하의'][0]['상품명'] + "'"
+          
+
       sql = "INSERT clothing_data (" + column + ") VALUES (" + values + ")"
 
-      db_class = dbModule.Database()
-      db_class.execute(sql)
-      db_class.commit()
+      try:
+        db_class = dbModule.Database()
+        db_class.execute(sql)
+        db_class.commit()
+      except Exception as e:
+        print("###################################################################")
+        print(file_data['이미지 정보']['이미지 식별자'])
+        print("###################################################################")
       
-      print('values :::: ',values)
+      print('파일명 : ' , file_data['이미지 정보']['이미지 식별자'])
+      print('###############  업로드 완료  ################')
 
     return {
       'code':20000,
