@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, escape, session
+from flask import Flask, render_template, request, escape, session, render_template_string
 from flask import Blueprint
 import json
 # import dbModule
@@ -139,7 +139,7 @@ def clothe():
       print('타원형')
       body_shape_sql = ""
 
-    query = "SELECT * FROM clothing_data " + style_sql + bmi_sql + face_shape_sql + height_sql + " order by rand() limit 50;"
+    query = "SELECT * FROM clothing_data " + style_sql + bmi_sql + face_shape_sql + height_sql + " order by rand() limit 9;"
     db_class = dbModule.Database()
     result = db_class.executeAll(query)
 
@@ -147,13 +147,21 @@ def clothe():
     for i in result:
       img_binary = i['img']
       img_binary = img_binary.decode('UTF-8')
-      img_array.append(img_binary)
+
+      detailData = {
+        "img_binary" : img_binary,
+        "name" : i['shop'],
+        "price" : format(int(i['price']), ','),
+        "p_name" : i['p_name']
+      }
+
+      img_array.append(detailData)
     
     search_log = "INSERT INTO search_log(s_type,user_id,result) VALUES ('co','" + userid + "','" + style + "');"
     db_class.execute(search_log)
     db_class.commit()
 
-    return render_template('recommend/clothe.html', user = user_data, result = img_array)
+    return render_template('recommend/clothe.html', user = user_data, img_result = img_array)
   except Exception as e:
     print(e)
     return render_template('layout/error.html')
@@ -227,4 +235,4 @@ def statistic():
   except Exception as e:
     print(e)
     return render_template('layout/error.html')
-
+    
