@@ -16,6 +16,7 @@ def logout():
   session.pop('login', False)
   session.pop('user_Nm', None)
   session.pop('user_id', None)
+  session.pop('gender', None)
   session.pop('dev', None)
   return redirect('/')
 
@@ -45,6 +46,7 @@ def examine():
       data = dict(db_result)
       if data['pw'] == password_hash:
         # 로그인 처리
+        session['gender'] = data['gender']
         session['user_Nm'] = data['userNm']
         session['user_id'] = data['id']
         session['dev'] = data['dev']
