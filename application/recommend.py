@@ -60,22 +60,37 @@ def clothe():
     style = user_data['style']
     skin_tone = user_data['skin_tone']
     hair = user_data['hair']
+    
+    
+    # 성별에 따른 img 조건
+    if gender == 1:
+      # 여자
+      gender_sql = " AND gender = 0"
+    else :
+      # 남자
+      gender_sql = " AND gender = 1"
 
     if style == 1:
       style = '로맨틱'
-      style_sql = "WHERE style = '로맨틱' OR style_sub = '로맨틱'"
+      style_sql = " AND style = '로맨틱'"
     elif style == 2:
       style = '모던'
-      style_sql = "WHERE style = '모던' OR style_sub = '모던'"
+      style_sql = " AND style = '모던'"
     elif style == 3:
       style = '스포티'
-      style_sql = "WHERE style = '스포티' OR style_sub = '스포티'"
+      style_sql = " AND style = '스포티'"
     elif style == 4:
       style = '클래식'
-      style_sql = "WHERE style = '클래식' OR style_sub = '클래식'"
+      style_sql = " AND style = '클래식'"
     elif style == 5:
       style = '스트리트'
-      style_sql = "WHERE style = '스트리트' OR style_sub = '스트리트'"
+      style_sql = " AND style = '스트리트'"
+    elif style == 6:
+      style = '캐주얼'
+      style_sql = " AND style = '캐주얼'"
+    elif style == 7:
+      style = '밀리터리'
+      style_sql = " AND style = '밀리터리'"
     
     # 키에따른 조건 필요 (패턴, 길이)
     if float(height) <= 140:
@@ -137,9 +152,10 @@ def clothe():
       body_shape_sql = ""
     elif body_shape == 5:
       print('타원형')
-      body_shape_sql = ""
+      body_shape_sql = ""      
 
-    query = "SELECT * FROM clothing_data " + style_sql + bmi_sql + face_shape_sql + height_sql + " order by rand() limit 9;"
+    query = "SELECT * FROM clothing_data WHERE 1=1" + gender_sql + style_sql + bmi_sql + face_shape_sql + height_sql + " order by rand() limit 9;"
+    print(query)
     db_class = dbModule.Database()
     result = db_class.executeAll(query)
 
