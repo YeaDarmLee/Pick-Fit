@@ -8,331 +8,648 @@
 
       <div class="modal-body padding_top_0 scroll_bar">
         <form class="text-align-center" id="modify_form">
-          <!-- 체형 input -->
-          {% if result.body_shape == 0 %}
-          <div class="row margin_1rem">
-            <h5 class="col-md-12 text-center">체형</h5>
+          {% if session['gender'] == 1 %}
+            <!-- 체형 input -->
+            {% if result.body_shape == 0 %}
+            <div class="row margin_1rem">
+              <h5 class="col-md-12 text-center">체형</h5>
 
-            <div class="row_scroll scroll_bar">
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="body_shape_1" name="body_shape" value="1">
-                  <label class="custom-control-label" for="body_shape_1">
-                    모래시계형
-                  </label>
-                  <label class="custom-control-label dis_block" for="body_shape_1">
-                    <img src="{{ url_for('static', filename='assets/img/about/1.jpg') }}" alt="#" class="img-fluid">
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="body_shape_2" name="body_shape" value="2">
-                  <label class="custom-control-label" for="body_shape_2">
-                    직사각형
-                  </label>
-                  <label class="custom-control-label dis_block" for="body_shape_2">
-                    <img src="{{ url_for('static', filename='assets/img/about/2.jpg') }}" alt="#" class="img-fluid">
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="body_shape_3" name="body_shape" value="3">
-                  <label class="custom-control-label" for="body_shape_3">
-                    삼각형
-                  </label>
-                  <label class="custom-control-label dis_block" for="body_shape_3">
-                    <img src="{{ url_for('static', filename='assets/img/about/3.jpg') }}" alt="#" class="img-fluid">
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="body_shape_4" name="body_shape" value="4">
-                  <label class="custom-control-label" for="body_shape_4">
-                    역삼각형
-                  </label>
-                  <label class="custom-control-label dis_block" for="body_shape_4">
-                    <img src="{{ url_for('static', filename='assets/img/about/4.jpg') }}" alt="#" class="img-fluid">
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="body_shape_5" name="body_shape" value="5">
-                  <label class="custom-control-label" for="body_shape_5">
-                    타원형
-                  </label>
-                  <label class="custom-control-label dis_block" for="body_shape_5">
-                    <img src="{{ url_for('static', filename='assets/img/about/4.jpg') }}" alt="#" class="img-fluid">
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-          {% endif %} 
-
-          <!-- 스타일 input -->
-          {% if result.style == 0 %}
-          <div class="row margin_1rem">
-            <h5 class="col-md-12 text-center">스타일</h5>
-
-            <div class="row_scroll scroll_bar">
               <div class="row_scroll scroll_bar">
                 <div class="col-md-4 dis_inblk">
                   <div class="custom-control custom-radio image-checkbox">
-                    <input type="radio" class="custom-control-input" id="style_1" name="style" value="1">
+                    <input type="radio" class="custom-control-input" id="body_shape_1" name="body_shape" value="1">
                     <label class="custom-control-label" for="body_shape_1">
-                      로맨틱
+                      모래시계형
                     </label>
-                    <label class="custom-control-label dis_block" for="style_1">
-                      <img src="{{ url_for('static', filename='assets/img/about/1.jpg') }}" alt="#" class="img-fluid">
+                    <label class="custom-control-label dis_block" for="body_shape_1">
+                      <img src="{{ url_for('static', filename='assets/img/about/body_shape/female/hourglass.jpg') }}" alt="#" class="img-fluid">
                     </label>
                   </div>
                 </div>
                 <div class="col-md-4 dis_inblk">
                   <div class="custom-control custom-radio image-checkbox">
-                    <input type="radio" class="custom-control-input" id="style_2" name="style" value="2">
-                    <label class="custom-control-label" for="body_shape_1">
-                      모던
+                    <input type="radio" class="custom-control-input" id="body_shape_2" name="body_shape" value="2">
+                    <label class="custom-control-label" for="body_shape_2">
+                      직사각형
                     </label>
-                    <label class="custom-control-label dis_block" for="style_2">
-                      <img src="{{ url_for('static', filename='assets/img/about/2.jpg') }}" alt="#" class="img-fluid">
-                    </label>
-                  </div>
-                </div>
-                <div class="col-md-4 dis_inblk">
-                  <div class="custom-control custom-radio image-checkbox">
-                    <input type="radio" class="custom-control-input" id="style_3" name="style" value="3">
-                    <label class="custom-control-label" for="body_shape_1">
-                      스포티
-                    </label>
-                    <label class="custom-control-label dis_block" for="style_3">
-                      <img src="{{ url_for('static', filename='assets/img/about/3.jpg') }}" alt="#" class="img-fluid">
+                    <label class="custom-control-label dis_block" for="body_shape_2">
+                      <img src="{{ url_for('static', filename='assets/img/about/body_shape/female/rectangle.jpg') }}" alt="#" class="img-fluid">
                     </label>
                   </div>
                 </div>
                 <div class="col-md-4 dis_inblk">
                   <div class="custom-control custom-radio image-checkbox">
-                    <input type="radio" class="custom-control-input" id="style_4" name="style" value="4">
-                    <label class="custom-control-label" for="body_shape_1">
-                      클래식
+                    <input type="radio" class="custom-control-input" id="body_shape_3" name="body_shape" value="3">
+                    <label class="custom-control-label" for="body_shape_3">
+                      삼각형
                     </label>
-                    <label class="custom-control-label dis_block" for="style_4">
-                      <img src="{{ url_for('static', filename='assets/img/about/4.jpg') }}" alt="#" class="img-fluid">
+                    <label class="custom-control-label dis_block" for="body_shape_3">
+                      <img src="{{ url_for('static', filename='assets/img/about/body_shape/female/triangle.jpg') }}" alt="#" class="img-fluid">
                     </label>
                   </div>
                 </div>
                 <div class="col-md-4 dis_inblk">
                   <div class="custom-control custom-radio image-checkbox">
-                    <input type="radio" class="custom-control-input" id="style_5" name="style" value="5">
-                    <label class="custom-control-label" for="body_shape_1">
-                      스트리트
+                    <input type="radio" class="custom-control-input" id="body_shape_4" name="body_shape" value="4">
+                    <label class="custom-control-label" for="body_shape_4">
+                      역삼각형
                     </label>
-                    <label class="custom-control-label dis_block" for="style_5">
-                      <img src="{{ url_for('static', filename='assets/img/about/4.jpg') }}" alt="#" class="img-fluid">
+                    <label class="custom-control-label dis_block" for="body_shape_4">
+                      <img src="{{ url_for('static', filename='assets/img/about/body_shape/female/reverse_triangle.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="body_shape_5" name="body_shape" value="5">
+                    <label class="custom-control-label" for="body_shape_5">
+                      원형
+                    </label>
+                    <label class="custom-control-label dis_block" for="body_shape_5">
+                      <img src="{{ url_for('static', filename='assets/img/about/body_shape/female/circle.jpg') }}" alt="#" class="img-fluid">
                     </label>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          {% endif %} 
+            {% endif %} 
 
-          <!-- 피부톤 input -->
-          {% if result.skin_tone == 0 %}
-          <div class="row margin_1rem">
-            <h5 class="col-md-12 text-center">피부톤</h5>
+            <!-- 스타일 input -->
+            {% if result.style == 0 %}
+            <div class="row margin_1rem">
+              <h5 class="col-md-12 text-center">스타일</h5>
 
-            <div class="row_scroll scroll_bar">
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="skin_tone_1" name="skin_tone" value="1">
-                  <label class="custom-control-label" for="body_shape_1">
-                    웜톤
-                  </label>
-                  <label class="custom-control-label dis_block" for="skin_tone_1">
-                    <img src="{{ url_for('static', filename='assets/img/about/1.jpg') }}" alt="#" class="img-fluid">
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="skin_tone_2" name="skin_tone" value="2">
-                  <label class="custom-control-label" for="body_shape_1">
-                    웜톤
-                  </label>
-                  <label class="custom-control-label dis_block" for="skin_tone_2">
-                    <img src="{{ url_for('static', filename='assets/img/about/2.jpg') }}" alt="#" class="img-fluid">
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="skin_tone_3" name="skin_tone" value="3">
-                  <label class="custom-control-label" for="body_shape_1">
-                    웜톤
-                  </label>
-                  <label class="custom-control-label dis_block" for="skin_tone_3">
-                    <img src="{{ url_for('static', filename='assets/img/about/3.jpg') }}" alt="#" class="img-fluid">
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="skin_tone_4" name="skin_tone" value="4">
-                  <label class="custom-control-label" for="body_shape_1">
-                    쿨톤
-                  </label>
-                  <label class="custom-control-label dis_block" for="skin_tone_4">
-                    <img src="{{ url_for('static', filename='assets/img/about/4.jpg') }}" alt="#" class="img-fluid">
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="skin_tone_5" name="skin_tone" value="5">
-                  <label class="custom-control-label" for="body_shape_1">
-                    쿨톤
-                  </label>
-                  <label class="custom-control-label dis_block" for="skin_tone_5">
-                    <img src="{{ url_for('static', filename='assets/img/about/4.jpg') }}" alt="#" class="img-fluid">
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="skin_tone_6" name="skin_tone" value="6">
-                  <label class="custom-control-label" for="body_shape_1">
-                    쿨톤
-                  </label>
-                  <label class="custom-control-label dis_block" for="skin_tone_6">
-                    <img src="{{ url_for('static', filename='assets/img/about/4.jpg') }}" alt="#" class="img-fluid">
-                  </label>
+                <div class="row_scroll scroll_bar">
+                  <div class="col-md-4 dis_inblk">
+                    <div class="custom-control custom-radio image-checkbox">
+                      <input type="radio" class="custom-control-input" id="style_1" name="style" value="1">
+                      <label class="custom-control-label" for="body_shape_1">
+                        로맨틱
+                      </label>
+                      <label class="custom-control-label dis_block" for="style_1">
+                        <img src="{{ url_for('static', filename='assets/img/about/style/female/romantic.jpeg') }}" alt="#" class="img-fluid">
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4 dis_inblk">
+                    <div class="custom-control custom-radio image-checkbox">
+                      <input type="radio" class="custom-control-input" id="style_2" name="style" value="2">
+                      <label class="custom-control-label" for="body_shape_1">
+                        모던
+                      </label>
+                      <label class="custom-control-label dis_block" for="style_2">
+                        <img src="{{ url_for('static', filename='assets/img/about/style/female/modern.jpeg') }}" alt="#" class="img-fluid">
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4 dis_inblk">
+                    <div class="custom-control custom-radio image-checkbox">
+                      <input type="radio" class="custom-control-input" id="style_3" name="style" value="3">
+                      <label class="custom-control-label" for="body_shape_1">
+                        스포티
+                      </label>
+                      <label class="custom-control-label dis_block" for="style_3">
+                        <img src="{{ url_for('static', filename='assets/img/about/style/female/sporty.jpeg') }}" alt="#" class="img-fluid">
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4 dis_inblk">
+                    <div class="custom-control custom-radio image-checkbox">
+                      <input type="radio" class="custom-control-input" id="style_4" name="style" value="4">
+                      <label class="custom-control-label" for="body_shape_1">
+                        클래식
+                      </label>
+                      <label class="custom-control-label dis_block" for="style_4">
+                        <img src="{{ url_for('static', filename='assets/img/about/style/female/classic.jpeg') }}" alt="#" class="img-fluid">
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4 dis_inblk">
+                    <div class="custom-control custom-radio image-checkbox">
+                      <input type="radio" class="custom-control-input" id="style_5" name="style" value="5">
+                      <label class="custom-control-label" for="body_shape_1">
+                        스트리트
+                      </label>
+                      <label class="custom-control-label dis_block" for="style_5">
+                        <img src="{{ url_for('static', filename='assets/img/about/style/female/street.jpeg') }}" alt="#" class="img-fluid">
+                      </label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          {% endif %}
+            {% endif %} 
 
-          <!-- 얼굴형 input -->
-          {% if result.face_shape == 0 %}
-          <div class="row margin_1rem">
-            <h5 class="col-md-12 text-center">얼굴형</h5>
+            <!-- 피부톤 input -->
+            {% if result.skin_tone == 0 %}
+            <div class="row margin_1rem">
+              <h5 class="col-md-12 text-center">피부톤</h5>
 
-            <div class="row_scroll scroll_bar">
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="face_shape_1" name="face_shape" value="1">
-                  <label class="custom-control-label" for="body_shape_1">
-                    달걀형
-                  </label>
-                  <label class="custom-control-label dis_block" for="face_shape_1">
-                    <img src="{{ url_for('static', filename='assets/img/about/1.jpg') }}" alt="#" class="img-fluid">
-                  </label>
+              <div class="row_scroll scroll_bar">
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="skin_tone_1" name="skin_tone" value="1">
+                    <label class="custom-control-label" for="body_shape_1">
+                      웜톤
+                    </label>
+                    <label class="custom-control-label dis_block" for="skin_tone_1">
+                      <img src="{{ url_for('static', filename='assets/img/about/skin_color/warmskin/warm_white.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="face_shape_2" name="face_shape" value="2">
-                  <label class="custom-control-label" for="body_shape_1">
-                    역삼각형
-                  </label>
-                  <label class="custom-control-label dis_block" for="face_shape_2">
-                    <img src="{{ url_for('static', filename='assets/img/about/2.jpg') }}" alt="#" class="img-fluid">
-                  </label>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="skin_tone_2" name="skin_tone" value="2">
+                    <label class="custom-control-label" for="body_shape_1">
+                      웜톤
+                    </label>
+                    <label class="custom-control-label dis_block" for="skin_tone_2">
+                      <img src="{{ url_for('static', filename='assets/img/about/skin_color/warmskin/warm_normal.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="face_shape_3" name="face_shape" value="3">
-                  <label class="custom-control-label" for="body_shape_1">
-                    둥근형
-                  </label>
-                  <label class="custom-control-label dis_block" for="face_shape_3">
-                    <img src="{{ url_for('static', filename='assets/img/about/3.jpg') }}" alt="#" class="img-fluid">
-                  </label>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="skin_tone_3" name="skin_tone" value="3">
+                    <label class="custom-control-label" for="body_shape_1">
+                      웜톤
+                    </label>
+                    <label class="custom-control-label dis_block" for="skin_tone_3">
+                      <img src="{{ url_for('static', filename='assets/img/about/skin_color/warmskin/warm_dark.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="face_shape_4" name="face_shape" value="4">
-                  <label class="custom-control-label" for="body_shape_1">
-                    각진형
-                  </label>
-                  <label class="custom-control-label dis_block" for="face_shape_4">
-                    <img src="{{ url_for('static', filename='assets/img/about/4.jpg') }}" alt="#" class="img-fluid">
-                  </label>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="skin_tone_4" name="skin_tone" value="4">
+                    <label class="custom-control-label" for="body_shape_1">
+                      쿨톤
+                    </label>
+                    <label class="custom-control-label dis_block" for="skin_tone_4">
+                      <img src="{{ url_for('static', filename='assets/img/about/skin_color/coolskin/cool_white.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="face_shape_5" name="face_shape" value="5">
-                  <label class="custom-control-label" for="body_shape_1">
-                    긴 얼굴형
-                  </label>
-                  <label class="custom-control-label dis_block" for="face_shape_5">
-                    <img src="{{ url_for('static', filename='assets/img/about/4.jpg') }}" alt="#" class="img-fluid">
-                  </label>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="skin_tone_5" name="skin_tone" value="5">
+                    <label class="custom-control-label" for="body_shape_1">
+                      쿨톤
+                    </label>
+                    <label class="custom-control-label dis_block" for="skin_tone_5">
+                      <img src="{{ url_for('static', filename='assets/img/about/skin_color/coolskin/cool_normal.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="skin_tone_6" name="skin_tone" value="6">
+                    <label class="custom-control-label" for="body_shape_1">
+                      쿨톤
+                    </label>
+                    <label class="custom-control-label dis_block" for="skin_tone_6">
+                      <img src="{{ url_for('static', filename='assets/img/about/skin_color/coolskin/cool_dark.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          {% endif %}
+            {% endif %}
 
-          <!-- 헤어스타일 input -->
-          {% if result.hair == 0 %}
-          <div class="row margin_1rem">
-            <h5 class="col-md-12 text-center">헤어스타일</h5>
+            <!-- 얼굴형 input -->
+            {% if result.face_shape == 0 %}
+            <div class="row margin_1rem">
+              <h5 class="col-md-12 text-center">얼굴형</h5>
 
-            <div class="row_scroll scroll_bar">
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="hair_1" name="hair" value="1">
-                  <label class="custom-control-label" for="body_shape_1">
-                    장발
-                  </label>
-                  <label class="custom-control-label dis_block" for="hair_1">
-                    <img src="{{ url_for('static', filename='assets/img/about/1.jpg') }}" alt="#" class="img-fluid">
-                  </label>
+              <div class="row_scroll scroll_bar">
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="face_shape_1" name="face_shape" value="1">
+                    <label class="custom-control-label" for="body_shape_1">
+                      달걀형
+                    </label>
+                    <label class="custom-control-label dis_block" for="face_shape_1">
+                      <img src="{{ url_for('static', filename='assets/img/about/face_shape/female/egg.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="hair_2" name="hair" value="2">
-                  <label class="custom-control-label" for="body_shape_1">
-                    중발
-                  </label>
-                  <label class="custom-control-label dis_block" for="hair_2">
-                    <img src="{{ url_for('static', filename='assets/img/about/2.jpg') }}" alt="#" class="img-fluid">
-                  </label>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="face_shape_2" name="face_shape" value="2">
+                    <label class="custom-control-label" for="body_shape_1">
+                      다이아몬드형
+                    </label>
+                    <label class="custom-control-label dis_block" for="face_shape_2">
+                      <img src="{{ url_for('static', filename='assets/img/about/face_shape/female/diamond.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="hair_3" name="hair" value="3">
-                  <label class="custom-control-label" for="body_shape_1">
-                    단발
-                  </label>
-                  <label class="custom-control-label dis_block" for="hair_3">
-                    <img src="{{ url_for('static', filename='assets/img/about/3.jpg') }}" alt="#" class="img-fluid">
-                  </label>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="face_shape_3" name="face_shape" value="3">
+                    <label class="custom-control-label" for="body_shape_1">
+                      둥근형
+                    </label>
+                    <label class="custom-control-label dis_block" for="face_shape_3">
+                      <img src="{{ url_for('static', filename='assets/img/about/face_shape/female/circle.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-4 dis_inblk">
-                <div class="custom-control custom-radio image-checkbox">
-                  <input type="radio" class="custom-control-input" id="hair_4" name="hair" value="4">
-                  <label class="custom-control-label" for="body_shape_1">
-                    숏컷
-                  </label>
-                  <label class="custom-control-label dis_block" for="hair_4">
-                    <img src="{{ url_for('static', filename='assets/img/about/4.jpg') }}" alt="#" class="img-fluid">
-                  </label>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="face_shape_4" name="face_shape" value="4">
+                    <label class="custom-control-label" for="body_shape_1">
+                      각진형
+                    </label>
+                    <label class="custom-control-label dis_block" for="face_shape_4">
+                      <img src="{{ url_for('static', filename='assets/img/about/face_shape/female/square.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="face_shape_5" name="face_shape" value="5">
+                    <label class="custom-control-label" for="body_shape_1">
+                      타원형
+                    </label>
+                    <label class="custom-control-label dis_block" for="face_shape_5">
+                      <img src="{{ url_for('static', filename='assets/img/about/face_shape/female/ellipse.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+            {% endif %}
+
+            <!-- 헤어스타일 input -->
+            {% if result.hair == 0 %}
+            <div class="row margin_1rem">
+              <h5 class="col-md-12 text-center">헤어스타일</h5>
+
+              <div class="row_scroll scroll_bar">
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="hair_1" name="hair" value="1">
+                    <label class="custom-control-label" for="body_shape_1">
+                      장발
+                    </label>
+                    <label class="custom-control-label dis_block" for="hair_1">
+                      <img src="{{ url_for('static', filename='assets/img/about/hair_cut/female/long.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="hair_2" name="hair" value="2">
+                    <label class="custom-control-label" for="body_shape_1">
+                      중발
+                    </label>
+                    <label class="custom-control-label dis_block" for="hair_2">
+                      <img src="{{ url_for('static', filename='assets/img/about/hair_cut/female/medium.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="hair_3" name="hair" value="3">
+                    <label class="custom-control-label" for="body_shape_1">
+                      단발
+                    </label>
+                    <label class="custom-control-label dis_block" for="hair_3">
+                      <img src="{{ url_for('static', filename='assets/img/about/hair_cut/female/regular.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="hair_4" name="hair" value="4">
+                    <label class="custom-control-label" for="body_shape_1">
+                      숏컷
+                    </label>
+                    <label class="custom-control-label dis_block" for="hair_4">
+                      <img src="{{ url_for('static', filename='assets/img/about/hair_cut/female/short.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+          {% else %}
+            <!-- 체형 input -->
+            {% if result.body_shape == 0 %}
+            <div class="row margin_1rem">
+              <h5 class="col-md-12 text-center">체형</h5>
+
+              <div class="row_scroll scroll_bar">
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="body_shape_1" name="body_shape" value="1">
+                    <label class="custom-control-label" for="body_shape_1">
+                      모래시계형
+                    </label>
+                    <label class="custom-control-label dis_block" for="body_shape_1">
+                      <img src="{{ url_for('static', filename='assets/img/about/body_shape/male/hourglass.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="body_shape_2" name="body_shape" value="2">
+                    <label class="custom-control-label" for="body_shape_2">
+                      직사각형
+                    </label>
+                    <label class="custom-control-label dis_block" for="body_shape_2">
+                      <img src="{{ url_for('static', filename='assets/img/about/body_shape/male/square.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="body_shape_3" name="body_shape" value="3">
+                    <label class="custom-control-label" for="body_shape_3">
+                      삼각형
+                    </label>
+                    <label class="custom-control-label dis_block" for="body_shape_3">
+                      <img src="{{ url_for('static', filename='assets/img/about/body_shape/male/triangle.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="body_shape_4" name="body_shape" value="4">
+                    <label class="custom-control-label" for="body_shape_4">
+                      역삼각형
+                    </label>
+                    <label class="custom-control-label dis_block" for="body_shape_4">
+                      <img src="{{ url_for('static', filename='assets/img/about/body_shape/male/reverse_triangle.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="body_shape_5" name="body_shape" value="5">
+                    <label class="custom-control-label" for="body_shape_5">
+                      타원형
+                    </label>
+                    <label class="custom-control-label dis_block" for="body_shape_5">
+                      <img src="{{ url_for('static', filename='assets/img/about/body_shape/male/ellipse.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %} 
+
+            <!-- 스타일 input -->
+            {% if result.style == 0 %}
+            <div class="row margin_1rem">
+              <h5 class="col-md-12 text-center">스타일</h5>
+
+              <div class="row_scroll scroll_bar">
+                <div class="row_scroll scroll_bar">
+                  <div class="col-md-4 dis_inblk">
+                    <div class="custom-control custom-radio image-checkbox">
+                      <input type="radio" class="custom-control-input" id="style_1" name="style" value="1">
+                      <label class="custom-control-label" for="body_shape_1">
+                        캐주얼
+                      </label>
+                      <label class="custom-control-label dis_block" for="style_1">
+                        <img src="{{ url_for('static', filename='assets/img/about/style/male/casual.jpeg') }}" alt="#" class="img-fluid">
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4 dis_inblk">
+                    <div class="custom-control custom-radio image-checkbox">
+                      <input type="radio" class="custom-control-input" id="style_2" name="style" value="2">
+                      <label class="custom-control-label" for="body_shape_1">
+                        모던
+                      </label>
+                      <label class="custom-control-label dis_block" for="style_2">
+                        <img src="{{ url_for('static', filename='assets/img/about/style/male/modern.jpeg') }}" alt="#" class="img-fluid">
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4 dis_inblk">
+                    <div class="custom-control custom-radio image-checkbox">
+                      <input type="radio" class="custom-control-input" id="style_3" name="style" value="3">
+                      <label class="custom-control-label" for="body_shape_1">
+                        스트리트
+                      </label>
+                      <label class="custom-control-label dis_block" for="style_3">
+                        <img src="{{ url_for('static', filename='assets/img/about/style/male/street.jpeg') }}" alt="#" class="img-fluid">
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4 dis_inblk">
+                    <div class="custom-control custom-radio image-checkbox">
+                      <input type="radio" class="custom-control-input" id="style_4" name="style" value="4">
+                      <label class="custom-control-label" for="body_shape_1">
+                        밀리터리
+                      </label>
+                      <label class="custom-control-label dis_block" for="style_4">
+                        <img src="{{ url_for('static', filename='assets/img/about/style/male/military.jpeg') }}" alt="#" class="img-fluid">
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %} 
+
+            <!-- 피부톤 input -->
+            {% if result.skin_tone == 0 %}
+            <div class="row margin_1rem">
+              <h5 class="col-md-12 text-center">피부톤</h5>
+
+              <div class="row_scroll scroll_bar">
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="skin_tone_1" name="skin_tone" value="1">
+                    <label class="custom-control-label" for="body_shape_1">
+                      웜톤
+                    </label>
+                    <label class="custom-control-label dis_block" for="skin_tone_1">
+                      <img src="{{ url_for('static', filename='assets/img/about/skin_color/warmskin/warm_white.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="skin_tone_2" name="skin_tone" value="2">
+                    <label class="custom-control-label" for="body_shape_1">
+                      웜톤
+                    </label>
+                    <label class="custom-control-label dis_block" for="skin_tone_2">
+                      <img src="{{ url_for('static', filename='assets/img/about/skin_color/warmskin/warm_normal.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="skin_tone_3" name="skin_tone" value="3">
+                    <label class="custom-control-label" for="body_shape_1">
+                      웜톤
+                    </label>
+                    <label class="custom-control-label dis_block" for="skin_tone_3">
+                      <img src="{{ url_for('static', filename='assets/img/about/skin_color/warmskin/warm_dark.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="skin_tone_4" name="skin_tone" value="4">
+                    <label class="custom-control-label" for="body_shape_1">
+                      쿨톤
+                    </label>
+                    <label class="custom-control-label dis_block" for="skin_tone_4">
+                      <img src="{{ url_for('static', filename='assets/img/about/skin_color/coolskin/cool_white.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="skin_tone_5" name="skin_tone" value="5">
+                    <label class="custom-control-label" for="body_shape_1">
+                      쿨톤
+                    </label>
+                    <label class="custom-control-label dis_block" for="skin_tone_5">
+                      <img src="{{ url_for('static', filename='assets/img/about/skin_color/coolskin/cool_normal.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="skin_tone_6" name="skin_tone" value="6">
+                    <label class="custom-control-label" for="body_shape_1">
+                      쿨톤
+                    </label>
+                    <label class="custom-control-label dis_block" for="skin_tone_6">
+                      <img src="{{ url_for('static', filename='assets/img/about/skin_color/coolskin/cool_dark.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+            <!-- 얼굴형 input -->
+            {% if result.face_shape == 0 %}
+            <div class="row margin_1rem">
+              <h5 class="col-md-12 text-center">얼굴형</h5>
+
+              <div class="row_scroll scroll_bar">
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="face_shape_1" name="face_shape" value="1">
+                    <label class="custom-control-label" for="body_shape_1">
+                      달걀형
+                    </label>
+                    <label class="custom-control-label dis_block" for="face_shape_1">
+                      <img src="{{ url_for('static', filename='assets/img/about/face_shape/male/egg.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="face_shape_2" name="face_shape" value="2">
+                    <label class="custom-control-label" for="body_shape_1">
+                      다이아몬드형
+                    </label>
+                    <label class="custom-control-label dis_block" for="face_shape_2">
+                      <img src="{{ url_for('static', filename='assets/img/about/face_shape/male/diamond.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="face_shape_3" name="face_shape" value="3">
+                    <label class="custom-control-label" for="body_shape_1">
+                      둥근형
+                    </label>
+                    <label class="custom-control-label dis_block" for="face_shape_3">
+                      <img src="{{ url_for('static', filename='assets/img/about/face_shape/male/circle.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="face_shape_4" name="face_shape" value="4">
+                    <label class="custom-control-label" for="body_shape_1">
+                      각진형
+                    </label>
+                    <label class="custom-control-label dis_block" for="face_shape_4">
+                      <img src="{{ url_for('static', filename='assets/img/about/face_shape/male/square.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="face_shape_5" name="face_shape" value="5">
+                    <label class="custom-control-label" for="body_shape_1">
+                      타원형
+                    </label>
+                    <label class="custom-control-label dis_block" for="face_shape_5">
+                      <img src="{{ url_for('static', filename='assets/img/about/face_shape/male/ellipse.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+            <!-- 헤어스타일 input -->
+            {% if result.hair == 0 %}
+            <div class="row margin_1rem">
+              <h5 class="col-md-12 text-center">헤어스타일</h5>
+
+              <div class="row_scroll scroll_bar">
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="hair_1" name="hair" value="1">
+                    <label class="custom-control-label" for="body_shape_1">
+                      장발
+                    </label>
+                    <label class="custom-control-label dis_block" for="hair_1">
+                      <img src="{{ url_for('static', filename='assets/img/about/hair_cut/male/long.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="hair_2" name="hair" value="2">
+                    <label class="custom-control-label" for="body_shape_1">
+                      중발
+                    </label>
+                    <label class="custom-control-label dis_block" for="hair_2">
+                      <img src="{{ url_for('static', filename='assets/img/about/hair_cut/male/medium.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="hair_3" name="hair" value="3">
+                    <label class="custom-control-label" for="body_shape_1">
+                      단발
+                    </label>
+                    <label class="custom-control-label dis_block" for="hair_3">
+                      <img src="{{ url_for('static', filename='assets/img/about/hair_cut/male/regular.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4 dis_inblk">
+                  <div class="custom-control custom-radio image-checkbox">
+                    <input type="radio" class="custom-control-input" id="hair_4" name="hair" value="4">
+                    <label class="custom-control-label" for="body_shape_1">
+                      숏컷
+                    </label>
+                    <label class="custom-control-label dis_block" for="hair_4">
+                      <img src="{{ url_for('static', filename='assets/img/about/hair_cut/male/short.jpg') }}" alt="#" class="img-fluid">
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
           {% endif %}
         </form>
       </div>
