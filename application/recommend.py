@@ -61,14 +61,12 @@ def clothe():
     skin_tone = user_data['skin_tone']
     hair = user_data['hair']
     
-    
-    # 성별에 따른 img 조건
+    if gender == 0:
+      # 남자
+      gender_sql = " AND gender = 1"
     if gender == 1:
       # 여자
       gender_sql = " AND gender = 0"
-    else :
-      # 남자
-      gender_sql = " AND gender = 1"
 
     if style == 1:
       style = '로맨틱'
@@ -83,8 +81,12 @@ def clothe():
       style = '클래식'
       style_sql = " AND style = '클래식'"
     elif style == 5:
-      style = '스트리트'
-      style_sql = " AND style = '스트리트'"
+      if gender == 0:
+        style = '스트릿'
+        style_sql = " AND style = '스트릿'"
+      if gender == 1:
+        style = '스트리트'
+        style_sql = " AND style = '스트리트'"
     elif style == 6:
       style = '캐주얼'
       style_sql = " AND style = '캐주얼'"
@@ -106,6 +108,7 @@ def clothe():
     elif float(height) > 180:
       height_sql = ""
 
+    # 성별에 따른 img 조건
     bmi = float(weight) / ((float(height)/100) * (float(height)/100))
     if bmi <= 18.5:
       print('저체중')
