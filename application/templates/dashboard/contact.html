@@ -113,7 +113,7 @@
 
             const newP = document.createElement('tr');
             newP.setAttribute("id", "searchContact_tr");
-            newP.innerHTML = '<th scope="row">' + contact_result[i].idx + '</th>' +
+            newP.innerHTML = '<th scope="row">' + (i + 1) + '</th>' +
               '<td>' + contact_result[i].userNm + '</td>' +
               '<td>' + contact_result[i].content + '</td>' +
               '<td>' + contact_result[i].date1 + '<br>' + contact_result[i].date2 + '</td>'
