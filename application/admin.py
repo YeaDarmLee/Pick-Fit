@@ -170,7 +170,10 @@ def fileUpload():
         values = values + ",'" + detail_data['하의'][0]['쇼핑몰'] + "'"
         values = values + ",'" + detail_data['하의'][0]['가격'].replace(",","",2).replace("원","") + "'"
         values = values + ",'" + detail_data['하의'][0]['상품명'] + "'"
-          
+      
+      # 남성 json 및 이미지 등록시 이 주석 풀고 업로드 해야함
+      # column = column + ",gender"
+      # values = values + ", '1'"
 
       sql = "INSERT clothing_data (" + column + ") VALUES (" + values + ")"
 
