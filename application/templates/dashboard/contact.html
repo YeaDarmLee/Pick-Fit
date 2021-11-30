@@ -110,14 +110,13 @@
           const box = document.getElementById("contact_result");
 
           for (var i = 0; i < data.results.length; i++) {
-            let contact_date = new Date(contact_result[i].date);
 
             const newP = document.createElement('tr');
             newP.setAttribute("id", "searchContact_tr");
             newP.innerHTML = '<th scope="row">' + contact_result[i].idx + '</th>' +
               '<td>' + contact_result[i].userNm + '</td>' +
               '<td>' + contact_result[i].content + '</td>' +
-              '<td>' + contact_date.getFullYear() + '-' + (contact_date.getMonth() + 1) + '-' + contact_date.getDate() + '</td>'
+              '<td>' + contact_result[i].date1 + '<br>' + contact_result[i].date2 + '</td>'
             box.appendChild(newP);
           }
           $('#contactMessageButton').click()

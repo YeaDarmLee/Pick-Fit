@@ -59,7 +59,8 @@ def getContactList():
         'idx':detail_data['idx'],
         'userNm':detail_data['userNm'],
         'content':detail_data['content'],
-        'date':detail_data['c_date']
+        'date1': detail_data['c_date'].strftime('%Y-%m-%d'),
+        'date2': detail_data['c_date'].strftime('%H:%M:%S')
       })
     print(results)
 
