@@ -276,7 +276,41 @@ def modify():
         'result': e
       }
 
-# 수정하기 modify
+
+# 수정하기 changePrivacy
+@user.route('/changePrivacy',methods=['POST'])
+def changePrivacy():
+  try:
+    age = request.form.get('age')
+    height = request.form.get('height')
+    weight = request.form.get('weight')
+
+    if not age.replace(".","").isdigit() or not height.replace(".","").isdigit() or not weight.replace(".","").isdigit():
+      return {
+        'code':50000,
+        'result': '숫자만 입력 가능합니다.'
+      }
+
+    # 세션에 있는 user id로 db 조회
+    userid = '%s' % escape(session['user_id'])
+    db_class = dbModule.Database()
+
+    changePrivacy_sql = 'UPDATE user_info SET age = "' + age + '", height = "' + height + '", weight = "' + weight + '" WHERE id = "' + userid + '";'
+    db_class.execute(changePrivacy_sql)
+    db_class.commit()
+
+    return {
+      'code':20000,
+      'result': '업데이트가 완료되었습니다.'
+    }
+  except Exception as e:
+    print(e)
+    return {
+      'code':50000,
+      'result': e
+    }
+
+# search_detail
 @user.route('/search_detail',methods=['POST'])
 def search_detail():
   try:
