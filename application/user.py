@@ -299,7 +299,7 @@ def search_detail():
     # 의류추천
     elif idx_result['s_type'] == 'co':
       result_j.append({
-        'search': '캐주얼'
+        'search': idx_result['result']
       })
     
     result.append({
