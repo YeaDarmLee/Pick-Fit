@@ -26,23 +26,6 @@ def index():
     print(e)
     return render_template('layout/error.html')
 
-# @recommend.route("/trend")
-# def trend():
-#   try:
-#     userid = '%s' % escape(session['user_id'])
-
-#     db_class = dbModule.Database()
-#     search_user = "INSERT INTO search_log(s_type,user_id) VALUES ('tn','" + userid + "');"
-
-#     db_class.execute(search_user)
-#     db_class.commit()
-
-#     return render_template('recommend/trend.html')
-#   except Exception as e:
-#     print(e)
-#     return render_template('layout/error.html')
-
-
 @recommend.route("/clothe")
 def clothe():
   try:
@@ -254,4 +237,21 @@ def statistic():
   except Exception as e:
     print(e)
     return render_template('layout/error.html')
-    
+
+@recommend.route("/trend")
+def trend():
+  try:
+
+    return render_template('recommend/trend.html')
+  except Exception as e:
+    print(e)
+    return render_template('layout/error.html')
+
+@recommend.route("/t_detail")
+def t_detail():
+  try:
+
+    return render_template('recommend/t_detail.html')
+  except Exception as e:
+    print(e)
+    return render_template('layout/error.html')

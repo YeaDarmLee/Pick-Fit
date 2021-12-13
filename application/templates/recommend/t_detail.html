@@ -1,0 +1,77 @@
+<!-- header -->
+{% include './layout/header.html' %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/recommend.css') }}">
+
+<!-- navigation -->
+{% include './layout/navigation.html' %}
+
+<!-- recommend -->
+<header class="recommend">
+  <div class="container card card_temple">
+    <!-- Page Content -->
+    <div class="container">
+        <span class="fa-stack fa-2x icon_left">
+          <i class="fas fa-arrow-left" onclick="change_url('/recommend/trend',1000)"></i>
+        </span>
+        <!-- Portfolio Item Heading -->
+        <h3 class="my-2">사용자 의류 추천</h3>
+        <span class="mb-4">작성자 : ㅅㄷㄴㅅ</span>
+        <span class="ml-4">작성일 : 2020-01-02</span>
+  
+        <div class="card col-12 detail_card mg_btm_1rem">
+          <div class="card-body">  
+            <div class="row">
+              <div class="col-12 mb-4">
+  
+                  <p class="card-text text-muted f_14p">
+                    상세설명
+                  </p>
+
+              </div>
+            </div>
+  
+            <div class="row">
+              <!-- {% for i in img_result %}
+              <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card" style="width: 25rem;height: 40rem;">
+                  <img src="data:image/jpg;charset=utf-8;base64,{{i.img_binary}}" style="height: 30rem; width: 100%; object-fit: cover;">
+                  <div class="card-body" style="color: black;">
+                    <h5 class="card-title">{{i.name}}</h5>
+                    <p class="card-text">{{i.p_name}}</p>
+                    <p class="card-text">{{i.price}}원</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %} -->
+            </div>
+  
+          </div>
+        </div>
+  
+      </div>
+  </div>
+</header>
+
+<script>
+</script>
+
+<style>
+.addCombination {
+  float: right;
+}
+.form-floating{
+  display: inline-block;
+}
+label{
+  color: black;
+}
+.mb-4{
+  margin-bottom: 14px;
+}
+.ml-4{
+  margin-left: 14px;
+}
+</style>
+
+<!-- Footer-->
+{% include './layout/footer.html' %}
