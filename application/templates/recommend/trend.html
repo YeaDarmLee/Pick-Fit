@@ -20,67 +20,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr onclick="alert(1)">
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+          
+          {% for i in list %}
+          <tr onclick="goDetail('{{i.idx}}')">
+            <th scope="row">{{loop.index}}</th>
+            <td>{{i.user}}</td>
+            <td>{{i.title}}</td>
+            <td>{{i.date}}</td>
           </tr>
-          <tr onclick="alert(2)">
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr onclick="alert(3)">
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-          <tr onclick="alert(2)">
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr onclick="alert(3)">
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-          <tr onclick="alert(2)">
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr onclick="alert(3)">
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-          <tr onclick="alert(2)">
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr onclick="alert(3)">
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-          <tr onclick="alert(2)">
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr onclick="alert(3)">
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {% endfor %}
+
         </tbody>
       </table>
     </div>
@@ -135,7 +84,7 @@
 
           <div class="modal-footer">
             <button type="button" id="secessionClsBtn" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-            <button type="button" id="tampleBtn" class="btn btn-warning" onclick="secession()">save</button>
+            <button type="button" id="tampleBtn" class="btn btn-warning" onclick="addCombination()">save</button>
           </div>
 
         </div>
@@ -145,6 +94,9 @@
 </header>
 
 <script>
+  function goDetail(idx) {
+    console.log(idx)
+  }
 </script>
 
 <style>

@@ -241,8 +241,12 @@ def statistic():
 @recommend.route("/trend")
 def trend():
   try:
+    # recommend_c
+    db_class = dbModule.Database()
+    recommend_c_sql = "SELECT * FROM recommend_c;"
+    recommend_c_data = db_class.executeAll(recommend_c_sql)
 
-    return render_template('recommend/trend.html')
+    return render_template('recommend/trend.html', list = recommend_c_data)
   except Exception as e:
     print(e)
     return render_template('layout/error.html')
