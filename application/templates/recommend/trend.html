@@ -59,22 +59,22 @@
             </div>
             <!-- outer input -->
             <div class="form-floating mb-3 col-10">
-              <input class="form-control input-sm" id="outer" name="outer" type="text" required />
+              <input class="form-control input-sm" id="outer" name="outer" type="text" readonly/>
               <label for="outer">아우터</label>
             </div>
-            <button type="button" class="btn btn-secondary">선택</button>
+            <button type="button" class="btn btn-secondary" onclick="search_outer()">선택</button>
             <!-- top input -->
             <div class="form-floating mb-3 col-10">
-              <input class="form-control input-sm" id="top" name="top" type="text" required />
+              <input class="form-control input-sm" id="top" name="top" type="text" readonly />
               <label for="top">상의</label>
             </div>
-            <button type="button" class="btn btn-secondary">선택</button>
+            <button type="button" class="btn btn-secondary" onclick="search_top()">선택</button>
             <!-- bottom input -->
             <div class="form-floating mb-3 col-10">
-              <input class="form-control input-sm" id="bottom" name="bottom" type="text" required />
+              <input class="form-control input-sm" id="bottom" name="bottom" type="text" readonly />
               <label for="bottom">하의</label>
             </div>
-            <button type="button" class="btn btn-secondary">선택</button>
+            <button type="button" class="btn btn-secondary" onclick="search_bottom()">선택</button>
             <!-- notice input -->
             <div class="form-floating mb-3 col-12">
               <input class="form-control input-sm" id="notice" name="notice" type="text" required />
@@ -91,11 +91,209 @@
       </div>
     </div>
   </div>
+  
+  <!-- Modal (아우터) -->
+  <button id="popup_outer_btn" type="button" data-bs-toggle="modal" data-bs-target="#popup_outer" style="display:none"></button>
+  <div class="modal fade" id="popup_outer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-muted" id="exampleModalLabel">아우터 선택</h5>
+          <button type="button" id="popup_outer_cls_btn" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row" id="popup_outer_body">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal (상의) -->
+  <button id="popup_top_btn" type="button" data-bs-toggle="modal" data-bs-target="#popup_top" style="display:none"></button>
+  <div class="modal fade" id="popup_top" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-muted" id="exampleModalLabel">상의 선택</h5>
+          <button type="button" id="popup_top_cls_btn" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row" id="popup_top_body">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal (하의) -->
+  <button id="popup_bottom_btn" type="button" data-bs-toggle="modal" data-bs-target="#popup_bottom" style="display:none"></button>
+  <div class="modal fade" id="popup_bottom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-muted" id="exampleModalLabel">하의 선택</h5>
+          <button type="button" id="popup_bottom_cls_btn" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row" id="popup_bottom_body">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </header>
 
 <script>
   function goDetail(idx) {
-    console.log(idx)
+    change_url('/recommend/t_detail?idx=' + idx,1000)
+  }
+
+  function addCombination() {
+    var form = $('#addCombination_form')[0];
+    var data = new FormData(form);
+
+    $.ajax({
+      type: "POST",
+      enctype: 'multipart/form-data',
+      url: '/recommend/addCombination',
+      data: data,
+      processData: false,
+      contentType: false,
+      cache: false,
+      timeout: 600000,
+      success: function (data) {
+        if (data.code === 20000) {
+          alertStart('success', 'addCombination', data.msg)
+        } else {
+          alertStart('error', 'addCombination', data.msg)
+        }
+      },
+      error: function (e) {
+        alertStart('error', 'addCombination', '등록에 실패하였습니다.')
+      }
+    });
+  }
+
+  function search_outer() {
+    $.ajax({
+      type: "POST",
+      url: '/recommend/search_outer',
+      processData: false,
+      contentType: false,
+      cache: false,
+      timeout: 600000,
+      success: function (data) {
+        if (data.code == 20000) {
+          result = data.results
+          const box = document.getElementById("popup_outer_body");
+          for (var i = 0; i < result.length; i++) {
+            const newD = document.createElement('div');
+            newD.setAttribute("id", "popup_outer_div");
+            newD.setAttribute("class", "col-4");
+            newD.innerHTML = '<div style="display: inline-block;width: 100%;" onclick="selectOuter(' + result[i].idx + ')">'+
+                             '<img src="data:image/jpg;charset=utf-8;base64,' + result[i].img_binary + '" style="width: 100%; object-fit: cover;">'+
+                             '</div>'
+            box.appendChild(newD);
+
+          }
+          $('#popup_outer_btn').click()
+        } else {
+          alertStart('error', '의류조회', '조회에 실패하였습니다.')
+        }
+      },
+      error: function (e) {
+        console.error(e)
+        alertStart('error', '의류조회', '조회에 실패하였습니다.')
+      }
+    });
+  }
+  function search_top() {
+    $.ajax({
+      type: "POST",
+      url: '/recommend/search_top',
+      processData: false,
+      contentType: false,
+      cache: false,
+      timeout: 600000,
+      success: function (data) {
+        if (data.code == 20000) {
+          result = data.results
+          const box = document.getElementById("popup_top_body");
+          for (var i = 0; i < result.length; i++) {
+            const newD = document.createElement('div');
+            newD.setAttribute("id", "popup_top_div");
+            newD.setAttribute("class", "col-4");
+            newD.innerHTML = '<div style="display: inline-block;width: 100%;" onclick="selectTop(' + result[i].idx + ')">'+
+                             '<img src="data:image/jpg;charset=utf-8;base64,' + result[i].img_binary + '" style="width: 100%; object-fit: cover;">'+
+                             '</div>'
+            box.appendChild(newD);
+
+          }
+          $('#popup_top_btn').click()
+        } else {
+          alertStart('error', '의류조회', '조회에 실패하였습니다.')
+        }
+      },
+      error: function (e) {
+        console.error(e)
+        alertStart('error', '의류조회', '조회에 실패하였습니다.')
+      }
+    });    
+  }
+  function search_bottom() {
+    $.ajax({
+      type: "POST",
+      url: '/recommend/search_bottom',
+      processData: false,
+      contentType: false,
+      cache: false,
+      timeout: 600000,
+      success: function (data) {
+        if (data.code == 20000) {
+          result = data.results
+          const box = document.getElementById("popup_bottom_body");
+          for (var i = 0; i < result.length; i++) {
+            const newD = document.createElement('div');
+            newD.setAttribute("id", "popup_bottom_div");
+            newD.setAttribute("class", "col-4");
+            newD.innerHTML = '<div style="display: inline-block;width: 100%;" onclick="selectBottom(' + result[i].idx + ')">'+
+                             '<img src="data:image/jpg;charset=utf-8;base64,' + result[i].img_binary + '" style="width: 100%; object-fit: cover;">'+
+                             '</div>'
+            box.appendChild(newD);
+
+          }
+          $('#popup_bottom_btn').click()
+        } else {
+          alertStart('error', '의류조회', '조회에 실패하였습니다.')
+        }
+      },
+      error: function (e) {
+        console.error(e)
+        alertStart('error', '의류조회', '조회에 실패하였습니다.')
+      }
+    });
+  }
+
+  function selectOuter(idx) {
+    $('#popup_outer_cls_btn').click()
+    $('#outer').val(idx);
+  }
+  function selectTop(idx) {
+    $('#popup_top_cls_btn').click()
+    $('#top').val(idx);
+  }
+  function selectBottom(idx) {
+    $('#popup_bottom_cls_btn').click()
+    $('#bottom').val(idx);
   }
 </script>
 

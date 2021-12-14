@@ -14,9 +14,9 @@
           <i class="fas fa-arrow-left" onclick="change_url('/recommend/trend',1000)"></i>
         </span>
         <!-- Portfolio Item Heading -->
-        <h3 class="my-2">사용자 의류 추천</h3>
-        <span class="mb-4">작성자 : ㅅㄷㄴㅅ</span>
-        <span class="ml-4">작성일 : 2020-01-02</span>
+        <h3 class="my-2">{{result.title}}</h3>
+        <span class="mb-4">작성자 : {{user_data.userNm}}</span>
+        <span class="ml-4">작성일 : {{c_date}}</span>
   
         <div class="card col-12 detail_card mg_btm_1rem">
           <div class="card-body">  
@@ -24,25 +24,51 @@
               <div class="col-12 mb-4">
   
                   <p class="card-text text-muted f_14p">
-                    상세설명
+                    {{result.detail}}
                   </p>
 
               </div>
             </div>
   
-            <div class="row">
-              <!-- {% for i in img_result %}
+            {% if c_outerData.shop != 0 %}
+            <div class="row detail">
               <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card" style="width: 25rem;height: 40rem;">
-                  <img src="data:image/jpg;charset=utf-8;base64,{{i.img_binary}}" style="height: 30rem; width: 100%; object-fit: cover;">
+                  <img src="data:image/jpg;charset=utf-8;base64,{{c_outerData.img_binary}}" style="height: 30rem; width: 100%; object-fit: cover;">
                   <div class="card-body" style="color: black;">
-                    <h5 class="card-title">{{i.name}}</h5>
-                    <p class="card-text">{{i.p_name}}</p>
-                    <p class="card-text">{{i.price}}원</p>
+                    <h5 class="card-title">{{c_outerData.shop}}</h5>
+                    <p class="card-text">{{c_outerData.p_name}}</p>
+                    <p class="card-text">{{c_outerData.price}}원</p>
                   </div>
                 </div>
               </div>
-              {% endfor %} -->
+            </div>
+            {% endif %}
+            
+            <div class="row detail">
+              <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card" style="width: 25rem;height: 40rem;">
+                  <img src="data:image/jpg;charset=utf-8;base64,{{topData.img_binary}}" style="height: 30rem; width: 100%; object-fit: cover;">
+                  <div class="card-body" style="color: black;">
+                    <h5 class="card-title">{{topData.shop}}</h5>
+                    <p class="card-text">{{topData.p_name}}</p>
+                    <p class="card-text">{{topData.price}}원</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row detail">
+              <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card" style="width: 25rem;height: 40rem;">
+                  <img src="data:image/jpg;charset=utf-8;base64,{{bottomData.img_binary}}" style="height: 30rem; width: 100%; object-fit: cover;">
+                  <div class="card-body" style="color: black;">
+                    <h5 class="card-title">{{bottomData.shop}}</h5>
+                    <p class="card-text">{{bottomData.p_name}}</p>
+                    <p class="card-text">{{bottomData.price}}원</p>
+                  </div>
+                </div>
+              </div>
             </div>
   
           </div>
@@ -59,7 +85,8 @@
 .addCombination {
   float: right;
 }
-.form-floating{
+.form-floating,
+.detail{
   display: inline-block;
 }
 label{

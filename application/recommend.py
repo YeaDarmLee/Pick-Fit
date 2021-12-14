@@ -251,11 +251,199 @@ def trend():
     print(e)
     return render_template('layout/error.html')
 
+
+@recommend.route("/addCombination", methods=['POST'])
+def addCombination():
+  try:
+    title = request.form.get('title')
+    outer = request.form.get('outer')
+    top = request.form.get('top')
+    bottom = request.form.get('bottom')
+    notice = request.form.get('notice')
+
+    if title == '':
+      return {
+        'code':50000,
+        'msg': '제목을 입력해주세요.'
+      }
+    if notice == '':
+      return {
+        'code':50000,
+        'msg': '상세설명을 입력해주세요'
+      }
+    
+    if top == '' or bottom == '':
+      return {
+        'code':50000,
+        'msg': '상의와 하의는 필수값입니다.'
+      }
+
+    userid = '%s' % escape(session['user_id'])
+    db_class = dbModule.Database()
+    search_user = "INSERT INTO recommend_c(title,detail,c_outer,top,bottom,user) VALUES ('" + title + "','" + notice + "','" + outer + "','" + top + "','" + bottom + "','" + userid + "');"
+
+    db_class.execute(search_user)
+    db_class.commit()
+
+    return {
+        'code':20000,
+        'msg': "등록에 성공하였습니다."
+      }
+  except Exception as e:
+    print(e)
+    return {
+        'code':50000,
+        'msg': "등록에 실패하였습니다."
+      }
+  
+
 @recommend.route("/t_detail")
 def t_detail():
   try:
+    idx = request.args.get('idx')
 
-    return render_template('recommend/t_detail.html')
+    db_class = dbModule.Database()
+    search_data_sql = "SELECT * FROM recommend_c WHERE idx = '" + idx + "'"
+    data = dict(db_class.executeOne(search_data_sql))
+
+    c_date = data['date'].strftime('%Y-%m-%d'),
+
+    user = data['user']
+    search_user_sql = "SELECT * FROM user_info WHERE id = '" + user + "'"
+    user_data = dict(db_class.executeOne(search_user_sql))
+
+    c_outer = data['c_outer']
+    if c_outer != '':
+      search_clothing_data_c_outer_sql = "SELECT * FROM clothing_data WHERE idx = '" + c_outer + "'"
+      c_outer_data = dict(db_class.executeOne(search_clothing_data_c_outer_sql))
+      c_outer_img_binary = c_outer_data['img']
+      c_outer_img_binary = c_outer_img_binary.decode('UTF-8')
+      c_outerData = {
+          "shop" : c_outer_data['shop'],
+          "price" : format(int(c_outer_data['price']), ','),
+          "p_name" : c_outer_data['p_name'],
+          "img_binary" : c_outer_img_binary
+        }
+    else:
+      c_outerData = {
+          "shop" : 0,
+          "price" : 0,
+          "p_name" : 0,
+          "img_binary" : 0
+        }
+
+    top = data['top']
+    search_clothing_data_top_sql = "SELECT * FROM clothing_data WHERE idx = '" + top + "'"
+    top_data = dict(db_class.executeOne(search_clothing_data_top_sql))
+    top_img_binary = top_data['img']
+    top_img_binary = top_img_binary.decode('UTF-8')
+    topData = {
+        "shop" : top_data['shop'],
+        "price" : format(int(top_data['price']), ','),
+        "p_name" : top_data['p_name'],
+        "img_binary" : top_img_binary
+      }
+
+    bottom = data['bottom']
+    search_clothing_data_bottom_sql = "SELECT * FROM clothing_data WHERE idx = '" + bottom + "'"
+    bottom_data = dict(db_class.executeOne(search_clothing_data_bottom_sql))
+    bottom_img_binary = bottom_data['img']
+    bottom_img_binary = bottom_img_binary.decode('UTF-8')
+    bottomData = {
+        "shop" : bottom_data['shop'],
+        "price" : format(int(bottom_data['price']), ','),
+        "p_name" : bottom_data['p_name'],
+        "img_binary" : bottom_img_binary
+      }
+
+    return render_template('recommend/t_detail.html', result = data, user_data = user_data, c_outerData = c_outerData, topData = topData, bottomData = bottomData, c_date = c_date[0])
   except Exception as e:
     print(e)
     return render_template('layout/error.html')
+
+@recommend.route("/search_outer", methods=['POST'])
+def search_outer():
+  try:
+    db_class = dbModule.Database()
+    search_outer_sql = "SELECT * FROM clothing_data WHERE title = '아우터' AND gender = 1"
+    data = db_class.executeAll(search_outer_sql)
+  
+    results = []
+    for i in data:
+      detail_data = []
+      detail_data = dict(i)
+
+      img_binary = detail_data['img']
+      img_binary = img_binary.decode('UTF-8')
+
+      detailData = {
+        "idx" : detail_data['idx'],
+        "img_binary" : img_binary,
+      }
+      
+      results.append(detailData)
+
+    return {
+        'code':20000,
+        'results': results
+      }
+  except Exception as e:
+    print(e)
+
+@recommend.route("/search_top", methods=['POST'])
+def search_top():
+  try:
+    db_class = dbModule.Database()
+    search_top_sql = "SELECT * FROM clothing_data WHERE title = '상의' AND gender = 1"
+    data = db_class.executeAll(search_top_sql)
+  
+    results = []
+    for i in data:
+      detail_data = []
+      detail_data = dict(i)
+
+      img_binary = detail_data['img']
+      img_binary = img_binary.decode('UTF-8')
+
+      detailData = {
+        "idx" : detail_data['idx'],
+        "img_binary" : img_binary,
+      }
+      
+      results.append(detailData)
+
+    return {
+        'code':20000,
+        'results': results
+      }
+  except Exception as e:
+    print(e)
+
+@recommend.route("/search_bottom", methods=['POST'])
+def search_bottom():
+  try:
+    db_class = dbModule.Database()
+    search_bottom_sql = "SELECT * FROM clothing_data WHERE title = '하의' AND gender = 1"
+    data = db_class.executeAll(search_bottom_sql)
+  
+    results = []
+    for i in data:
+      detail_data = []
+      detail_data = dict(i)
+
+      img_binary = detail_data['img']
+      img_binary = img_binary.decode('UTF-8')
+
+      detailData = {
+        "idx" : detail_data['idx'],
+        "img_binary" : img_binary,
+      }
+      
+      results.append(detailData)
+
+    return {
+        'code':20000,
+        'results': results
+      }
+  except Exception as e:
+    print(e)
