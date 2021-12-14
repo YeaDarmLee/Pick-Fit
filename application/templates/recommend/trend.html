@@ -6,7 +6,7 @@
 {% include './layout/navigation.html' %}
 
 <!-- recommend -->
-<header class="recommend">
+<header class="trend">
   <div class="container card">
     <!-- Page Content -->
     <div class="container">
@@ -172,7 +172,7 @@
       timeout: 600000,
       success: function (data) {
         if (data.code === 20000) {
-          alertStart('success', 'addCombination', data.msg)
+          alertStart('success', 'addCombination', data.msg, 'reload')
         } else {
           alertStart('error', 'addCombination', data.msg)
         }

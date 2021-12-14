@@ -69,6 +69,8 @@ function alertStart(state, title, message, funType, text, time) {
       change_url(text, time)
     } else if (funType == 'click') {
       $(text).click()
+    } else if (funType == 'reload') {
+      location.reload()
     }
   });
 };
