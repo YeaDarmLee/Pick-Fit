@@ -168,59 +168,59 @@ def clothe():
     print(e)
     return render_template('layout/error.html')
   
-@recommend.route("/crawling")
-def crawling():
-  return render_template('recommend/crawling.html')
+# @recommend.route("/crawling")
+# def crawling():
+#   return render_template('recommend/crawling.html')
   
-@recommend.route("/crawling_search",methods=['POST'])
-def crawling_search():
-  try:
-    searchUrl = request.form.get('searchUrl')
-    tag = request.form.get('tag')
+# @recommend.route("/crawling_search",methods=['POST'])
+# def crawling_search():
+#   try:
+#     searchUrl = request.form.get('searchUrl')
+#     tag = request.form.get('tag')
 
-    if searchUrl == '' and tag == '':
-      return {
-        'code':50000,
-        'result': '모든 값을 입력해 주세요.'
-      }
-    elif searchUrl == '':
-      return {
-        'code':50000,
-        'result': '검색할 url을 입력해 주세요.'
-      }
+#     if searchUrl == '' and tag == '':
+#       return {
+#         'code':50000,
+#         'result': '모든 값을 입력해 주세요.'
+#       }
+#     elif searchUrl == '':
+#       return {
+#         'code':50000,
+#         'result': '검색할 url을 입력해 주세요.'
+#       }
 
-    # 크롤링 url 기본값
-    headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
-    response = requests.get(searchUrl, headers=headers)
-    html_text = response.text
-    soup = BeautifulSoup(html_text, "lxml")
-    result = soup.find(tag).text
+#     # 크롤링 url 기본값
+#     headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
+#     response = requests.get(searchUrl, headers=headers)
+#     html_text = response.text
+#     soup = BeautifulSoup(html_text, "lxml")
+#     result = soup.find(tag).text
 
-    userid = '%s' % escape(session['user_id'])
+#     userid = '%s' % escape(session['user_id'])
     
-    cl_result = []
-    cl_result.append({
-        'searchUrl':searchUrl,
-        'tag':tag
-      })
+#     cl_result = []
+#     cl_result.append({
+#         'searchUrl':searchUrl,
+#         'tag':tag
+#       })
 
-    db_class = dbModule.Database()
-    search_log = "INSERT INTO search_log(s_type,user_id,result) VALUES ('cl','" + userid + "','" + json.dumps(cl_result[0]) + "');"
-    db_class.execute(search_log)
-    db_class.commit()
+#     db_class = dbModule.Database()
+#     search_log = "INSERT INTO search_log(s_type,user_id,result) VALUES ('cl','" + userid + "','" + json.dumps(cl_result[0]) + "');"
+#     db_class.execute(search_log)
+#     db_class.commit()
 
-    return {
-        'code':20000,
-        'result': result,
-        'searchUrl': searchUrl,
-        'tag': tag,
-      }
-  except Exception as e:
-    print(e)
-    return {
-        'code':50000,
-        'result' : '크롤링에 실패하였습니다.<br>' + e
-      }
+#     return {
+#         'code':20000,
+#         'result': result,
+#         'searchUrl': searchUrl,
+#         'tag': tag,
+#       }
+#   except Exception as e:
+#     print(e)
+#     return {
+#         'code':50000,
+#         'result' : '크롤링에 실패하였습니다.<br>' + e
+#       }
   
 @recommend.route("/statistic")
 def statistic():
@@ -271,6 +271,8 @@ def addCombination():
         'code':50000,
         'msg': '상세설명을 입력해주세요'
       }
+    else:
+      notice = notice.replace("\r\n","<br>")
     
     if top == '' or bottom == '':
       return {
@@ -322,6 +324,8 @@ def t_detail():
           "shop" : c_outer_data['shop'],
           "price" : format(int(c_outer_data['price']), ','),
           "p_name" : c_outer_data['p_name'],
+          # "url" : c_outer_data['url'],
+          "url" : "https://mcpaint.tistory.com/194",
           "img_binary" : c_outer_img_binary
         }
     else:
@@ -341,6 +345,8 @@ def t_detail():
         "shop" : top_data['shop'],
         "price" : format(int(top_data['price']), ','),
         "p_name" : top_data['p_name'],
+        # "url" : top_data['url'],
+        "url" : "https://mcpaint.tistory.com/195",
         "img_binary" : top_img_binary
       }
 
@@ -353,6 +359,8 @@ def t_detail():
         "shop" : bottom_data['shop'],
         "price" : format(int(bottom_data['price']), ','),
         "p_name" : bottom_data['p_name'],
+        # "url" : bottom_data['url'],
+        "url" : "https://mcpaint.tistory.com/194",
         "img_binary" : bottom_img_binary
       }
 

@@ -23,8 +23,7 @@
             <div class="row">
               <div class="col-12 mb-4">
   
-                  <p class="card-text text-muted f_14p">
-                    {{result.detail}}
+                  <p class="card-text text-dark" id="title_text">
                   </p>
 
               </div>
@@ -34,7 +33,7 @@
             <div class="row detail">
               <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card" style="width: 25rem;height: 40rem;">
-                  <img src="data:image/jpg;charset=utf-8;base64,{{c_outerData.img_binary}}" style="height: 30rem; width: 100%; object-fit: cover;">
+                  <img class="detail_img" src="data:image/jpg;charset=utf-8;base64,{{c_outerData.img_binary}}" onclick="goUrl('{{c_outerData.url}}')">
                   <div class="card-body" style="color: black;">
                     <h5 class="card-title">{{c_outerData.shop}}</h5>
                     <p class="card-text">{{c_outerData.p_name}}</p>
@@ -48,7 +47,7 @@
             <div class="row detail">
               <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card" style="width: 25rem;height: 40rem;">
-                  <img src="data:image/jpg;charset=utf-8;base64,{{topData.img_binary}}" style="height: 30rem; width: 100%; object-fit: cover;">
+                  <img class="detail_img" src="data:image/jpg;charset=utf-8;base64,{{topData.img_binary}}" onclick="goUrl('{{topData.url}}')">
                   <div class="card-body" style="color: black;">
                     <h5 class="card-title">{{topData.shop}}</h5>
                     <p class="card-text">{{topData.p_name}}</p>
@@ -61,7 +60,7 @@
             <div class="row detail">
               <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card" style="width: 25rem;height: 40rem;">
-                  <img src="data:image/jpg;charset=utf-8;base64,{{bottomData.img_binary}}" style="height: 30rem; width: 100%; object-fit: cover;">
+                  <img class="detail_img" src="data:image/jpg;charset=utf-8;base64,{{bottomData.img_binary}}" onclick="goUrl('{{bottomData.url}}')">
                   <div class="card-body" style="color: black;">
                     <h5 class="card-title">{{bottomData.shop}}</h5>
                     <p class="card-text">{{bottomData.p_name}}</p>
@@ -79,9 +78,37 @@
 </header>
 
 <script>
+  $(window).on('load', function () {
+    var detailText = '{{result.detail}}'
+    var detailArray = []
+    detailArray = detailText.split("&lt;br&gt;")
+
+    var endText = ''
+    for (var i in detailArray) {
+      endText = endText + detailArray[i] + '<br>'
+    }
+
+    const box = document.getElementById("title_text");
+    const newD = document.createElement('div');
+    newD.setAttribute("id", "title_text_div");
+    newD.innerHTML = endText
+    box.appendChild(newD);
+  });
+
+  function goUrl(url) {
+    if (url) {
+      window.open(url)
+    }
+  }
 </script>
 
 <style>
+.detail_img {
+  cursor: pointer;
+  height: 30rem;
+  width: 100%;
+  object-fit: cover;
+}
 .addCombination {
   float: right;
 }

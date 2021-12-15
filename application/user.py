@@ -336,13 +336,22 @@ def search_detail():
         'search': idx_result['result']
       })
     
-    result.append({
-      'idx':idx_result['idx'],
-      's_type':idx_result['s_type'],
-      'user_id':idx_result['user_id'],
-      'result':result_j[0],
-      'c_date':idx_result['c_date'],
-    })
+    if len(result_j) is 0:
+      result.append({
+        'idx':"정보없음",
+        's_type':"정보없음",
+        'user_id':"정보없음",
+        'result':"정보없음",
+        'c_date':"정보없음",
+      })
+    else:
+      result.append({
+        'idx':idx_result['idx'],
+        's_type':idx_result['s_type'],
+        'user_id':idx_result['user_id'],
+        'result':result_j[0],
+        'c_date':idx_result['c_date'],
+      })
 
     return {
       'code':20000,
