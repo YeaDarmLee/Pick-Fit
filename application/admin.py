@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, escape, session
 from flask import Blueprint
-import json
+import json, urllib
 
 # import dbModule
 from application import dbModule
@@ -158,26 +158,26 @@ def fileUpload():
         values = values + ",'" + detail_data['아우터'][0]['쇼핑몰'] + "'"
         values = values + ",'" + detail_data['아우터'][0]['가격'].replace(",","",2).replace("원","") + "'"
         values = values + ",'" + detail_data['아우터'][0]['상품명'] + "'"
-        values = values + ",'" + detail_data['아우터'][0]['URL'] + "'"
+        values = values + ",'" + (detail_data['아우터'][0]['URL']).replace("%","%%") + "'"
       elif detail_data.get('원피스') is not None:
         values = values + ",'" + detail_data['원피스'][0]['쇼핑몰'] + "'"
         values = values + ",'" + detail_data['원피스'][0]['가격'].replace(",","",2).replace("원","") + "'"
         values = values + ",'" + detail_data['원피스'][0]['상품명'] + "'"
-        values = values + ",'" + detail_data['원피스'][0]['URL'] + "'"
+        values = values + ",'" + (detail_data['원피스'][0]['URL']).replace("%","%%") + "'"
       elif detail_data.get('상의') is not None:
         values = values + ",'" + detail_data['상의'][0]['쇼핑몰'] + "'"
         values = values + ",'" + detail_data['상의'][0]['가격'].replace(",","",2).replace("원","") + "'"
         values = values + ",'" + detail_data['상의'][0]['상품명'] + "'"
-        values = values + ",'" + detail_data['상의'][0]['URL'] + "'"
+        values = values + ",'" + (detail_data['상의'][0]['URL']).replace("%","%%") + "'"
       elif detail_data.get('하의') is not None:
         values = values + ",'" + detail_data['하의'][0]['쇼핑몰'] + "'"
         values = values + ",'" + detail_data['하의'][0]['가격'].replace(",","",2).replace("원","") + "'"
         values = values + ",'" + detail_data['하의'][0]['상품명'] + "'"
-        values = values + ",'" + detail_data['하의'][0]['URL'] + "'"
+        values = values + ",'" + (detail_data['하의'][0]['URL']).replace("%","%%") + "'"
       
       # 남성 json 및 이미지 등록시 이 주석 풀고 업로드 해야함
-      # column = column + ",gender"
-      # values = values + ", '1'"
+      column = column + ",gender"
+      values = values + ", '1'"
 
       sql = "INSERT clothing_data (" + column + ") VALUES (" + values + ")"
 
@@ -187,9 +187,14 @@ def fileUpload():
         db_class.commit()
       except Exception as e:
         print("###################################################################")
-        print(file_data['이미지 정보']['이미지 식별자'])
+        print(e)
         print("###################################################################")
+        return {
+          'code':50000,
+          'result': '업데이트에 실패하였습니다.'
+        }
       
+      print(sql)
       print('파일명 : ' , file_data['이미지 정보']['이미지 식별자'])
       print('###############  업로드 완료  ################')
 

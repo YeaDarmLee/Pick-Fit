@@ -154,6 +154,7 @@ def clothe():
         "img_binary" : img_binary,
         "name" : i['shop'],
         "price" : format(int(i['price']), ','),
+        "url" : i['url'],
         "p_name" : i['p_name']
       }
 
@@ -281,8 +282,13 @@ def addCombination():
       }
 
     userid = '%s' % escape(session['user_id'])
+    
     db_class = dbModule.Database()
-    search_user = "INSERT INTO recommend_c(title,detail,c_outer,top,bottom,user) VALUES ('" + title + "','" + notice + "','" + outer + "','" + top + "','" + bottom + "','" + userid + "');"
+    search_user = "SELECT * FROM user_info WHERE id = '" + userid + "'"
+    userData = db_class.executeOne(search_user)
+    userNm = userData['userNm']
+    
+    search_user = "INSERT INTO recommend_c(title,detail,c_outer,top,bottom,user,userid) VALUES ('" + title + "','" + notice + "','" + outer + "','" + top + "','" + bottom + "','" + userNm + "','" + userid+ "');"
 
     db_class.execute(search_user)
     db_class.commit()
@@ -310,7 +316,7 @@ def t_detail():
 
     c_date = data['date'].strftime('%Y-%m-%d'),
 
-    user = data['user']
+    user = data['userid']
     search_user_sql = "SELECT * FROM user_info WHERE id = '" + user + "'"
     user_data = dict(db_class.executeOne(search_user_sql))
 
@@ -324,8 +330,7 @@ def t_detail():
           "shop" : c_outer_data['shop'],
           "price" : format(int(c_outer_data['price']), ','),
           "p_name" : c_outer_data['p_name'],
-          # "url" : c_outer_data['url'],
-          "url" : "https://mcpaint.tistory.com/194",
+          "url" : c_outer_data['url'],
           "img_binary" : c_outer_img_binary
         }
     else:
@@ -345,8 +350,7 @@ def t_detail():
         "shop" : top_data['shop'],
         "price" : format(int(top_data['price']), ','),
         "p_name" : top_data['p_name'],
-        # "url" : top_data['url'],
-        "url" : "https://mcpaint.tistory.com/195",
+        "url" : top_data['url'],
         "img_binary" : top_img_binary
       }
 
@@ -359,8 +363,7 @@ def t_detail():
         "shop" : bottom_data['shop'],
         "price" : format(int(bottom_data['price']), ','),
         "p_name" : bottom_data['p_name'],
-        # "url" : bottom_data['url'],
-        "url" : "https://mcpaint.tistory.com/194",
+        "url" : bottom_data['url'],
         "img_binary" : bottom_img_binary
       }
 
@@ -433,22 +436,26 @@ def search_bottom():
     db_class = dbModule.Database()
     search_bottom_sql = "SELECT * FROM clothing_data WHERE title = '하의' AND gender = 1"
     data = db_class.executeAll(search_bottom_sql)
-  
+    
     results = []
     for i in data:
-      detail_data = []
-      detail_data = dict(i)
+      try:
+        detail_data = []
+        detail_data = dict(i)
 
-      img_binary = detail_data['img']
-      img_binary = img_binary.decode('UTF-8')
+        img_binary = detail_data['img']
+        img_binary = img_binary.decode('UTF-8')
 
-      detailData = {
-        "idx" : detail_data['idx'],
-        "img_binary" : img_binary,
-      }
+        detailData = {
+          "idx" : detail_data['idx'],
+          "img_binary" : img_binary,
+        }
+        
+        results.append(detailData)
+
+      except Exception as e:
+        print(0)
       
-      results.append(detailData)
-
     return {
         'code':20000,
         'results': results

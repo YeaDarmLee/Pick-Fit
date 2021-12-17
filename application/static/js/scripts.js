@@ -85,3 +85,9 @@ function change_url(url, time) {
 function goRecommend() {
   change_url('/recommend',1000)
 }
+
+function goUrl(url) {
+  if (url) {
+    window.open(url)
+  }
+}
