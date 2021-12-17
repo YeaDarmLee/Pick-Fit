@@ -152,24 +152,28 @@ def fileUpload():
       else:
         detail_data = file_data['데이터셋 정보']['상세설명']
 
-      column = column + ',shop,price,p_name'
+      column = column + ',shop,price,p_name,url'
 
       if detail_data.get('아우터') is not None:
         values = values + ",'" + detail_data['아우터'][0]['쇼핑몰'] + "'"
         values = values + ",'" + detail_data['아우터'][0]['가격'].replace(",","",2).replace("원","") + "'"
         values = values + ",'" + detail_data['아우터'][0]['상품명'] + "'"
+        values = values + ",'" + detail_data['아우터'][0]['URL'] + "'"
       elif detail_data.get('원피스') is not None:
         values = values + ",'" + detail_data['원피스'][0]['쇼핑몰'] + "'"
         values = values + ",'" + detail_data['원피스'][0]['가격'].replace(",","",2).replace("원","") + "'"
         values = values + ",'" + detail_data['원피스'][0]['상품명'] + "'"
+        values = values + ",'" + detail_data['원피스'][0]['URL'] + "'"
       elif detail_data.get('상의') is not None:
         values = values + ",'" + detail_data['상의'][0]['쇼핑몰'] + "'"
         values = values + ",'" + detail_data['상의'][0]['가격'].replace(",","",2).replace("원","") + "'"
         values = values + ",'" + detail_data['상의'][0]['상품명'] + "'"
+        values = values + ",'" + detail_data['상의'][0]['URL'] + "'"
       elif detail_data.get('하의') is not None:
         values = values + ",'" + detail_data['하의'][0]['쇼핑몰'] + "'"
         values = values + ",'" + detail_data['하의'][0]['가격'].replace(",","",2).replace("원","") + "'"
         values = values + ",'" + detail_data['하의'][0]['상품명'] + "'"
+        values = values + ",'" + detail_data['하의'][0]['URL'] + "'"
       
       # 남성 json 및 이미지 등록시 이 주석 풀고 업로드 해야함
       # column = column + ",gender"
