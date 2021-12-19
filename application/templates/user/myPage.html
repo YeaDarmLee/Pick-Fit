@@ -314,13 +314,13 @@
       success: function (data) {
         if (data.code === 20000) {
           $('#modifyClsBtn').click()
-          alertStart('success', 'Change Modify', data.result, 'replace', '/myPage', 1000)
+          alertStart('success', 'Change Success', data.result, 'replace', '/myPage', 1000)
         } else {
-          alertStart('error', 'Change Modify', data.result)
+          alertStart('error', 'Change Error', data.result)
         }
       },
       error: function (e) {
-        alertStart('error', 'Change Modify', '추가정보 업데이트중 오류가 발생하였습니다.')
+        alertStart('error', 'Change Error', '추가정보 업데이트중 오류가 발생하였습니다.')
       }
     });
   }
