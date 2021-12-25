@@ -23,6 +23,7 @@
 
       <!-- Submit button -->
       <button type="button" class="btn btn-primary btn-block" onclick="clkBtn()">Sign in</button>
+      <a href="javascript:kakaoLogin();"><img src="https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png" height ="40" width="80" /></a>
     </form>
   </div>
 </header>
@@ -60,5 +61,26 @@
   }
 </script>
 
+<!--카카오톡 로그인-->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+  window.Kakao.init("867219829eec680a7503a58dabb0ee4d");
+
+  function kakaoLogin(){
+    window.Kakao.Auth.login({
+      scope:'profile_nickname, profile_image, account_email, gender',
+      success: function(authObj) {
+        console.log(authObj);
+        window.Kakao.API.request({
+          url:'/v2/user/me',
+          success: res => {
+            const kakao_account = res.kakao_account;
+            console.log(kakao_account);
+          }
+        })
+      }
+    })
+  }
+</script>
 <!-- Footer-->
 {% include './layout/footer.html' %}
