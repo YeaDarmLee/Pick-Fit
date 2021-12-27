@@ -100,27 +100,9 @@ function kakaoClotheShare(gender, style){
   const fd_content = document.getElementById("fd_content").textContent
   const sd_content = document.getElementById("sd_content").textContent
 
-  let styledata = ''
+  let styledata = '';
   // 남자 여자 별로 스타일 달라서 남자여자도 구분해서 스타일 이름하고 이미지 경로 지정해줘야함
   if (gender == 1) {
-    switch(style) {
-      case '6':
-        styledata = '캐주얼'
-        break;
-      case '2':
-        styledata = '모던'
-        break;
-      case '5':
-        styledata = '스트리트'
-        break;
-      case '7':
-        styledata = '밀리터리'
-        break;
-      case '3':
-        styledata = '스포티'
-        break;
-    }
-  } else {
     switch(style) {
       case '1':
         styledata = '로맨틱'
@@ -138,7 +120,27 @@ function kakaoClotheShare(gender, style){
         styledata = '클래식'
         break;
     }
+  } else {
+      switch(style) {
+        case '6':
+          styledata = '캐주얼'
+          break;
+        case '2':
+          styledata = '모던'
+          break;
+        case '5':
+          styledata = '스트리트'
+          break;
+        case '7':
+          styledata = '밀리터리'
+          break;
+        case '3':
+          styledata = '스포티'
+          break;
+    }
   }
+
+  console.log(styledata)
   
   Kakao.Link.sendCustom({
     templateId: 67577,
@@ -170,12 +172,12 @@ function kakaoCodyShare(userNm,c_outerData,topData,bottomData){
 
   // 파일 이미지 업로드로 카카오 url 받은 후 해당 url 파싱
 
-  // Kakao.Link.uploadImage({
-  //   file: file1
-  // }).then(function(res){
-  //   console.log(res.infos.original.url)
-  //   // document.getElementById('uploadUrl').value = res.infos.original.url;
-  // });
+  Kakao.Link.uploadImage({
+    file: topFile
+  }).then(function(res){
+    console.log(res.infos.original.url)
+    // document.getElementById('uploadUrl').value = res.infos.original.url;
+  });
   
   Kakao.Link.sendCustom({
     templateId: 67579,
