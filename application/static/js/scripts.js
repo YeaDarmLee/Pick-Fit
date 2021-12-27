@@ -93,62 +93,71 @@ function goUrl(url) {
 }
 
 //kakao share
-function kakaoShare(){   
-  Kakao.Link.sendDefault({
-      objectType: 'feed',
-      content: {
-      title: '오늘의 디저트',
-      description: '아메리카노, 빵, 케익',
-      imageUrl:
-          'http://mud-kage.kakao.co.kr/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
-      link: {
-          mobileWebUrl: 'https://developers.kakao.com',
-          androidExecutionParams: 'test',
-      },
-      },
-      itemContent: {
-      profileText: 'Kakao',
-      profileImageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-      titleImageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-      titleImageText: 'Cheese cake',
-      titleImageCategory: 'Cake',
-      items: [
-          {
-          item: 'Cake1',
-          itemOp: '1000원',
-          },
-          {
-          item: 'Cake2',
-          itemOp: '2000원',
-          },
-          {
-          item: 'Cake3',
-          itemOp: '3000원',
-          },
-          {
-          item: 'Cake4',
-          itemOp: '4000원',
-          },
-          {
-          item: 'Cake5',
-          itemOp: '5000원',
-          },
-      ],
-      sum: '총 결제금액',
-      sumOp: '15000원',
-      },
-      social: {
-      likeCount: 10,
-      commentCount: 20,
-      sharedCount: 30,
-      },
-      buttons: [
-      {
-          title: '웹으로 이동',
-          link: {
-          mobileWebUrl: 'https://developers.kakao.com',
-          },
-      },
-      ]
+function kakaoClotheShare(gender, style){
+
+  const f_content = document.getElementById("f_content").textContent.replace(" | ","").replace("얼굴형 : ","")
+  const s_content = document.getElementById("s_content").textContent.replace("체형 : ","")
+  const fd_content = document.getElementById("fd_content").textContent
+  const sd_content = document.getElementById("sd_content").textContent
+
+  let styledata = ''
+  let style_url = ''
+  // 남자 여자 별로 스타일 달라서 남자여자도 구분해서 스타일 이름하고 이미지 경로 지정해줘야함
+  if (gender == 1) {
+    switch(style) {
+      case '1':
+        styledata = ''
+        style_url = ''
+        break;
+      case '2':
+        styledata = ''
+        style_url = ''
+        break;
+      case '3':
+        styledata = ''
+        style_url = ''
+        break;
+    }
+  } else {
+    switch(style) {
+      case '1':
+        styledata = ''
+        style_url = ''
+        break;
+      case '2':
+        styledata = ''
+        style_url = ''
+        break;
+      case '3':
+        styledata = ''
+        style_url = ''
+        break;
+    }
+  }
+  
+  Kakao.Link.sendCustom({
+    templateId: 67577,
+    templateArgs: {
+      'title': f_content + s_content,
+      'description': fd_content + sd_content,
+      'style': styledata,
+      'img':''
+    }
+  });
+} 
+
+//kakao share
+function kakaoCodyShare(idx, userNm){
+  // idx로 조회해서 t_datail 데이터 받아와야함
+  // 이미지 바이너리 체크후 uploadImage, scrapImage
+  
+  Kakao.Link.sendCustom({
+    templateId: 67579,
+    templateArgs: {
+      'userNm': userNm,
+      'img1':'',
+      'img2':'',
+      'img3':''
+    }
   });
 } 
