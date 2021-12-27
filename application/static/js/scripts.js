@@ -104,26 +104,38 @@ function kakaoClotheShare(gender, style){
   // 남자 여자 별로 스타일 달라서 남자여자도 구분해서 스타일 이름하고 이미지 경로 지정해줘야함
   if (gender == 1) {
     switch(style) {
-      case '1':
-        styledata = '1'
+      case '6':
+        styledata = '캐주얼'
         break;
       case '2':
-        styledata = '2'
+        styledata = '모던'
+        break;
+      case '5':
+        styledata = '스트리트'
+        break;
+      case '7':
+        styledata = '밀리터리'
         break;
       case '3':
-        styledata = '3'
+        styledata = '스포티'
         break;
     }
   } else {
     switch(style) {
       case '1':
-        styledata = '1'
+        styledata = '로맨틱'
         break;
       case '2':
-        styledata = '2'
+        styledata = '모던'
+        break;
+      case '5':
+        styledata = '스트리트'
         break;
       case '3':
-        styledata = '3'
+        styledata = '스포티'
+        break;
+      case '4':
+        styledata = '클래식'
         break;
     }
   }

@@ -55,11 +55,19 @@ def clothe():
       style = '로맨틱'
       style_sql = " AND style = '로맨틱'"
     elif style == 2:
-      style = '모던'
-      style_sql = " AND style = '모던'"
+      if gender == 0:
+        style = '모던'
+        style_sql = " AND style = '모던'"
+      if gender == 1:
+        style = '모던'
+        style_sql = " AND style = '모던'"
     elif style == 3:
-      style = '스포티'
-      style_sql = " AND style = '스포티'"
+      if gender == 0:
+        style = '스포티'
+        style_sql = " AND style = '스포티'"
+      if gender == 1:
+        style = '스포티'
+        style_sql = " AND style = '스포티'"
     elif style == 4:
       style = '클래식'
       style_sql = " AND style = '클래식'"
