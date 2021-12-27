@@ -101,36 +101,29 @@ function kakaoClotheShare(gender, style){
   const sd_content = document.getElementById("sd_content").textContent
 
   let styledata = ''
-  let style_url = ''
   // 남자 여자 별로 스타일 달라서 남자여자도 구분해서 스타일 이름하고 이미지 경로 지정해줘야함
   if (gender == 1) {
     switch(style) {
       case '1':
-        styledata = ''
-        style_url = ''
+        styledata = '1'
         break;
       case '2':
-        styledata = ''
-        style_url = ''
+        styledata = '2'
         break;
       case '3':
-        styledata = ''
-        style_url = ''
+        styledata = '3'
         break;
     }
   } else {
     switch(style) {
       case '1':
-        styledata = ''
-        style_url = ''
+        styledata = '1'
         break;
       case '2':
-        styledata = ''
-        style_url = ''
+        styledata = '2'
         break;
       case '3':
-        styledata = ''
-        style_url = ''
+        styledata = '3'
         break;
     }
   }
@@ -141,15 +134,36 @@ function kakaoClotheShare(gender, style){
       'title': f_content + s_content,
       'description': fd_content + sd_content,
       'style': styledata,
-      'img':''
     }
   });
 } 
 
 //kakao share
-function kakaoCodyShare(idx, userNm){
-  // idx로 조회해서 t_datail 데이터 받아와야함
-  // 이미지 바이너리 체크후 uploadImage, scrapImage
+function kakaoCodyShare(userNm,c_outerData,topData,bottomData){
+  let outerFile = new File([c_outerData], {
+    type: "application/jpg"
+  });
+  
+  let topFile = new File([topData], {
+    type: "application/jpg"
+  });
+  
+  let bottomFile = new File([bottomData], {
+    type: "application/jpg"
+  });
+
+  console.log(outerFile)
+  console.log(topFile)
+  console.log(bottomFile)
+
+  // 파일 이미지 업로드로 카카오 url 받은 후 해당 url 파싱
+
+  // Kakao.Link.uploadImage({
+  //   file: file1
+  // }).then(function(res){
+  //   console.log(res.infos.original.url)
+  //   // document.getElementById('uploadUrl').value = res.infos.original.url;
+  // });
   
   Kakao.Link.sendCustom({
     templateId: 67579,
