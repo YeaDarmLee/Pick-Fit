@@ -367,7 +367,7 @@ def t_detail():
         "img_binary" : bottom_img_binary
       }
 
-    return render_template('recommend/t_detail.html', result = data, user_data = user_data, c_outerData = c_outerData, topData = topData, bottomData = bottomData, c_date = c_date[0])
+    return render_template('recommend/t_detail.html', result = data, user_data = user_data, c_outerData = c_outerData, topData = topData, bottomData = bottomData, c_date = c_date[0], idx = idx)
   except Exception as e:
     print(e)
     return render_template('layout/error.html')
@@ -462,3 +462,4 @@ def search_bottom():
       }
   except Exception as e:
     print(e)
+    
