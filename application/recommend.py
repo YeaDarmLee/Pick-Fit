@@ -383,8 +383,20 @@ def t_detail():
 @recommend.route("/search_outer", methods=['POST'])
 def search_outer():
   try:
+    userid = '%s' % escape(session['user_id'])
+
     db_class = dbModule.Database()
-    search_outer_sql = "SELECT * FROM clothing_data WHERE title = '아우터' AND gender = 1"
+    search_user = "SELECT * FROM user_info where id = '" + userid + "';"
+    data = dict(db_class.executeOne(search_user))
+    
+    # 남자
+    if data['gender'] == 0:
+      gender = "1"
+    else:
+      gender = "0"
+
+    db_class = dbModule.Database()
+    search_outer_sql = "SELECT * FROM clothing_data WHERE title = '아우터' AND gender = " + gender
     data = db_class.executeAll(search_outer_sql)
   
     results = []
@@ -412,8 +424,20 @@ def search_outer():
 @recommend.route("/search_top", methods=['POST'])
 def search_top():
   try:
+    userid = '%s' % escape(session['user_id'])
+
     db_class = dbModule.Database()
-    search_top_sql = "SELECT * FROM clothing_data WHERE title = '상의' AND gender = 1"
+    search_user = "SELECT * FROM user_info where id = '" + userid + "';"
+    data = dict(db_class.executeOne(search_user))
+    
+    # 남자
+    if data['gender'] == 0:
+      gender = "1"
+    else:
+      gender = "0"
+
+    db_class = dbModule.Database()
+    search_top_sql = "SELECT * FROM clothing_data WHERE title = '상의' AND gender = " + gender
     data = db_class.executeAll(search_top_sql)
   
     results = []
@@ -441,8 +465,20 @@ def search_top():
 @recommend.route("/search_bottom", methods=['POST'])
 def search_bottom():
   try:
+    userid = '%s' % escape(session['user_id'])
+
     db_class = dbModule.Database()
-    search_bottom_sql = "SELECT * FROM clothing_data WHERE title = '하의' AND gender = 1"
+    search_user = "SELECT * FROM user_info where id = '" + userid + "';"
+    data = dict(db_class.executeOne(search_user))
+    
+    # 남자
+    if data['gender'] == 0:
+      gender = "1"
+    else:
+      gender = "0"
+
+    db_class = dbModule.Database()
+    search_bottom_sql = "SELECT * FROM clothing_data WHERE title = '하의' AND gender = " + gender
     data = db_class.executeAll(search_bottom_sql)
     
     results = []
