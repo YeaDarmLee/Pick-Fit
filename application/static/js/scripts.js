@@ -110,32 +110,32 @@ function kakaoClotheShare(gender, style){
       case '2':
         styledata = '모던'
         break;
-      case '5':
-        styledata = '스트리트'
-        break;
       case '3':
         styledata = '스포티'
         break;
       case '4':
         styledata = '클래식'
         break;
+      case '5':
+        styledata = '스트리트'
+        break;
     }
   } else {
       switch(style) {
-        case '6':
-          styledata = '캐주얼'
-          break;
         case '2':
           styledata = '모던'
+          break;
+        case '3':
+          styledata = '스포티'
           break;
         case '5':
           styledata = '스트리트'
           break;
+        case '6':
+          styledata = '캐주얼'
+          break;
         case '7':
           styledata = '밀리터리'
-          break;
-        case '3':
-          styledata = '스포티'
           break;
     }
   }
@@ -154,38 +154,68 @@ function kakaoClotheShare(gender, style){
 
 //kakao share
 function kakaoCodyShare(userNm,c_outerData,topData,bottomData){
-  let outerFile = new File([c_outerData], {
-    type: "application/jpg"
-  });
   
-  let topFile = new File([topData], {
-    type: "application/jpg"
-  });
-  
-  let bottomFile = new File([bottomData], {
-    type: "application/jpg"
+  let outerUrl = ''
+  let topUrl = ''
+  let bottomUrl = ''
+
+  // outer to img url
+  let outerFile = new File([c_outerData], "outerFile.jpeg",{
+    type: "image/jpeg"
   });
 
-  console.log(outerFile)
-  console.log(topFile)
-  console.log(bottomFile)
-
-  // 파일 이미지 업로드로 카카오 url 받은 후 해당 url 파싱
+  let outerDataTransfer = new DataTransfer();
+  outerDataTransfer.items.add(outerFile)
+  let outerFileList = outerDataTransfer.files
 
   Kakao.Link.uploadImage({
-    file: topFile
+    file: outerFileList
   }).then(function(res){
-    console.log(res.infos.original.url)
-    // document.getElementById('uploadUrl').value = res.infos.original.url;
+    outerUrl = res.infos.original.url
   });
+
+  // top to img url
+  let topFile = new File([topData], "topData.jpeg",{
+    type: "image/jpeg"
+  });
+  
+  let topDataTransfer = new DataTransfer();
+  topDataTransfer.items.add(topFile)
+  let topFileList = topDataTransfer.files
+  
+  Kakao.Link.uploadImage({
+    file: topFileList
+  }).then(function(res){
+    topUrl = res.infos.original.url
+  });
+
+  // bottom to img url
+  let bottomFile = new File([bottomData], "bottomFile.jpeg",{
+    type: "image/jpeg"
+  });
+
+  let bottomDataTransfer = new DataTransfer();
+  bottomDataTransfer.items.add(bottomFile)
+  let bottomFileList = bottomDataTransfer.files
+  
+  Kakao.Link.uploadImage({
+    file: bottomFileList
+  }).then(function(res){
+    bottomUrl = res.infos.original.url
+  });
+
+  console.log('outerUrl', outerFileList)
+  console.log('topUrl', topFileList)
+  console.log('bottomUrl', bottomFileList)
+
   
   Kakao.Link.sendCustom({
     templateId: 67579,
     templateArgs: {
       'userNm': userNm,
-      'img1':'',
-      'img2':'',
-      'img3':''
+      'img1':outerUrl,
+      'img2':topUrl,
+      'img3':bottomUrl
     }
   });
-} 
+}
